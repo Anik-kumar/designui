@@ -30,3 +30,15 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 # Reference
 
+https://demos.creative-tim.com/bs3/material-dashboard-pro/examples/pages/register.html
+https://demos.creative-tim.com/bs3/material-dashboard-pro/examples/pages/login.html
+https://medium.com/dev-jam/5-tips-best-practices-to-organize-your-angular-project-e900db08702e
+https://medium.com/@motcowley/angular-folder-structure-d1809be95542
+https://medium.com/@tiagovalverde/how-to-save-your-app-state-in-localstorage-with-angular-ce3f49362e31
+https://blog.usejournal.com/best-practices-for-writing-angular-6-apps-e6d3c0f6c7c1
+https://johnpapa.net/angular-9-lazy-loading-components/
+
+ng g m modules/shared
+
+
+ng generate module customers --route customers --module app.module

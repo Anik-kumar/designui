@@ -16,6 +16,8 @@ import { CoreModule } from '@core/core.module';
 // @ts-ignore
 import { PublicModule } from '@modules/public/public.module';
 
+import { RegistrationModule } from '@modules/registration/registration.module';
+
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { PublicModule } from '@modules/public/public.module';
     ToastrModule.forRoot(),
     CoreModule,
     PublicModule,
+    RegistrationModule
   ],
   providers: [
     httpInterceptorProviders,
