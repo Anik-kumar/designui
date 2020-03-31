@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
+// import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './modules/authentication/authentication.component';
@@ -22,12 +23,13 @@ import { RegistrationModule } from '@modules/registration/registration.module';
 @NgModule({
   declarations: [
     AppComponent,
-    AuthenticationComponent
+    AuthenticationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    // FormsModule,
     ToastrModule.forRoot(),
     CoreModule,
     PublicModule,
