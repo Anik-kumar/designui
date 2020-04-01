@@ -1,4 +1,4 @@
-import { AuthService } from '../guard/auth.service';
+import { AuthService } from '@core/services/auth.service';
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {tap} from 'rxjs/operators';

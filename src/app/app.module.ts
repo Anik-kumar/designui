@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { ToastrModule } from 'ngx-toastr';
-// import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AuthenticationComponent } from './modules/authentication/authentication.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+import { StorageServiceModule } from 'angular-webstorage-service';
 
 
 import { httpInterceptorProviders } from './interceptors/http-interceptor-providers';
@@ -29,7 +31,7 @@ import { RegistrationModule } from '@modules/registration/registration.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    // FormsModule,
+    FormsModule,
     ToastrModule.forRoot(),
     CoreModule,
     PublicModule,

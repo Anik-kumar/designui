@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { isNil, isNull} from 'lodash';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import {UserInterface} from '@interface/user.interface';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,37 +11,79 @@ import { HttpClient } from '@angular/common/http';
 export class AuthService {
 
   private activeUser: {
-    _id: String,
-    firstName: string, 
-    lastName: string, 
-    email: string, 
-    token: string, 
+    _id: string,
+    firstName: string,
+    lastName: string,
+    email: string,
+    token: string,
+  };
+
+  constructor( private http: HttpClient, private localStore: LocalStorageService) { }
+
+  private authToken: string;
+
+  private loggedInUser: {_id: string, name: string, email: string, dob: string } = {
+    _id: null,
+    name: '',
+    email: '',
+    dob: ''
+  };
+
+  private isLoggedIn = false;
+
+  public getLoggedInStatus() {
+    return this.isLoggedIn;
   }
 
-  constructor( private http: HttpClient ) { }
+  public setLoggedInStatus(status: boolean) {
+    this.isLoggedIn = status;
+  }
 
-  checkUserLogin(usermail: String, userpass: String) {
-    const result = Observable.create((observer: any) => {
-      let found = {};
-      this.http.post<any>('http://localhost:8081/api/user/login', {'email': usermail, 'password': userpass}).subscribe(user => {
-        
-        if(!isNil(user)) {
-          console.log('Response : ', user);
-          found = user;
-          this.activeUser = {
-            _id: user._id,
-            email: user.email,
-            firstName: user.name.first,
-            lastName: user.name.last,
-            token: user.token
+  public getAuthorizationToken(): string {
+    return this.authToken;
 
-          }
-        }
-        observer.next(found);
-      });
-    });
+  }
 
-    return result;
+  public setAuthorizationToken(token: string) {
+    this.authToken = token;
+    this.localStore.setToLocalStore('token', token);
+  }
+
+  public getLoggedInUser(): {_id: string, name: string, email: string, dob: string } {
+    return this.loggedInUser;
+  }
+
+  public setLoggedInUser(user: UserInterface) {
+    this.loggedInUser._id = user._id;
+    this.loggedInUser.name = user.firstName + ' ' + user.lastName;
+    this.loggedInUser.email = user.email;
+    this.loggedInUser.dob = user.dob;
+  }
+
+  public isAuthenticated(): any {
+    // let cookieStr = document.cookie;
+    // var cookFlag = true;
+    // if(!cookieStr){
+    //   cookFlag = false;
+    // }
+    // const dirtyCookies = cookieStr.split(';');
+    // const cleanCookies = [];
+    //
+    // dirtyCookies.forEach(temp => {
+    //   cleanCookies.push(temp.split('='));
+    // });
+    //
+    // if(cleanCookies[0][0] === 'Username' && cookFlag){
+    //   const cookieUsername = cleanCookies[0][1];
+    // }
+    // if(cleanCookies[1][0] === 'Password' && cookFlag){
+    //   const cookiePassword = cleanCookies[1][1];
+    // }
+    // if(cleanCookies[2][0] === 'Token' && cookFlag){
+    //   const cookieToken = cleanCookies[2][1];
+    // }
+
+    return this.isLoggedIn;
   }
 
 }
