@@ -3,7 +3,7 @@ import { Router} from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
-import { AuthService } from '../../core/services/auth.service';
+import { RegistrationService } from '../registration.service';
 
 @Component({
   selector: 'app-signin',
@@ -12,7 +12,7 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient, private authService: AuthService) { }
+  constructor(private router: Router, private http: HttpClient, private registrationService: RegistrationService) { }
 
   ngOnInit(): void {
   }
@@ -23,17 +23,26 @@ export class SigninComponent implements OnInit {
   }
 
   onSignin(form: NgForm) {
-    
-    // console.log(form);
-    let email = form.value.userEmail;
-    let pass = form.value.userPass;
-    
 
-    if(email.length > 0 && pass.length > 0){
+    // console.log(form);
+    const email = form.value.userEmail;
+    const pass = form.value.userPass;
+
+
+    if (email.length > 0 && pass.length > 0){
       // console.log(email);
       console.log(email);
-      const result = this.authService.checkUserLogin(email, pass);
-      
+      const result = this.registrationService.signin(email, pass).subscribe( (observer: any) => {
+        if (observer) {
+          console.log('User Found ', observer);
+
+          //this.router.navigate(['/home']);
+        } else {
+          console.log('User not Found');
+          //this.router.navigate(['/login']);
+          // window.location.href = 'http://localhost:4200/login';
+        }
+      });
       // this.router.navigate(['/']);
     }
 
