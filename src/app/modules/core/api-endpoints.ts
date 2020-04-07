@@ -8,6 +8,8 @@ export class ApiEndpoints {
   public static readonly AUTH_TOKEN = '/api/auth/token';
   public static readonly LOGIN = '/api/auth/login';
 
+  public static readonly SIGNUP = '/api/auth/registration';
+
   public static readonly HOME_URL = '/home';
 
 }
