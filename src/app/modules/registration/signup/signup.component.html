@@ -2,6 +2,49 @@
   <div class="card o-hidden border-0 shadow-lg my-5">
     <div class="card-body p-0">
       <!-- Nested Row within Card Body -->
+      {{flag}}
+      <!-- <div class="row">
+        <div class="col-lg-5">
+          <p>
+            Form Status: {{ signupForm.status }}
+          </p>
+          <div class="user" formGroupName="signupForm">
+            <div class="form-group row">
+              <div class="col-sm-6 mb-4 mb-sm-0">
+                <mat-form-field>
+                  <mat-label>First Name</mat-label>
+                  <input type="text" id="exampleFirstName" name="exampleFirstName" minlength="3" maxlength="20" placeholder="First Name" matInput ngModel required #firstName="ngModel">
+                  <mat-error *ngIf="firstName.invalid">Enter Valid Name</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field>
+                  <mat-label>Last Name</mat-label>
+                  <input type="text" id="exampleLastName" name="exampleLastName" minlength="3" maxlength="20" placeholder="Last Name" matInput ngModel required #lastName="ngModel">
+                  <mat-error *ngIf="lastName.invalid">Enter Valid Name</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <div class="form-group row">
+              <div class="col-sm-6 mb-4 mb-sm-0">
+                <mat-form-field>
+                  <mat-label>Password</mat-label>
+                  <input type="text" id="password" name="password" minlength="3" maxlength="20" placeholder="First Name" matInput ngModel required >
+                  <mat-error *ngIf="firstName.invalid">Enter Valid Name</mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field>
+                  <mat-label>Confirm Password</mat-label>
+                  <input type="text" id="confrimPassword" name="confrimPassword" minlength="3" maxlength="20" placeholder="Last Name" matInput ngModel required #lastName="ngModel">
+                  <mat-error *ngIf="lastName.invalid">Enter Valid Name</mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+            <button type="button" (click)="">Submit</button>
+          </div>
+        </div>
+      </div> -->
       <div class="row">
         <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
         <div class="col-lg-7">
@@ -11,35 +54,103 @@
             </div>
             <form class="user">
               <div class="form-group row">
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="text" class="form-control form-control-user" id="exampleFirstName" placeholder="First Name">
+                <div class="col-sm-6 mb-4 mb-sm-0">
+                  <mat-form-field>
+                    <mat-label>First Name</mat-label>
+                    <input type="text" id="exampleFirstName" name="exampleFirstName" minlength="3" maxlength="20" placeholder="First Name" matInput ngModel required #firstName="ngModel">
+                    <mat-error *ngIf="">Enter Valid Name</mat-error>
+                  </mat-form-field>
                 </div>
                 <div class="col-sm-6">
-                  <input type="text" class="form-control form-control-user" id="exampleLastName" placeholder="Last Name">
+                  <mat-form-field>
+                    <mat-label>Last Name</mat-label>
+                    <input type="text" id="exampleLastName" name="exampleLastName" minlength="3" maxlength="20" placeholder="Last Name" matInput ngModel required #lastName="ngModel">
+                    <mat-error *ngIf="lastName.invalid">Enter Valid Name</mat-error>
+                  </mat-form-field>
                 </div>
               </div>
+              <!-- email -->
               <div class="form-group">
-                <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                <mat-form-field>
+                  <mat-label>Email Address</mat-label>
+                  <input type="email" id="exampleInputEmail" name="exampleInputEmail" placeholder="Email Address" matInput ngModel required #email="ngModel">
+                  <mat-error *ngIf="email.invalid">Enter Valid Email Address</mat-error>
+                </mat-form-field>
               </div>
               <div class="form-group row">
+                <!-- password -->
                 <div class="col-sm-6 mb-3 mb-sm-0">
-                  <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                  <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input type="password" id="exampleInputPassword" name="exampleInputPassword" placeholder="Password" matInput ngModel required #pass="ngModel" (change)="storePass($event)">
+                    <mat-error *ngIf="pass.invalid">Enter Password</mat-error>
+                  </mat-form-field>
                 </div>
+                <!-- repeat password -->
                 <div class="col-sm-6">
-                  <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                  <mat-form-field>
+                    <mat-label>Repeat Password</mat-label>
+                    
+                    <input type="password" id="exampleRepeatPassword" name="exampleRepeatPassword" placeholder="Repeat Password" (input)="checkPass($event)" matInput ngModel required #pass2="ngModel" >
+
+                      <mat-error *ngIf="f.">Password did not Match</mat-error>
+                      <!-- <div *ngIf="!flag">Password did not Match</div> -->
+                      
+                      
+                      <mat-error *ngIf="pass2.invalid" >Enter Password Again</mat-error>
+                    
+                  </mat-form-field>
+                  
                 </div>
               </div>
-              <a href="login.html" class="btn btn-primary btn-user btn-block">
-                Register Account
-              </a>
-              <hr>
-              <a href="index.html" class="btn btn-google btn-user btn-block">
-                <i class="fab fa-google fa-fw"></i> Register with Google
-              </a>
-              <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-              </a>
+              <!-- date of birth -->
+              <div class="form-group row">
+                <div class="col-sm-12 md-6 md-sm-0">
+                  <mat-form-field>
+                    <mat-label>Date Of Birth</mat-label>
+                    <input id="exampleDate" name="exampleDate" matInput [matDatepicker]="picker" placeholder="Date of Birth" ngModel required #dob="ngModel">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="dob.invalid">Enter Your Date of Birth</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <!-- phone -->
+              <div class="form-group row">
+                <div class="col-sm-6 md-6">
+                  <mat-form-field>
+                    <mat-label>Phone</mat-label>
+                    <input type="text" id="examplePhone" name="examplePhone" placeholder="Enter Phone Number" matInput ngModel required #phone="ngModel">
+                    <mat-error *ngIf="phone.invalid">Enter Phone Number</mat-error>
+                  </mat-form-field>
+                </div>
+                <!-- gender -->
+                <div class="col-sm-6 md-6">
+                  <mat-form-field>
+                    <mat-label>Gender</mat-label>
+                    <mat-select id="exampleGender" name="exampleGender" ngModel required #gender="ngModel">
+                      <mat-option value=""></mat-option>
+                      <mat-option value="male">Male</mat-option>
+                      <mat-option value="female">Female</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="gender.invalid" >Select Gender</mat-error>
+                  </mat-form-field>
+                  
+                </div>
+              </div>
+              <mat-action-row>
+                <button type="submit" mat-button class="btn btn-primary btn-user btn-block">Register</button>
+                <hr>
+                <a href="index.html" class="btn btn-google btn-user btn-block">
+                  <i class="fab fa-google fa-fw"></i> Register with Google
+                </a>
+                <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                  <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
+                </a>
+              </mat-action-row>
+              
             </form>
+            
             <hr>
             <div class="text-center">
               <a class="small" href="forgot-password.html">Forgot Password?</a>
@@ -53,3 +164,9 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
