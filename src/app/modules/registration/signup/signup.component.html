@@ -59,7 +59,11 @@
                   <mat-form-field class="example-full-width">
                     <mat-label>Phone</mat-label>
                     <input matInput formControlName="phone" placeholder="Ex. +1 01712 044 889">
+                    <mat-error *ngIf="signupForm.get('phone').touched && signupForm.get('phone').hasError('required')">
+                      Please enter your phone number
+                    </mat-error>
                   </mat-form-field>
+                  
                 </div>
               </div>
 
@@ -67,7 +71,7 @@
                 <div class="col-sm-6 mb-4 mb-sm-0">
                   <mat-form-field class="example-full-width">
                     <mat-label>Password</mat-label>
-                    <input matInput formControlName="password" placeholder="Ex. <PASSWORD>">
+                    <input type="password" matInput formControlName="password" placeholder="Ex. <PASSWORD>">
                     <mat-error *ngIf="signupForm.get('passwordValidation').get('password').hasError('required')">
                       Please enter your password
                     </mat-error>
@@ -79,7 +83,7 @@
                 <div class="col-sm-6 mb-4 mb-sm-0">
                   <mat-form-field class="example-full-width">
                     <mat-label>Confirm Password</mat-label>
-                    <input matInput formControlName="confirmPassword" placeholder="Ex. Doe">
+                    <input type="password" matInput formControlName="confirmPassword" placeholder="Ex. Doe">
                     <mat-error *ngIf="signupForm.get('passwordValidation').get('confirmPassword').hasError('required')">
                       Please confirm password
                     </mat-error>
@@ -100,6 +104,9 @@
                     <input matInput formControlName="dob"  [matDatepicker]="picker" [max]="maxDate">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="signupForm.get('dob').hasError('required')">
+                      Please Enter Date of Birth
+                    </mat-error>
                   </mat-form-field>
                 </div>
                 <div class="col-sm-6 mb-4 mb-sm-0">
@@ -110,6 +117,9 @@
                         {{gender.viewValue}}
                       </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="signupForm.get('gender').hasError('required')">
+                      Please Enter Gender
+                    </mat-error>
                   </mat-form-field>
                 </div>
               </div>

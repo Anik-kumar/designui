@@ -63,7 +63,9 @@ export class RegistrationService {
         //     lastName: user.lastName
         //   };
         // }
+
         console.log(">> Token: " + this.authService.getAuthorizationToken());
+        
         subscriber.next(user);
       });
     });
