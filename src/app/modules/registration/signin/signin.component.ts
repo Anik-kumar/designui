@@ -19,7 +19,7 @@ export class SigninComponent implements OnInit {
 
 
   public signup() {
-    this.router.navigate(['/registration']);
+    this.router.navigate(['/signup']);
   }
 
   onSignin(form: NgForm) {

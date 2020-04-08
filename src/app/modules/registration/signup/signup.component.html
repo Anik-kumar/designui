@@ -1,50 +1,6 @@
 <div class="container">
   <div class="card o-hidden border-0 shadow-lg my-5">
     <div class="card-body p-0">
-      <!-- Nested Row within Card Body -->
-      {{flag}}
-      <!-- <div class="row">
-        <div class="col-lg-5">
-          <p>
-            Form Status: {{ signupForm.status }}
-          </p>
-          <div class="user" formGroupName="signupForm">
-            <div class="form-group row">
-              <div class="col-sm-6 mb-4 mb-sm-0">
-                <mat-form-field>
-                  <mat-label>First Name</mat-label>
-                  <input type="text" id="exampleFirstName" name="exampleFirstName" minlength="3" maxlength="20" placeholder="First Name" matInput ngModel required #firstName="ngModel">
-                  <mat-error *ngIf="firstName.invalid">Enter Valid Name</mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-sm-6">
-                <mat-form-field>
-                  <mat-label>Last Name</mat-label>
-                  <input type="text" id="exampleLastName" name="exampleLastName" minlength="3" maxlength="20" placeholder="Last Name" matInput ngModel required #lastName="ngModel">
-                  <mat-error *ngIf="lastName.invalid">Enter Valid Name</mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <div class="form-group row">
-              <div class="col-sm-6 mb-4 mb-sm-0">
-                <mat-form-field>
-                  <mat-label>Password</mat-label>
-                  <input type="text" id="password" name="password" minlength="3" maxlength="20" placeholder="First Name" matInput ngModel required >
-                  <mat-error *ngIf="firstName.invalid">Enter Valid Name</mat-error>
-                </mat-form-field>
-              </div>
-              <div class="col-sm-6">
-                <mat-form-field>
-                  <mat-label>Confirm Password</mat-label>
-                  <input type="text" id="confrimPassword" name="confrimPassword" minlength="3" maxlength="20" placeholder="Last Name" matInput ngModel required #lastName="ngModel">
-                  <mat-error *ngIf="lastName.invalid">Enter Valid Name</mat-error>
-                </mat-form-field>
-              </div>
-            </div>
-            <button type="button" (click)="">Submit</button>
-          </div>
-        </div>
-      </div> -->
       <div class="row">
         <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
         <div class="col-lg-7">
@@ -52,105 +8,125 @@
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
             </div>
-            <form class="user">
+            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+              <div class="form-group row">
+                <div class="col-sm-6 mb-4 mb-sm-0">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>First Name</mat-label>
+                    <input matInput formControlName="firstName" placeholder="Ex. John">
+                    <mat-error *ngIf="signupForm.get('firstName').hasError('required')">
+                      Please enter your first name
+                    </mat-error>
+                    <mat-error *ngIf="signupForm.get('firstName').hasError('minlength')">
+                      Firstname has to be at least 3 character long
+                    </mat-error>
+                    <mat-error *ngIf="signupForm.get('firstName').hasError('maxlength')">
+                      Firstname can't be more than 12 character long
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 mb-4 mb-sm-0">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Last Name</mat-label>
+                    <input matInput formControlName="lastName" placeholder="Ex. Doe">
+                    <mat-error *ngIf="signupForm.get('lastName').hasError('required')">
+                      Please enter your last name
+                    </mat-error>
+                    <mat-error *ngIf="signupForm.get('lastName').hasError('minlength')">
+                      Last name has to be at least 3 character long
+                    </mat-error>
+                    <mat-error *ngIf="signupForm.get('lastName').hasError('maxlength')">
+                      Last name can't be more than 12 character long
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-sm-6 mb-4 mb-sm-0">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="email" placeholder="Ex. john.doe@gmail.com">
+                    <mat-error *ngIf="signupForm.get('email').hasError('required')">
+                      Please enter your email
+                    </mat-error>
+                    <mat-error *ngIf="signupForm.get('email').hasError('email')">
+                      Please enter a valid email address
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 mb-4 mb-sm-0">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Phone</mat-label>
+                    <input matInput formControlName="phone" placeholder="Ex. +1 01712 044 889">
+                    <mat-error *ngIf="signupForm.get('phone').touched && signupForm.get('phone').hasError('required')">
+                      Please enter your phone number
+                    </mat-error>
+                  </mat-form-field>
+                  
+                </div>
+              </div>
+
+              <div class="form-group row" formGroupName="passwordValidation">
+                <div class="col-sm-6 mb-4 mb-sm-0">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Password</mat-label>
+                    <input type="password" matInput formControlName="password" placeholder="Ex. <PASSWORD>">
+                    <mat-error *ngIf="signupForm.get('passwordValidation').get('password').hasError('required')">
+                      Please enter your password
+                    </mat-error>
+                    <mat-error *ngIf="signupForm.get('passwordValidation').get('password').hasError('minlength')">
+                      Password has to be at least 6 character long
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <div class="col-sm-6 mb-4 mb-sm-0">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Confirm Password</mat-label>
+                    <input type="password" matInput formControlName="confirmPassword" placeholder="Ex. Doe">
+                    <mat-error *ngIf="signupForm.get('passwordValidation').get('confirmPassword').hasError('required')">
+                      Please confirm password
+                    </mat-error>
+                    <mat-error *ngIf="signupForm.get('passwordValidation').get('confirmPassword').hasError('MatchPassword')">
+                      Confirm password doesn't match
+                    </mat-error>
+                    <mat-error *ngIf="!signupForm.get('passwordValidation').get('confirmPassword').hasError('MatchPassword') && signupForm.get('passwordValidation').get('confirmPassword').hasError('minlength')">
+                      Password has to be at least 6 character long
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
               <div class="form-group row">
                 <div class="col-sm-6 mb-4 mb-sm-0">
                   <mat-form-field>
-                    <mat-label>First Name</mat-label>
-                    <input type="text" id="exampleFirstName" name="exampleFirstName" minlength="3" maxlength="20" placeholder="First Name" matInput ngModel required #firstName="ngModel">
-                    <mat-error *ngIf="">Enter Valid Name</mat-error>
-                  </mat-form-field>
-                </div>
-                <div class="col-sm-6">
-                  <mat-form-field>
-                    <mat-label>Last Name</mat-label>
-                    <input type="text" id="exampleLastName" name="exampleLastName" minlength="3" maxlength="20" placeholder="Last Name" matInput ngModel required #lastName="ngModel">
-                    <mat-error *ngIf="lastName.invalid">Enter Valid Name</mat-error>
-                  </mat-form-field>
-                </div>
-              </div>
-              <!-- email -->
-              <div class="form-group">
-                <mat-form-field>
-                  <mat-label>Email Address</mat-label>
-                  <input type="email" id="exampleInputEmail" name="exampleInputEmail" placeholder="Email Address" matInput ngModel required #email="ngModel">
-                  <mat-error *ngIf="email.invalid">Enter Valid Email Address</mat-error>
-                </mat-form-field>
-              </div>
-              <div class="form-group row">
-                <!-- password -->
-                <div class="col-sm-6 mb-3 mb-sm-0">
-                  <mat-form-field>
-                    <mat-label>Password</mat-label>
-                    <input type="password" id="exampleInputPassword" name="exampleInputPassword" placeholder="Password" matInput ngModel required #pass="ngModel" (change)="storePass($event)">
-                    <mat-error *ngIf="pass.invalid">Enter Password</mat-error>
-                  </mat-form-field>
-                </div>
-                <!-- repeat password -->
-                <div class="col-sm-6">
-                  <mat-form-field>
-                    <mat-label>Repeat Password</mat-label>
-                    
-                    <input type="password" id="exampleRepeatPassword" name="exampleRepeatPassword" placeholder="Repeat Password" (input)="checkPass($event)" matInput ngModel required #pass2="ngModel" >
-
-                      <mat-error *ngIf="f.">Password did not Match</mat-error>
-                      <!-- <div *ngIf="!flag">Password did not Match</div> -->
-                      
-                      
-                      <mat-error *ngIf="pass2.invalid" >Enter Password Again</mat-error>
-                    
-                  </mat-form-field>
-                  
-                </div>
-              </div>
-              <!-- date of birth -->
-              <div class="form-group row">
-                <div class="col-sm-12 md-6 md-sm-0">
-                  <mat-form-field>
-                    <mat-label>Date Of Birth</mat-label>
-                    <input id="exampleDate" name="exampleDate" matInput [matDatepicker]="picker" placeholder="Date of Birth" ngModel required #dob="ngModel">
+                    <mat-label>Date of Birth</mat-label>
+                    <input matInput formControlName="dob"  [matDatepicker]="picker" [max]="maxDate">
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
-                    <mat-error *ngIf="dob.invalid">Enter Your Date of Birth</mat-error>
+                    <mat-error *ngIf="signupForm.get('dob').hasError('required')">
+                      Please Enter Date of Birth
+                    </mat-error>
                   </mat-form-field>
                 </div>
-              </div>
-              <!-- phone -->
-              <div class="form-group row">
-                <div class="col-sm-6 md-6">
-                  <mat-form-field>
-                    <mat-label>Phone</mat-label>
-                    <input type="text" id="examplePhone" name="examplePhone" placeholder="Enter Phone Number" matInput ngModel required #phone="ngModel">
-                    <mat-error *ngIf="phone.invalid">Enter Phone Number</mat-error>
-                  </mat-form-field>
-                </div>
-                <!-- gender -->
-                <div class="col-sm-6 md-6">
-                  <mat-form-field>
+                <div class="col-sm-6 mb-4 mb-sm-0">
+                  <mat-form-field class="example-full-width">
                     <mat-label>Gender</mat-label>
-                    <mat-select id="exampleGender" name="exampleGender" ngModel required #gender="ngModel">
-                      <mat-option value=""></mat-option>
-                      <mat-option value="male">Male</mat-option>
-                      <mat-option value="female">Female</mat-option>
+                    <mat-select formControlName="gender">
+                      <mat-option *ngFor="let gender of genders" [value]="gender.value">
+                        {{gender.viewValue}}
+                      </mat-option>
                     </mat-select>
-                    <mat-error *ngIf="gender.invalid" >Select Gender</mat-error>
+                    <mat-error *ngIf="signupForm.get('gender').hasError('required')">
+                      Please Enter Gender
+                    </mat-error>
                   </mat-form-field>
-                  
                 </div>
               </div>
-              <mat-action-row>
-                <button type="submit" mat-button class="btn btn-primary btn-user btn-block">Register</button>
-                <hr>
-                <a href="index.html" class="btn btn-google btn-user btn-block">
-                  <i class="fab fa-google fa-fw"></i> Register with Google
-                </a>
-                <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                  <i class="fab fa-facebook-f fa-fw"></i> Register with Facebook
-                </a>
-              </mat-action-row>
-              
+
+              <button mat-raised-button [color]="btnColor" [disabled]="signupForm.invalid" (click)="onSubmit()">Submit</button>
             </form>
-            
+
             <hr>
             <div class="text-center">
               <a class="small" href="forgot-password.html">Forgot Password?</a>
@@ -164,9 +140,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-

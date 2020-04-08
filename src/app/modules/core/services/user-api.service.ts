@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiEndpoints } from '../api-endpoints';
 import { HttpClient } from '@angular/common/http';
+import {ISignup} from '@modules/registration/signup/isignup';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class UserApiService {
     return this.http.post<any>(ApiEndpoints.LOGIN, { 'email': username, 'pass': password }, { withCredentials: true });
   }
 
-  // getToken(user): Observable<any> {
-  //   return this.http.post<any>(ApiEndpoints.AUTH_TOKEN, { params: user });
-  // }
+  createUser(newUser: ISignup): Observable<any> {
+    return this.http.post<any>(ApiEndpoints.SIGNUP, newUser, { withCredentials: true });
+  }
 }
 
