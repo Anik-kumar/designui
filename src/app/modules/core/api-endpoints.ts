@@ -9,6 +9,7 @@ export class ApiEndpoints {
   public static readonly LOGIN = '/api/auth/login';
 
   public static readonly SIGNUP = '/api/auth/signup';
+  public static readonly USER_EMAIL_VERIFY = '/api/auth/verifyEmail';
 
   public static readonly HOME_URL = '/home';
 

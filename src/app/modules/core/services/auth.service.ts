@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { isNil, isNull} from 'lodash';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {UserInterface} from '@interface/user.interface';
 import { LocalStorageService } from './local-storage.service';
+import { isNil, isNull} from 'lodash';
+import { ApiEndpoints } from '../api-endpoints';
 
 @Injectable({
   providedIn: 'root'
@@ -84,6 +85,12 @@ export class AuthService {
     // }
 
     return this.isLoggedIn;
+  }
+
+
+  public isUserEmailVerified(data): Observable<any> {
+
+    return this.http.post<any>(ApiEndpoints.USER_EMAIL_VERIFY, {'token': data}, { withCredentials: true });
   }
 
 }

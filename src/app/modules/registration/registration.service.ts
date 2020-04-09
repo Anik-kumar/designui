@@ -72,4 +72,21 @@ export class RegistrationService {
 
     return resultObsv;
   }
+
+  public verifyUserMail(token): Observable<any> {
+
+    // const response = new Observable(subscriber => {
+    
+
+    //   const response = this.authService.isUserEmailVerified(token).subscribe(data => {
+    //     console.log('Response => ', data.Data);
+    
+    //   });
+    // // });
+
+
+    // console.log("response => " , response);
+    // return response;
+    return this.authService.isUserEmailVerified(token);
+  }
 }

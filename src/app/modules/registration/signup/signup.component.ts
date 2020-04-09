@@ -83,7 +83,7 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     console.log('Status: ', this.signupForm.status, this.signupForm.invalid)
-    console.log('signupForm', this.signupForm);
+    // console.log('signupForm', this.signupForm);
 
     let regForm: ISignup = {
       firstName: this.signupForm.value.firstName,
@@ -94,7 +94,7 @@ export class SignupComponent implements OnInit {
       dob: this.signupForm.value.dob,
       gender: this.signupForm.value.gender
     };
-    console.log(regForm);
+    // console.log(regForm);
     this.registrationService.signup(regForm).subscribe((res) => {
       console.log('Signup done: ', res);
     });

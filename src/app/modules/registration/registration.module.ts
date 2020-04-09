@@ -6,6 +6,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegistrationService } from '@modules/registration/registration.service';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
+import { VerifyEmailComponent } from './verify-email/verify-email.component';
 
 import { RegistrationRoutingModule } from './registration-routing.module';
 
@@ -26,7 +27,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 
 
 @NgModule({
-  declarations: [SignupComponent, SigninComponent],
+  declarations: [SignupComponent, SigninComponent, VerifyEmailComponent],
   imports: [
     CommonModule,
     RegistrationRoutingModule,

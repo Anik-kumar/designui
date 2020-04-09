@@ -1,8 +1,8 @@
-import { AuthService } from '@core/services/auth.service';
 import {Injectable} from '@angular/core';
 import {HttpErrorResponse, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 import {ToastrService} from 'ngx-toastr';
+import { AuthService } from '@core/services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
