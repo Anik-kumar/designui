@@ -14,6 +14,7 @@ import { AuthService } from "../../core/services/auth.service";
 export class VerifyEmailComponent implements OnInit {
 
   private token;
+  public verifyFlag : boolean;
 
   constructor( private router: Router, 
     private registrationService: RegistrationService, 
@@ -26,24 +27,38 @@ export class VerifyEmailComponent implements OnInit {
 
   
   ngOnInit(): void {
-    // console.log( "ngOninit => ", this.router.url);
     
-    this.verifyEmail(this.token);
+    if(this.token){
+      this.verifyEmail(this.token);
+    }
+    
+
   }
 
+
   verifyEmail(token) {
+    let isFound = false;
+    let message = '';
+    let errors = '';
 
     if(token.length > 50 && token[0] == 'e'){
       console.log("Data => ", token);
 
       const result = this.registrationService.verifyUserMail(token).subscribe(observer => {
         console.log('Result : ', observer);
-      })
+        isFound = observer.success;
+        message = observer.message;
+        errors = observer.error;
+      });
 
-      // if(!result) {
-      //   console.log("Result => ", result);
-      // }
-      // console.log("Result => ", result);
+      if(isFound) {
+        console.log("VerifyEmail>>  Result => ", message);
+        this.verifyFlag = true;
+      } else {
+        console.log("VerifyEmail>>  Result => ", errors);
+        this.verifyFlag = false;
+      }
+      
     }
     
     

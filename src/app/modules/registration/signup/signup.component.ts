@@ -40,10 +40,6 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.emailFormControl = new FormControl('', [
-      Validators.required,
-      Validators.email,
-    ]);
 
     this.signupForm = this.formBuilder.group({
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
@@ -60,18 +56,6 @@ export class SignupComponent implements OnInit {
       dob: ['', Validators.required]
     });
 
-
-    this.signupForm1 = new FormGroup({
-      firstName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
-      lastName: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      repeatPassword: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      phone: new FormControl('', [Validators.required]),
-      gender: new FormControl('', [Validators.required]),
-      dob: new FormControl('', [Validators.required])
-      // acceptTerms: new FormControl(false, [Validators.requiredTrue]),
-    });
 
   }
 
