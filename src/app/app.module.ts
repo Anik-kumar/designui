@@ -22,6 +22,7 @@ import { PublicModule } from '@modules/public/public.module';
 import { RegistrationModule } from '@modules/registration/registration.module';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

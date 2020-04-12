@@ -1,0 +1,33 @@
+.o-flow{
+  &-x {
+    &-scroll {
+      overflow-x: scroll;
+    }
+    &-auto {
+      overflow-x: auto;
+    }
+    &-hidden {
+      overflow-x: hidden;
+    }
+  }
+  &-y {
+    &-scroll {
+      overflow-y: scroll;
+    }
+    &-auto {
+      overflow-y: auto;
+    }
+    &-hidden {
+      overflow-y: hidden;
+    }
+  }
+  &-scroll {
+    overflow: scroll;
+  }
+  &-auto {
+    overflow: auto;
+  }
+  &-hidden {
+    overflow: hidden;
+  }
+}
