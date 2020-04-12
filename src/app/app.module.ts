@@ -20,6 +20,8 @@ import { CoreModule } from '@core/core.module';
 import { PublicModule } from '@modules/public/public.module';
 
 import { RegistrationModule } from '@modules/registration/registration.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { IconsModule } from '@modules/icons/icons.module';
 
 
 
@@ -35,9 +37,11 @@ import { RegistrationModule } from '@modules/registration/registration.module';
     FormsModule,
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    FontAwesomeModule,
     CoreModule,
     PublicModule,
-    RegistrationModule
+    RegistrationModule,
+    IconsModule
   ],
   providers: [
     httpInterceptorProviders,
