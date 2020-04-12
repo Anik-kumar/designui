@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output  } from '@angular/core';
+import { Router } from '@angular/router';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
 interface ISubMenu { 
@@ -50,11 +51,27 @@ export class DpSideNavItemComponent implements OnInit {
     subMenu: [],
     style: {}
   }
-  @Output() onClick = new EventEmitter();
+
+  activeNavName = '';
+  activeSubMenuName = '';
+  @Output() onClickSubMenu = new EventEmitter();
+  @Output() onClickSubSubMenu = new EventEmitter();
   @Input()
   set navItem(item: INavItem) {
     this.activeNavItem = item;
     console.log('Input navItem: ', item);
+  }
+
+  @Input()
+  set navName(item: string) {
+    this.activeNavName = item;
+    console.log('Input navMenuItem: ', item);
+  }
+
+  @Input()
+  set navSubMenuItem(item: string) {
+    this.activeSubMenuName = item;
+    console.log('Input navMenuItem: ', item);
   }
 
 
@@ -64,25 +81,11 @@ export class DpSideNavItemComponent implements OnInit {
   }
 
   toggleCollapse(listName) {
-    this.onClick.emit(listName);
+    this.onClickSubMenu.emit(listName);
+  }
 
-    // this.collapsableList.forEach((value, key) => {
-    //   if(key == listName) {
-    //     value.collapsed = !value.collapsed;
-    //     if (value.collapsed){
-    //       value.style = { 'height': '0px'};
-    //     } else {
-    //       value.style = {};
-    //     }
-        
-    //   }else {
-    //     value.collapsed = false;
-    //     value.style = { 'height': '0px'};
-    //   }
-    // });
-    // this.collapsableList.get('dashboard');
-
-  
+  onSubSubMenuClick(subMenuName, subSubMenuName) {
+    this.onClickSubSubMenu.emit({'subMenu':subMenuName, 'subSubMenuItem':subSubMenuName });
   }
 
 }
