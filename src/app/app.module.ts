@@ -22,6 +22,7 @@ import { PublicModule } from '@modules/public/public.module';
 import { RegistrationModule } from '@modules/registration/registration.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconsModule } from '@modules/icons/icons.module';
+import { SharedModule } from '@modules/shared/shared.module';
 
 
 
@@ -41,7 +42,8 @@ import { IconsModule } from '@modules/icons/icons.module';
     CoreModule,
     PublicModule,
     RegistrationModule,
-    IconsModule
+    IconsModule,
+    SharedModule
   ],
   providers: [
     httpInterceptorProviders,

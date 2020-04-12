@@ -1,0 +1,25 @@
+<li  ngbdropdown="" display="dynamic" class="nav-item no-caret mr-3 dropdown-notifications dropdown" [ngClass]="{'show': isOpen}">
+  <a  aria-haspopup="true" id="navbarDropdownMessages" ngbdropdowntoggle="" data-cy="messagesMenu" role="button" aria-expanded="false" class="dropdown-toggle btn btn-icon btn-transparent-dark" (click)="toggle()">
+    <i-feather name="mail"></i-feather>
+    <!--<i-feather  name="mail" _nghost-ejd-c110="">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-mail">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+    </i-feather>-->
+  </a>
+  <div  ngbdropdownmenu="" aria-labelledby="navbarDropdownMessages" class="dropdown-menu border-0 shadow animated--fade-in-up ml-2 ml-md-0" [ngClass]="{'show': isOpen}" [ngStyle]="styles" x-placement="bottom">
+    <h6  class="dropdown-header dropdown-notifications-header">
+      <i-feather name="mail"></i-feather>Message Center
+      <!--<i-feather  name="mail" class="mr-2" _nghost-ejd-c110=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="feather feather-mail">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline>
+    </svg></i-feather>Message Center-->
+    </h6>
+    <app-dp-top-nav-message-item>
+    </app-dp-top-nav-message-item>
+    <app-dp-top-nav-message-item>
+    </app-dp-top-nav-message-item>
+    <!---->
+  </div>
+</li>
+<!---->
