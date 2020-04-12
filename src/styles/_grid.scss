@@ -1,0 +1,207 @@
+.grid {
+  &-full, &-8 {
+    padding-left: 5;
+    padding-right: 5;
+    width: 100%;
+  }
+  &-7 {
+    padding-left: 5;
+    padding-right: 5;
+    width: 87.5%;
+  }
+  &-6 {
+    padding-left: 5;
+    padding-right: 5;
+    width: 75%;
+  }
+  &-5 {
+    padding-left: 5;
+    padding-right: 5;
+    width: 62.5%;
+  }
+  &-4 {
+    padding-left: 5;
+    padding-right: 5;
+    width: 50%;
+  }
+  &-3 {
+    padding-left: 5;
+    padding-right: 5;
+    width: 37.5%;
+  }
+  &-2 {
+    padding-left: 5;
+    padding-right: 5;
+    width: 25%;
+  }
+  &-1 {
+    padding-left: 5;
+    padding-right: 5;
+    width: 12.5%;
+  }
+  &-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { }
+
+// Medium de11vices (tablets, 768px and up)
+@media (min-width: 768px) { 
+  .grid {
+    &-sm-8 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 100%;
+    }
+    &-sm-7 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 87.5%;
+    }
+    &-sm-6 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 75%;
+    }
+    &-sm-5 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 62.5%;
+    }
+    &-sm-4 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 50%;
+    }
+    &-sm-3 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 37.5%;
+    }
+    &-sm-2 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 25%;
+    }
+    &-sm-1 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 12.5%;
+    }
+    &-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { 
+  .grid {
+    &-full, &-8 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 100%;
+    }
+    &-7 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 87.5%;
+    }
+    &-6 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 75%;
+    }
+    &-5 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 62.5%;
+    }
+    &-4 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 50%;
+    }
+    &-3 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 37.5%;
+    }
+    &-2 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 25%;
+    }
+    &-1 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 12.5%;
+    }
+    &-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { 
+  .grid {
+    &-full, &-8 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 100%;
+    }
+    &-7 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 87.5%;
+    }
+    &-6 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 75%;
+    }
+    &-5 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 62.5%;
+    }
+    &-4 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 50%;
+    }
+    &-3 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 37.5%;
+    }
+    &-2 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 25%;
+    }
+    &-1 {
+      padding-left: 5;
+      padding-right: 5;
+      width: 12.5%;
+    }
+    &-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: 10px;
+      margin-left: 10px;
+    }
+  }
+}

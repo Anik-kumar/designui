@@ -1,0 +1,22 @@
+.pos {
+  &-fixed{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+  &-rel{
+    position: relative;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+  &-abs{
+    position: absolute;
+    top: 0;
+  }
+  &-sticky{
+    position: sticky;
+    top: 0;
+  }
+}
