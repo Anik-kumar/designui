@@ -12,6 +12,8 @@ import { DpTopNavNotificationItemComponent } from './ui/dp-top-nav-notification-
 import { DpTopNavMessageComponent } from './ui/dp-top-nav-message/dp-top-nav-message.component';
 import { DpTopNavMessageItemComponent } from './ui/dp-top-nav-message-item/dp-top-nav-message-item.component';
 import { DpTopNavUserComponent } from './ui/dp-top-nav-user/dp-top-nav-user.component';
+import { DpSideNavComponent } from './ui/dp-side-nav/dp-side-nav.component';
+import { DpSideNavItemComponent } from './ui/dp-side-nav-item/dp-side-nav-item.component';
 
 
 
@@ -24,7 +26,9 @@ import { DpTopNavUserComponent } from './ui/dp-top-nav-user/dp-top-nav-user.comp
     DpTopNavNotificationItemComponent, 
     DpTopNavMessageComponent, 
     DpTopNavMessageItemComponent, 
-    DpTopNavUserComponent
+    DpTopNavUserComponent, 
+    DpSideNavComponent, 
+    DpSideNavItemComponent
   ],
   imports: [
     CommonModule,
@@ -39,7 +43,9 @@ import { DpTopNavUserComponent } from './ui/dp-top-nav-user/dp-top-nav-user.comp
     DpTopNavNotificationItemComponent, 
     DpTopNavMessageComponent, 
     DpTopNavMessageItemComponent, 
-    DpTopNavUserComponent
+    DpTopNavUserComponent,
+    DpSideNavComponent, 
+    DpSideNavItemComponent
   ]
 })
 export class SharedModule { }
