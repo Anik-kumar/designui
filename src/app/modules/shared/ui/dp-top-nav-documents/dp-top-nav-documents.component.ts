@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-dp-top-nav-documents',

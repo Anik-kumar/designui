@@ -1,0 +1,12 @@
+<nav id="sidenavAccordion" class="sidenav shadow-right sidenav-light">
+  <div class="sidenav-menu">
+    <div class="nav">
+      <div class="sidenav-menu-heading">CORE</div>
+      <app-dp-side-nav-item [navItem]="leftNavMenu[0]" (onClick)="onNavItemClick($event)"></app-dp-side-nav-item>
+
+      <div class="sidenav-menu-heading">INTERFACE</div>
+      <app-dp-side-nav-item [navItem]="leftNavMenu[1]" (onClick)="onNavItemClick($event)"></app-dp-side-nav-item>
+    </div>
+      
+  </div>
+</nav>
