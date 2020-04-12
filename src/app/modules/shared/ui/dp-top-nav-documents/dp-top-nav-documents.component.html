@@ -1,0 +1,36 @@
+<li display="dynamic" class="nav-item d-flex no-caret mr-3 dropdown" [ngClass]="{'show': isOpen}">
+  <!--   nav-item dropdown no-caret mr-3-->
+    <a aria-haspopup="true" id="navbarDropdownDocs" ngbdropdowntoggle="" data-cy="docsMenu" role="button" aria-expanded="false" class="dropdown-toggle nav-link pointer" (click)="toggle()">
+      <div class="d-inline d-md-none font-weight-500">Docs</div>
+      <div class="d-none d-md-inline font-weight-500">Documentation</div>
+      <fa-icon [icon]="dropdownArrow" class="dropdown-arrow"></fa-icon>
+    </a>
+    <div ngbdropdownmenu aria-labelledby="navbarDropdownDocs" class="dropdown-menu py-0 o-hidden animated--fade-in-up ml-n10 ml-sm-0" [ngClass]="{'show': isOpen}" x-placement="bottom-right" [ngStyle]="styles">
+      <!-- dropdown-menu py-0 o-hidden animated--fade-in-up ml-n10 ml-sm-0            top: 0px; left: 0px; will-change: transform;-->
+      <!-- dropdown-menu py-0 o-hidden animated--fade-in-up ml-n10 ml-sm-0 show       top: 0px; left: 0px; will-change: transform; position: absolute; transform: translate(-206px, 42px); -->
+      <a href="https://docs.startbootstrap.com/sb-admin-pro-angular" target="_blank" class="dropdown-item py-3">
+        <div class="icon-stack bg-primary-soft text-primary mr-4">
+          <i-feather name="book"></i-feather>
+        </div>
+        <div>
+          <div class="small text-gray-500">Documentation</div> Usage instructions and reference </div>
+      </a>
+      <div class="dropdown-divider m-0"></div>
+      <a href="https://docs.startbootstrap.com/sb-admin-pro-angular/development-create" target="_blank" class="dropdown-item py-3">
+        <div class="icon-stack bg-primary-soft text-primary mr-4">
+          <i-feather name="code"></i-feather>
+        </div>
+        <div>
+          <div class="small text-gray-500">Tutorial</div> Create a Module </div>
+      </a>
+      <div class="dropdown-divider m-0"></div>
+      <a href="https://docs.startbootstrap.com/sb-admin-pro-angular/changelog" target="_blank" class="dropdown-item py-3">
+        <div class="icon-stack bg-primary-soft text-primary mr-4">
+          <i-feather name="file-text"></i-feather>
+        </div>
+        <div>
+          <div class="small text-gray-500">Changelog</div> Updates and changes </div>
+      </a>
+    </div>
+  </li>
+  
