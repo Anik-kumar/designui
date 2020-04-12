@@ -7,6 +7,17 @@
       <div class="sidenav-menu-heading">INTERFACE</div>
       <app-dp-side-nav-item [navItem]="leftNavMenu[1]" (onClick)="onNavItemClick($event)"></app-dp-side-nav-item>
     </div>
+
+    <div class="nav">
+      <div *ngFor="let item of leftNavMenu1">
+        
+        <div class="sidenav-menu-heading"> {{item.name}} </div>
+        <app-dp-side-nav-item *ngFor="let menuItem of item.menu" [navItem]="menuItem" [navName]="item.name" (onClickSubMenu)="onNavItemClick($event)" (onClickSubSubMenu)="onClickSubSubMenu($event)"></app-dp-side-nav-item>
+        <!-- <div *ngFor="let subMenuItem of menuItem.subMenu" >
+          {{subMenuItem}}
+        </div> -->
+      </div>
+    </div>
       
   </div>
 </nav>

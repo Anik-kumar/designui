@@ -51,46 +51,21 @@
       <i-feather name="activity"></i-feather>
     </div>
       {{activeNavItem.name}}
+      
     <div class="sidenav-collapse-arrow">
       <fa-icon [icon]="downArrow" class="ng-fa-icon ml-auto"></fa-icon>
     </div>
   </a>
   <nav class="sidenav-menu-nested nav" [ngClass]="{'collapsed': activeNavItem.collapsed}" [ngStyle]="activeNavItem.style">
-    <div class="submenu" [ngClass]="{'collapsed': activeNavItem.collapsed}" >
-      <a class="nav-link active" [ngClass]="{'collapsed': activeNavItem.collapsed}">
-        Default
-        <div class="sidenav-collapse-arrow">
-        </div>
-      </a>
-      <nav   class="sidenav-menu-nested nav" [ngClass]="{'collapsed': activeNavItem.collapsed}" style="height: 0px;">
-        
-      </nav>
-    </div>
-  
-    <div class="submenu collapsed">
-      <a class="nav-link collapsed">
-        Multipurpose
-        <div   class="badge badge-primary ml-2">New!</div>
-        <div class="sidenav-collapse-arrow">
-        </div>
-      </a>
-      <nav   class="sidenav-menu-nested nav collapsed">
-      </nav>
-    </div>
     
-    <div class="submenu collapsed">
-      <a   class="nav-link collapsed">
-        Affiliate
-        <div   class="badge badge-primary ml-2">New!</div>
-        
-        <div   class="sidenav-collapse-arrow">
-          
-        </div>
+    <div class="submenu" *ngFor="let subMenuItem of activeNavItem.subMenu" [ngClass]="{'collapsed': subMenuItem.collapsed}" >
+      <a class="nav-link" [ngClass]="{'collapsed': subMenuItem.collapsed, 'active': subMenuItem.active}" (click)="onSubSubMenuClick(activeNavItem.name, subMenuItem.name)">
+        {{subMenuItem.name}}
+        <div *ngIf="subMenuItem.badge" class="badge badge-primary ml-2">{{subMenuItem.badge}}</div>
       </a>
-      <nav   class="sidenav-menu-nested nav collapsed">
-        
-      </nav>
     </div>
-    </nav>
+  </nav>
+
+
 
 

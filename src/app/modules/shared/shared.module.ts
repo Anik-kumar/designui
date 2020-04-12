@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconsModule } from '@modules/icons/icons.module';
@@ -33,7 +34,8 @@ import { DpSideNavItemComponent } from './ui/dp-side-nav-item/dp-side-nav-item.c
   imports: [
     CommonModule,
     FontAwesomeModule,
-    IconsModule
+    IconsModule,
+    RouterModule
   ],
   exports: [
     DpTopNavComponent, 
