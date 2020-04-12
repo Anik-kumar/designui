@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 
 // const routes: Routes = [];
-const routes: Routes = [
+const routes: Routes = [{ path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) }
 //
 //   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
 //   { path: 'login', component: LoginComponent },
