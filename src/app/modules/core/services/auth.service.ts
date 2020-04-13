@@ -93,4 +93,8 @@ export class AuthService {
     return this.http.post<any>(ApiEndpoints.USER_EMAIL_VERIFY, {'token': data}, { withCredentials: true });
   }
 
+  public isUserExists(data): Observable<any> {
+    return this.http.post<any>(ApiEndpoints.FIND_EMAIL_API, {'email': data}, { withCredentials: true });
+  }
+
 }

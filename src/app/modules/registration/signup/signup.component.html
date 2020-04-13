@@ -5,11 +5,18 @@
         <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
         <div class="col-lg-7">
           <div class="p-5">
+            <!-- {{isSignupSuccess}} -->
+            <div *ngIf="isSignupSuccess">
+              <div class="alert alert-success" role="alert">
+                <h4 class="alert-heading">Registration is successful!</h4>
+              </div>
+            </div>
             <div class="text-center">
               <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
             </div>
-            <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="signupForm">
               <div class="form-group row">
+                <!-- first name -->
                 <div class="col-sm-6 mb-4 mb-sm-0">
                   <mat-form-field class="example-full-width">
                     <mat-label>First Name</mat-label>
@@ -25,6 +32,7 @@
                     </mat-error>
                   </mat-form-field>
                 </div>
+                <!-- last name -->
                 <div class="col-sm-6 mb-4 mb-sm-0">
                   <mat-form-field class="example-full-width">
                     <mat-label>Last Name</mat-label>
@@ -43,10 +51,14 @@
               </div>
 
               <div class="form-group row">
+                <!-- email -->
                 <div class="col-sm-6 mb-4 mb-sm-0">
                   <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" placeholder="Ex. john.doe@gmail.com">
+                    <input matInput formControlName="email" placeholder="Ex. john.doe@gmail.com" (change)="checkEmail($event.target.value)">
+                    <mat-error *ngIf="isEmailExists">
+                      This email is already Registered. Try Signin.
+                    </mat-error>
                     <mat-error *ngIf="signupForm.get('email').hasError('required')">
                       Please enter your email
                     </mat-error>
@@ -55,6 +67,7 @@
                     </mat-error>
                   </mat-form-field>
                 </div>
+                <!-- phone -->
                 <div class="col-sm-6 mb-4 mb-sm-0">
                   <mat-form-field class="example-full-width">
                     <mat-label>Phone</mat-label>
@@ -66,7 +79,7 @@
                   
                 </div>
               </div>
-
+              <!-- password -->
               <div class="form-group row" formGroupName="passwordValidation">
                 <div class="col-sm-6 mb-4 mb-sm-0">
                   <mat-form-field class="example-full-width">
@@ -97,6 +110,7 @@
                 </div>
               </div>
 
+              <!-- date of birth -->
               <div class="form-group row">
                 <div class="col-sm-6 mb-4 mb-sm-0">
                   <mat-form-field>
@@ -109,6 +123,7 @@
                     </mat-error>
                   </mat-form-field>
                 </div>
+                <!-- gender -->
                 <div class="col-sm-6 mb-4 mb-sm-0">
                   <mat-form-field class="example-full-width">
                     <mat-label>Gender</mat-label>
