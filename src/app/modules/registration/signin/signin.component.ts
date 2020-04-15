@@ -36,7 +36,7 @@ export class SigninComponent implements OnInit {
         if (observer) {
           console.log('User Found ', observer);
 
-          //this.router.navigate(['/home']);
+          this.router.navigate(['/dashboard']);
         } else {
           console.log('User not Found');
           //this.router.navigate(['/login']);

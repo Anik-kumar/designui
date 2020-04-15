@@ -37,7 +37,6 @@ export class VerifyEmailComponent implements OnInit {
 
 
   verifyEmail(token) {
-  
 
     if(token.length > 50 && token[0] == 'e'){
       console.log("Data => ", token);

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router} from '@angular/router';
-import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
-// import { _ } from 'lodash';
+import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl} from '@angular/forms';
+import { isNil } from 'lodash';
 import { ValidatePassword } from './validate-password';
 import {ISelect} from '@core/interface/iSelect';
 import {ISignup} from '@modules/registration/signup/isignup';
@@ -54,12 +54,13 @@ export class SignupComponent implements OnInit {
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
       }, {
-        validator: [ValidatePassword.MatchPassword, ValidatePassword.validateDuplicate, this.checkEmail]// custom validation,
+        validator: [ValidatePassword.MatchPassword]// custom validation,
       }),
       gender: ['', [Validators.required]],
       dob: ['', Validators.required]
     });
 
+    // this.validateDuplicate.bind(this)
 
   }
 
@@ -98,19 +99,48 @@ export class SignupComponent implements OnInit {
 
   checkEmail(userMail) {
     console.log("Event => ",userMail);
-
     this.registrationService.checkDuplicateEmail(userMail).subscribe(data => {
-      if(data.error.length < 1) {
+      
         if(data.found) {
           this.isEmailExists = true;
         }else {
           this.isEmailExists = false;
         }
-      } else {
-        console.log(data.error);
-      }
+      
     });
 
   }
 
+  onClickEmail() {
+    this.signupForm.get('email').setErrors(null);
+  }
+
+  onBlurEmail(email) {
+    this.registrationService.checkDuplicateEmail(email).subscribe(res =>{
+      console.log(res);
+
+      if (!isNil(res) && !isNil(res.found) && res.found == true) {
+        this.isEmailExists = true;
+        this.signupForm.get('email').setErrors({
+          emailTaken: true
+        });
+      } else {
+        this.isEmailExists = false;
+      }
+    });
+  }
+  validateDuplicate(abstractControl: AbstractControl) {
+    return this.registrationService.checkDuplicateEmail(abstractControl.value).subscribe(res => {
+      console.log('res', res);
+      if (!isNil(res) && !isNil(res.found) && res.found == true) {
+        // abstractControl.get('email').setErrors({
+        //   emailTaken: true
+        // });
+        return { emailTaken: true }
+      } else {
+        return null;
+      }
+      //  return res ? null : { emailTaken: true };
+    });
+  }
 }

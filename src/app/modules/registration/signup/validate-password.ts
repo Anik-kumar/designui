@@ -13,15 +13,4 @@ export class ValidatePassword {
     }
   }
 
-  static validateDuplicate(abstractControl: AbstractControl) {
-    const email = abstractControl.get('email').value;
-    if (!email) {
-      abstractControl.get('confirmPassword').setErrors({
-        MatchPassword: true
-      });
-    } else {
-      return null;
-    }
-  }
-
 }

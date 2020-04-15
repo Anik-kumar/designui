@@ -55,7 +55,7 @@
                 <div class="col-sm-6 mb-4 mb-sm-0">
                   <mat-form-field class="example-full-width">
                     <mat-label>Email</mat-label>
-                    <input matInput formControlName="email" placeholder="Ex. john.doe@gmail.com" (change)="checkEmail($event.target.value)">
+                    <input #userEmail matInput  formControlName="email" (blur)="onBlurEmail(userEmail.value)" (click)="onClickEmail()" placeholder="Ex. john.doe@gmail.com" (change)="checkEmail($event.target.value)">
                     <mat-error *ngIf="isEmailExists">
                       This email is already Registered. Try Signin.
                     </mat-error>
@@ -139,7 +139,7 @@
                 </div>
               </div>
 
-              <button mat-raised-button [color]="btnColor" [disabled]="signupForm.invalid" (click)="onSubmit()">Submit</button>
+              <button mat-raised-button [color]="btnColor" [disabled]="signupForm.invalid || isEmailExists" (click)="onSubmit()">Submit</button>
             </form>
 
             <hr>
