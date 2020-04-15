@@ -23,6 +23,8 @@ import { RegistrationModule } from '@modules/registration/registration.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconsModule } from '@modules/icons/icons.module';
 import { SharedModule } from '@modules/shared/shared.module';
+import { NewDesignModule } from './modules/new-design/new-design.module';
+import { NewDesignComponent } from './newDesign/new-design/new-design.component';
 
 
 
@@ -30,6 +32,7 @@ import { SharedModule } from '@modules/shared/shared.module';
   declarations: [
     AppComponent,
     AuthenticationComponent,
+    NewDesignComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,8 @@ import { SharedModule } from '@modules/shared/shared.module';
     PublicModule,
     RegistrationModule,
     IconsModule,
-    SharedModule
+    SharedModule,
+    NewDesignModule
   ],
   providers: [
     httpInterceptorProviders,
