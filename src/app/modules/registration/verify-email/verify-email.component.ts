@@ -37,27 +37,23 @@ export class VerifyEmailComponent implements OnInit {
 
 
   verifyEmail(token) {
-    let isFound = false;
-    let message = '';
-    let errors = '';
 
     if(token.length > 50 && token[0] == 'e'){
       console.log("Data => ", token);
-
+      
       const result = this.registrationService.verifyUserMail(token).subscribe(observer => {
         console.log('Result : ', observer);
-        isFound = observer.success;
-        message = observer.message;
-        errors = observer.error;
+        
+        
+        if(observer.success) {
+          console.log("VerifyEmail>>  Result => ", observer.message);
+          this.verifyFlag = true;
+        } else {
+          console.log("VerifyEmail>>  Result => ", observer.error);
+          this.verifyFlag = false;
+        }
       });
-
-      if(isFound) {
-        console.log("VerifyEmail>>  Result => ", message);
-        this.verifyFlag = true;
-      } else {
-        console.log("VerifyEmail>>  Result => ", errors);
-        this.verifyFlag = false;
-      }
+      
       
     }
     
