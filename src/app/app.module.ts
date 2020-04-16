@@ -21,18 +21,19 @@ import { PublicModule } from '@modules/public/public.module';
 
 import { RegistrationModule } from '@modules/registration/registration.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+
+
 import { IconsModule } from '@modules/icons/icons.module';
 import { SharedModule } from '@modules/shared/shared.module';
-import { NewDesignModule } from './modules/new-design/new-design.module';
-import { NewDesignComponent } from './newDesign/new-design/new-design.component';
+//import { NewdesignModule } from '@modules/newdesign/newdesign.module';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthenticationComponent,
-    NewDesignComponent
+    AuthenticationComponent
   ],
   imports: [
     BrowserModule,
@@ -44,10 +45,10 @@ import { NewDesignComponent } from './newDesign/new-design/new-design.component'
     FontAwesomeModule,
     CoreModule,
     PublicModule,
-    RegistrationModule,
-    IconsModule,
-    SharedModule,
-    NewDesignModule
+    // RegistrationModule,
+    IconsModule
+    // SharedModule
+    //NewdesignModule
   ],
   providers: [
     httpInterceptorProviders,

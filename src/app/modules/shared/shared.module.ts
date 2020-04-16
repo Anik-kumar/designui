@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { IconsModule } from '@modules/icons/icons.module';
+
+
 
 import { DpTopNavComponent } from './ui/dp-top-nav/dp-top-nav.component';
 import { DpTopNavSearchComponent } from './ui/dp-top-nav-search/dp-top-nav-search.component';
@@ -15,6 +18,8 @@ import { DpTopNavMessageItemComponent } from './ui/dp-top-nav-message-item/dp-to
 import { DpTopNavUserComponent } from './ui/dp-top-nav-user/dp-top-nav-user.component';
 import { DpSideNavComponent } from './ui/dp-side-nav/dp-side-nav.component';
 import { DpSideNavItemComponent } from './ui/dp-side-nav-item/dp-side-nav-item.component';
+import { NewDesignComponent } from './ui/new-design/new-design.component';
+import { FileUploaderComponent } from './ui/file-uploader/file-uploader.component';
 
 
 
@@ -29,13 +34,17 @@ import { DpSideNavItemComponent } from './ui/dp-side-nav-item/dp-side-nav-item.c
     DpTopNavMessageItemComponent, 
     DpTopNavUserComponent, 
     DpSideNavComponent, 
-    DpSideNavItemComponent
+    DpSideNavItemComponent, 
+    NewDesignComponent, 
+    FileUploaderComponent
   ],
   imports: [
     CommonModule,
     FontAwesomeModule,
     IconsModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     DpTopNavComponent, 
@@ -47,7 +56,8 @@ import { DpSideNavItemComponent } from './ui/dp-side-nav-item/dp-side-nav-item.c
     DpTopNavMessageItemComponent, 
     DpTopNavUserComponent,
     DpSideNavComponent, 
-    DpSideNavItemComponent
+    DpSideNavItemComponent,
+    NewDesignComponent
   ]
 })
 export class SharedModule { }
