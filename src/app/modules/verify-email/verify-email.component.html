@@ -1,0 +1,47 @@
+{{verifyFlag}}
+
+<div class="container">
+
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+
+      <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+<!--            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>-->
+            <div class="col-lg-12">
+              <div class="p-5">
+                <div class="text-center">
+                  <h2>Welcome Back!</h2>
+                </div>
+                <hr>
+                <div class="text-center" *ngIf="verifyFlag; else notVerified">
+                  <h5 style="text-align: center;">Your Registration was successful</h5>
+                  <button mat-raised-button routerLink="/signin">Login</button>
+                </div>
+
+                <ng-template #notVerified>
+                  <h5 style="text-align: center;">Your Registration was Failed</h5>
+                  <h5 style="text-align: center;">Try again</h5>
+                </ng-template>
+                
+                <hr>
+                <div class="text-center">
+                  <a class="small" routerLink="/signup">Create an Account!</a>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

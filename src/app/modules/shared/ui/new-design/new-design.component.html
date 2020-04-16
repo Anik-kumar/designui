@@ -1,0 +1,28 @@
+<div class="container margin-up">
+  <div class="row">
+    <div class="" style="margin-left: 1.5rem;">
+      <h4>Upload Designs</h4>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-12  col-lg-6">
+      <p>You can upload multiple designs of your product. Ex: Front, Back, Logo etc.</p>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6">
+      <form [formGroup]="newDesignForm">
+
+        <div class="form-group">
+          <label>Enter your design</label>
+          <input type="file" formControlName="designImage" accept="image/*" multiple>
+          <p *ngIf="newDesignForm.get('designImage').touched && newDesignForm.get('designImage').invalid" style="color: red">Insert image of design</p>
+        </div>
+        
+        
+        <div class="form-group">
+          <button type="submit" mat-raised-button (click)="onSubmit()" [disabled]="newDesignForm.invalid">Submit</button>
+        </div>
+        
+      </form>
+    </div>
+  </div>
+</div>
