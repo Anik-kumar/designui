@@ -11,7 +11,6 @@ import { AuthenticationComponent } from './modules/authentication/authentication
 
 import { StorageServiceModule } from 'angular-webstorage-service';
 
-
 import { httpInterceptorProviders } from './interceptors/http-interceptor-providers';
 import { AuthService } from './guard/auth.service';
 // @ts-ignore
@@ -19,15 +18,10 @@ import { CoreModule } from '@core/core.module';
 // @ts-ignore
 import { PublicModule } from '@modules/public/public.module';
 
-import { RegistrationModule } from '@modules/registration/registration.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
-
 
 import { IconsModule } from '@modules/icons/icons.module';
 import { SharedModule } from '@modules/shared/shared.module';
-//import { NewdesignModule } from '@modules/newdesign/newdesign.module';
-
 
 
 @NgModule({
@@ -45,10 +39,7 @@ import { SharedModule } from '@modules/shared/shared.module';
     FontAwesomeModule,
     CoreModule,
     PublicModule,
-    // RegistrationModule,
     IconsModule
-    // SharedModule
-    //NewdesignModule
   ],
   providers: [
     httpInterceptorProviders,

@@ -3,7 +3,6 @@ import {Observable} from 'rxjs';
 import { isNull, isNil } from 'lodash';
 import {AuthService} from '@core/services/auth.service';
 import {UserApiService} from '@core/services/user-api.service';
-import {ISignup} from '@modules/registration/signup/isignup';
 
 @Injectable({
   providedIn: 'root'

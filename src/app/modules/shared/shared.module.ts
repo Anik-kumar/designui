@@ -20,6 +20,9 @@ import { DpSideNavComponent } from './ui/dp-side-nav/dp-side-nav.component';
 import { DpSideNavItemComponent } from './ui/dp-side-nav-item/dp-side-nav-item.component';
 import { NewDesignComponent } from './ui/new-design/new-design.component';
 import { FileUploaderComponent } from './ui/file-uploader/file-uploader.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -44,7 +47,10 @@ import { FileUploaderComponent } from './ui/file-uploader/file-uploader.componen
     IconsModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   exports: [
     DpTopNavComponent, 
@@ -57,7 +63,8 @@ import { FileUploaderComponent } from './ui/file-uploader/file-uploader.componen
     DpTopNavUserComponent,
     DpSideNavComponent, 
     DpSideNavItemComponent,
-    NewDesignComponent
+    NewDesignComponent,
+    FileUploaderComponent
   ]
 })
 export class SharedModule { }

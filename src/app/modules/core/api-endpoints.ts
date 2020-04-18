@@ -8,6 +8,7 @@ export class ApiEndpoints {
   public static readonly GET_USERS_API = '/api/user/all';
   public static readonly FIND_USER_API = '/api/user/findone';
   public static readonly FIND_EMAIL_API = '/api/user/findEmail';
+  public static readonly UPLOAD_DESIGN_IMAGE = '/api/user/new-design';
 
   // Auth Api
   public static readonly AUTH_TOKEN = '/api/auth/token';
