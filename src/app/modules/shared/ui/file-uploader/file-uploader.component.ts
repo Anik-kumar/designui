@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-file-uploader',
@@ -6,10 +6,41 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file-uploader.component.scss']
 })
 export class FileUploaderComponent implements OnInit {
+  @ViewChild('file', { static: false }) file;
+  public files: Set<File> = new Set();
+  progress;
+  canBeClosed = true;
+  primaryButtonText = 'Upload';
+  showCancelButton = true;
+  uploading = false;
+  uploadSuccessful = false;
+
+  @Output() filesAdded = new EventEmitter();
+  @Output() onAddFiles = new EventEmitter();
+  // @Output() onClickSubSubMenu = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  onFilesAdded() {
+    console.log('--- onFilesAdded ---')
+    const files: { [key: string]: File } = this.file.nativeElement.files;
+    console.log(files);
+    for (let key in files) {
+      if (!isNaN(parseInt(key))) {
+        this.files.add(files[key]);
+      }
+    }
+
+    this.filesAdded.emit(this.files);
+  }
+
+  addFiles() {
+    console.log('--- addFiles ---');
+    this.file.nativeElement.click();
+    this.onAddFiles.emit();
+  }
 }

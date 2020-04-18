@@ -97,4 +97,9 @@ export class AuthService {
     return this.http.post<any>(ApiEndpoints.FIND_EMAIL_API, {'email': data}, { withCredentials: true });
   }
 
+
+  public designUpload(data): Observable<any> {
+    return this.http.post<any>(ApiEndpoints.UPLOAD_DESIGN_IMAGE, {}, {withCredentials: true});
+  }
+
 }

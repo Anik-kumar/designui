@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiEndpoints } from '../api-endpoints';
 import { HttpClient } from '@angular/common/http';
-import {ISignup} from '@modules/registration/signup/isignup';
+import {ISignup} from '@modules/signup/isignup';
 
 @Injectable({
   providedIn: 'root'
