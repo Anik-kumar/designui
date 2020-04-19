@@ -88,18 +88,42 @@ export class AuthService {
   }
 
 
+  /**
+   * Verifing user signup verification
+   * @param {string} data - signup token
+   */
   public isUserEmailVerified(data): Observable<any> {
 
     return this.http.post<any>(ApiEndpoints.USER_EMAIL_VERIFY, {'token': data}, { withCredentials: true });
   }
 
+  /**
+   * Checking for duplicate users
+   * @param {string} data - email of user
+   */
   public isUserExists(data): Observable<any> {
     return this.http.post<any>(ApiEndpoints.FIND_EMAIL_API, {'email': data}, { withCredentials: true });
   }
 
-
+  /**
+   * Uploads user design name, type, tags and file
+   * @param {object} data - form object
+   */
   public designUpload(data): Observable<any> {
     return this.http.post<any>(ApiEndpoints.UPLOAD_DESIGN_IMAGE, {}, {withCredentials: true});
+  }
+
+  /**
+   * User forgot password reset verification
+   * @param {string} data - email of user
+   */
+  public sendVerification(data): Observable<any> {
+    return this.http.post<any>(ApiEndpoints.SEND_RESET_PASS, {'email': data}, {withCredentials: true});
+  }
+
+
+  public isResetPassTokenExpired(data): Observable<any> {
+    return this.http.post<any>(ApiEndpoints.VALIDATE_TOKEN_HS, {'token': data}, {withCredentials: true});
   }
 
 }

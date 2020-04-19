@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import {ISelect} from '@core/interface/iSelect';
 import { NewdesignService } from './newdesign.service';
 import { UploadService } from './upload.service';
-import { remove} from 'lodash'
+import { remove} from 'lodash';
 
 @Component({
   selector: 'app-newdesign',
