@@ -9,12 +9,19 @@ export class ApiEndpoints {
   public static readonly FIND_USER_API = '/api/user/findone';
   public static readonly FIND_EMAIL_API = '/api/user/findEmail';
   public static readonly UPLOAD_DESIGN_IMAGE = '/api/user/new-design';
+  public static readonly SEND_RESET_PASS = '/api/user/send-reset-pass';
+  public static readonly VERIFY_RESET_PASS = '/api/user/verify-reset-pass';
 
   // Auth Api
   public static readonly AUTH_TOKEN = '/api/auth/token';
   public static readonly LOGIN = '/api/auth/login';
   public static readonly SIGNUP = '/api/auth/signup';
-  public static readonly USER_EMAIL_VERIFY = '/api/auth/verifyEmail';
+  public static readonly USER_EMAIL_VERIFY = '/api/auth/verify-email';
+  public static readonly RESET_PASS = '/api/auth/reset-pass';
+
+  // Token Api
+  public static readonly VALIDATE_TOKEN_HS = '/api/token/verify-hs';
+  public static readonly VALIDATE_TOKEN_RS = '/api/token/verify-rs';
 
   public static readonly HOME_URL = '/home';
 

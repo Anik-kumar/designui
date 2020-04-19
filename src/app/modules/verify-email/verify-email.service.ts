@@ -16,4 +16,5 @@ export class VerifyEmailService {
     return this.authService.isUserEmailVerified(token);
 
   }
+  
 }

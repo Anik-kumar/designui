@@ -45,3 +45,11 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+
+*.log
+*.zip
+*.rar
+*.jpg
+*.jpeg
+*.txt
