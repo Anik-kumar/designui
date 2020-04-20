@@ -13,6 +13,7 @@ export class AuthService {
 
   private activeUser: {
     _id: string,
+    unique_id: string,
     firstName: string,
     lastName: string,
     email: string,
@@ -23,8 +24,9 @@ export class AuthService {
 
   private authToken: string;
 
-  private loggedInUser: {_id: string, name: string, email: string, dob: string } = {
+  private loggedInUser: {_id: string, unique_id: string, name: string, email: string, dob: string } = {
     _id: null,
+    unique_id: '',
     name: '',
     email: '',
     dob: ''
@@ -32,12 +34,15 @@ export class AuthService {
 
   private isLoggedIn = false;
 
+  private accessibleRoutes = [];
+
   public getLoggedInStatus() {
     return this.isLoggedIn;
   }
 
   public setLoggedInStatus(status: boolean) {
     this.isLoggedIn = status;
+    this.localStore.setToLocalStore('isLoggedIn', status);
   }
 
   public getAuthorizationToken(): string {
@@ -50,7 +55,7 @@ export class AuthService {
     this.localStore.setToLocalStore('token', token);
   }
 
-  public getLoggedInUser(): {_id: string, name: string, email: string, dob: string } {
+  public getLoggedInUser(): {_id: string, unique_id: string, name: string, email: string, dob: string } {
     return this.loggedInUser;
   }
 
@@ -85,6 +90,10 @@ export class AuthService {
     // }
 
     return this.isLoggedIn;
+  }
+
+  public isAuthorized(): any {
+
   }
 
 

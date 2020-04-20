@@ -25,4 +25,8 @@ export class ApiEndpoints {
 
   public static readonly HOME_URL = '/home';
 
+  // Authorization
+  public static readonly AUTHORIZE_ROUTES = '/api/authorize/routes';
+  public static readonly AUTHORIZE_NAV = '/api/authorize/navigations';
+
 }

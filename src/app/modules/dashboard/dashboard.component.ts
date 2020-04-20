@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from '@core/services/authorization.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  public sideNavList = [];
+  constructor(private authorizationService: AuthorizationService) {
+    this.sideNavList = this.authorizationService.getNavs();
+    console.log(this.sideNavList);
+  }
 
   ngOnInit(): void {
   }
