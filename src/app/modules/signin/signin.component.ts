@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
 import { SigninService } from './signin.service';
+import { AuthorizationService } from '@modules/core/services/authorization.service';
 
 @Component({
   selector: 'app-signin',
@@ -12,7 +13,10 @@ import { SigninService } from './signin.service';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(private router: Router, private http: HttpClient, private signinService: SigninService) { }
+  constructor(private router: Router, 
+    private http: HttpClient, 
+    private signinService: SigninService, 
+    private authorizationService: AuthorizationService) { }
 
   ngOnInit(): void {
   }
@@ -34,8 +38,11 @@ export class SigninComponent implements OnInit {
       const result = this.signinService.signin(email, pass).subscribe( (observer: any) => {
         if (observer) {
           console.log('User Found ', observer);
-
-          this.router.navigate(['/dashboard']);
+          this.authorizationService.getAuthorizedRoutes().subscribe((observer1: any) => {
+            console.log(observer1);
+            this.authorizationService.setNavigations(observer1);
+            this.router.navigate(['/dashboard']);
+          });
         } else {
           console.log('User not Found');
           //this.router.navigate(['/login']);
