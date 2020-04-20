@@ -12,9 +12,11 @@ import { AuthenticationComponent } from './modules/authentication/authentication
 import { StorageServiceModule } from 'angular-webstorage-service';
 
 import { httpInterceptorProviders } from './interceptors/http-interceptor-providers';
-import { AuthService } from './guard/auth.service';
+// import { AuthService } from './guard/auth.service';
 // @ts-ignore
 import { CoreModule } from '@core/core.module';
+import { AuthService } from '@core/services/auth.service';
+import { AuthorizationService } from '@core/services/authorization.service';
 // @ts-ignore
 import { PublicModule } from '@modules/public/public.module';
 
@@ -44,6 +46,7 @@ import { SharedModule } from '@modules/shared/shared.module';
   providers: [
     httpInterceptorProviders,
     AuthService,
+    AuthorizationService
   ],
   bootstrap: [AppComponent]
 })
