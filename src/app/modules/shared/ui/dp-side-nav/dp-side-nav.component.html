@@ -1,16 +1,17 @@
 <nav id="sidenavAccordion" class="sidenav shadow-right sidenav-light">
   <div class="sidenav-menu">
-    <div class="nav">
-      <div class="sidenav-menu-heading">CORE</div>
-      <app-dp-side-nav-item [navItem]="leftNavMenu[0]" (onClick)="onNavItemClick($event)"></app-dp-side-nav-item>
+<!--    <div class="nav">-->
+<!--      <div class="sidenav-menu-heading">CORE</div>-->
+<!--      <app-dp-side-nav-item [navItem]="leftNavMenu[0]" (onClick)="onNavItemClick($event)"></app-dp-side-nav-item>-->
 
-      <div class="sidenav-menu-heading">INTERFACE</div>
-      <app-dp-side-nav-item [navItem]="leftNavMenu[1]" (onClick)="onNavItemClick($event)"></app-dp-side-nav-item>
-    </div>
+<!--      <div class="sidenav-menu-heading">INTERFACE</div>-->
+<!--      <app-dp-side-nav-item [navItem]="leftNavMenu[1]" (onClick)="onNavItemClick($event)"></app-dp-side-nav-item>-->
+<!--    </div>-->
 
     <div class="nav">
-      <div *ngFor="let item of leftNavMenu1">
-        
+      {{leftNavMenu.length}}
+      <div *ngFor="let item of leftNavMenu">
+
         <div class="sidenav-menu-heading"> {{item.name}} </div>
         <app-dp-side-nav-item *ngFor="let menuItem of item.menu" [navItem]="menuItem" [navName]="item.name" (onClickSubMenu)="onNavItemClick($event)" (onClickSubSubMenu)="onClickSubSubMenu($event)"></app-dp-side-nav-item>
         <!-- <div *ngFor="let subMenuItem of menuItem.subMenu" >
@@ -18,6 +19,6 @@
         </div> -->
       </div>
     </div>
-      
+
   </div>
 </nav>
