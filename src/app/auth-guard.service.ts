@@ -12,25 +12,35 @@ import {
   Router
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import {ToastrService} from 'ngx-toastr';
 
 import { AuthService } from '@core/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuardGuard implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
-  constructor(private authService: AuthService, private router: Router) {
+export class AuthGuardService implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
+  constructor(private authService: AuthService, private router: Router,  private toastrService: ToastrService) {
   }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.authService.isAuthenticated() && this.authService.isAuthenticated();
+    const isAuthenticated = this.authService.isAuthenticated() && this.authService.isAuthenticated();
+    if (!isAuthenticated) {
+      this.toastrService.error('Please authenticate using signin.');
+      return this.router.parseUrl('/signin');
+    }
+    return isAuthenticated;
     //return true;
   }
   canActivateChild(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    const isAuthenticated = this.authService.isAuthenticated() && this.authService.isAuthenticated();
+    if (!isAuthenticated) {
+      this.toastrService.error('Please authenticate using signin.');
+    }
+    return isAuthenticated;
   }
   canDeactivate(
     component: unknown,

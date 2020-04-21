@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router} from '@angular/router';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 import { isNil } from 'lodash';
@@ -6,6 +6,7 @@ import { ValidatePassword } from './validate-password';
 import { ISelect } from '@core/interface/iSelect';
 import { ISignup } from './isignup';
 import { SignupService } from './signup.service';
+import {Subscription} from 'rxjs';
 // import { ValidateEmail } from './validate-email';
 
 @Component({
@@ -13,17 +14,25 @@ import { SignupService } from './signup.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
-
+export class SignupComponent implements OnInit, OnDestroy {
+  public signupSubscriber$: Subscription;
+  public emailCheckSubscriber$: Subscription;
   signupForm: FormGroup;
-  signupForm1: FormGroup;
-  submitted = false;
-  emailFormControl: FormControl;
   btnColor = 'primary';
   disabled = true;
   maxDate = new Date();
   isSignupSuccess = false;
   isEmailExists = false;
+  userTypes: ISelect[] = [{
+    viewValue: 'I\'m a Designer',
+    value: 'DESIGNER',
+  }, {
+    viewValue: 'I\'m a Customer',
+    value: 'CUSTOMER'
+  }, {
+    viewValue: 'I\'m a Reviewer',
+    value: 'REVIEWER'
+  }];
   genders: ISelect[] = [{
     viewValue: 'Male',
     value: 'male'
@@ -35,7 +44,7 @@ export class SignupComponent implements OnInit {
     value: 'NA'
   }];
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private signupService: SignupService) { 
+  constructor(private router: Router, private formBuilder: FormBuilder, private signupService: SignupService) {
     const currentYear = new Date().getFullYear();
     this.maxDate = new Date(currentYear - 8, 11, 31);
   }
@@ -53,7 +62,8 @@ export class SignupComponent implements OnInit {
         validator: [ValidatePassword.MatchPassword]// custom validation,
       }),
       gender: ['', [Validators.required]],
-      dob: ['', Validators.required]
+      dob: ['', Validators.required],
+      userType: ['', Validators.required]
     });
   }
 
@@ -63,8 +73,7 @@ export class SignupComponent implements OnInit {
 
 
   onSubmit() {
-    console.log('Status: ', this.signupForm.status, this.signupForm.invalid)
-    // console.log('signupForm', this.signupForm);
+    console.log('Status: ', this.signupForm.status, this.signupForm.invalid);
     if (!this.signupForm.invalid) {
       let regForm: ISignup = {
         firstName: this.signupForm.value.firstName,
@@ -73,10 +82,11 @@ export class SignupComponent implements OnInit {
         pass: this.signupForm.value.passwordValidation.password,
         phone: this.signupForm.value.phone,
         dob: this.signupForm.value.dob,
-        gender: this.signupForm.value.gender
+        gender: this.signupForm.value.gender,
+        userType: this.signupForm.value.userType
       };
       // console.log(regForm);
-      this.signupService.signup(regForm).subscribe((res) => {
+      this.signupSubscriber$ = this.signupService.signup(regForm).subscribe((res) => {
         console.log('Signup done: ', res);
 
         if(res._id){
@@ -87,19 +97,18 @@ export class SignupComponent implements OnInit {
         }
       });
     }
-    
+
   }
 
   checkEmail(userMail) {
     console.log("Event => ",userMail);
-    this.signupService.checkDuplicateEmail(userMail).subscribe(data => {
-      
+    this.emailCheckSubscriber$ = this.signupService.checkDuplicateEmail(userMail).subscribe(data => {
         if(data.found) {
           this.isEmailExists = true;
         }else {
           this.isEmailExists = false;
         }
-      
+
     });
 
   }
@@ -125,17 +134,17 @@ export class SignupComponent implements OnInit {
 
   validateDuplicate(abstractControl: AbstractControl) {
     return this.signupService.checkDuplicateEmail(abstractControl.value).subscribe(res => {
-      console.log('res', res);
-      if (!isNil(res) && !isNil(res.found) && res.found == true) {
-        // abstractControl.get('email').setErrors({
-        //   emailTaken: true
-        // });
-        return { emailTaken: true }
+      if (!isNil(res) && !isNil(res.found) && res.found === true) {
+        return { emailTaken: true };
       } else {
         return null;
       }
-      //  return res ? null : { emailTaken: true };
     });
+  }
+
+  ngOnDestroy(): void {
+    this.signupSubscriber$.unsubscribe();
+    this.emailCheckSubscriber$.unsubscribe();
   }
 
 }

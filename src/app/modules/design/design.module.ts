@@ -15,35 +15,36 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
 
-import { NewdesignRoutingModule } from './newdesign-routing.module';
-import { NewdesignComponent } from './newdesign.component';
-import { NewdesignService } from './newdesign.service';
+import { DesignRoutingModule } from './design-routing.module';
+import { DesignComponent } from './design.component';
+import { DesignService } from './design.service';
 import { SharedModule } from '@modules/shared/shared.module';
 import { UploadService } from './upload.service';
+import { ListsComponent } from './lists/lists.component';
 // import { FileUploaderComponent } from '@shared/ui/file-uploader/file-uploader.component';
 
 
 
 @NgModule({
-  declarations: [NewdesignComponent],
+  declarations: [DesignComponent, ListsComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    NewdesignRoutingModule,
-    MatInputModule, 
+    DesignRoutingModule,
+    MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
     MatSelectModule,
     MatListModule,
     MatDialogModule,
     MatNativeDateModule,
-    
+
   ],
   providers: [
-    NewdesignService,
+    DesignService,
     UploadService
   ]
 })
-export class NewdesignModule { }
+export class DesignModule { }

@@ -6,4 +6,5 @@ export interface ISignup {
   phone: string;
   dob: string;
   gender: string;
+  userType: string;
 }
