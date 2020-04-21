@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import {isEmpty, isNil} from 'lodash';
 
 @Component({
   selector: 'app-dp-side-nav',
@@ -219,10 +220,11 @@ export class DpSideNavComponent implements OnInit {
   set sideNavList(navList) {
     console.log('input sideNavList', navList)
     //this.activeNavItem = navList;
-    this.leftNavMenu = navList['test_nav'];
+    // this.leftNavMenu = navList['test_nav'];
+    this.leftNavMenu = navList['base_nav'];
   }
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     console.log(JSON.stringify(this.leftNavMenu));
@@ -233,6 +235,7 @@ export class DpSideNavComponent implements OnInit {
     this.leftNavMenu.forEach(navItem => {
       navItem.menu.forEach(item => {
         if (item.name == event) {
+          console.log('item', item);
           item.collapsed = !item.collapsed;
           item.active = true;
           if (item.collapsed) {
@@ -240,12 +243,14 @@ export class DpSideNavComponent implements OnInit {
           } else {
             item.style = null;
           }
+          if (!isNil(item.subMenu) && isEmpty(item.subMenu) && !isNil(item.route)){
+            this.router.navigate([item.route]);
+          }
         } else {
           item.active = false;
           item.collapsed = true;
           item.subMenu.forEach(subMenu => {
             subMenu.active = false;
-
           });
 
           // item.collapsed = false;

@@ -2,17 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {ISelect} from '@core/interface/iSelect';
-import { NewdesignService } from './newdesign.service';
+import { DesignService } from './design.service';
 import { UploadService } from './upload.service';
 import { remove} from 'lodash';
+import {AuthorizationService} from '@core/services/authorization.service';
 
 @Component({
-  selector: 'app-newdesign',
-  templateUrl: './newdesign.component.html',
-  styleUrls: ['./newdesign.component.scss']
+  selector: 'app-design',
+  templateUrl: './design.component.html',
+  styleUrls: ['./design.component.scss']
 })
-export class NewdesignComponent implements OnInit {
+export class DesignComponent implements OnInit {
 
+  public sideNavList = [];
   newDesignForm: FormGroup;
   fileAttached = false;
   isFileUploadSuccessful = false;
@@ -30,8 +32,8 @@ export class NewdesignComponent implements OnInit {
   public files: Set<File> = new Set();
   // public files = new Map<string, File>();
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private newdesignService: NewdesignService, private uploadService: UploadService) { 
-
+  constructor(private router: Router, private formBuilder: FormBuilder, private designService: DesignService, private uploadService: UploadService) {
+    this.sideNavList = this.designService.getNavs();
   }
 
   ngOnInit(): void {
@@ -56,7 +58,7 @@ export class NewdesignComponent implements OnInit {
     //     tags: this.newDesignForm.value.designTags
     //   };
     //   console.log(regForm);
-    //   // this.newdesignService.designUpload(regForm).subscribe((res) => {
+    //   // this.designService.designUpload(regForm).subscribe((res) => {
     //   //   console.log('Signup done: ', res);
 
     //   //   if(res._id){

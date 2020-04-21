@@ -135,4 +135,8 @@ export class AuthService {
     return this.http.post<any>(ApiEndpoints.VALIDATE_TOKEN_HS, {'token': data}, {withCredentials: true});
   }
 
+  public setResetPassword(email, pass) {
+    return this.http.post<any>(ApiEndpoints.RESET_PASS, {'email': email, 'password': pass}, {withCredentials: true});
+  }
+
 }

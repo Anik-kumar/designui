@@ -43,15 +43,17 @@ export class ForgotPasswordComponent implements OnInit {
     if (!this.forgotPassForm.invalid) {
       let email = this.forgotPassForm.value.email;
       console.log('forgotPassForm -> ', email);
-      this.fpService.sendVerification(email).subscribe((res) => {
-        console.log('Verification Email is sent: ', res);
+      this.fpService.sendVerification(email).subscribe((resp) => {
+        console.log('Verification Email is sent: ', resp);
 
-        if(res._id){
-          console.log(res._id);
+        if(resp.success && resp.error==null){
           this.isSubmitted = true;
+          this.showForm = false;
         }else {
           this.isSubmitted = false;
+          this.showForm = true;
         }
+        // console.log(resp.message);
       });
     }
 
@@ -61,40 +63,11 @@ export class ForgotPasswordComponent implements OnInit {
     this.router.navigate(['/signup']);
   }
 
-  // public tokenExpired() {
-  //   if(!this.showForm) {
-  //     this.toastr.error("Your reset password token session is expired", "Token Expired");
-  //   }
-  // }
-
-  // public changeState() {
-  //   this.showForm = !this.showForm;
-  // }
-
-  // verifyToken(token) {
-
-  //   if(token.length > 50 && token[0] == 'e'){
-  //     console.log("Data => ", token);
-      
-  //     const result = this.fpService.verifyForgotPassToken(token).subscribe(observer => {
-  //       console.log('Result : ', observer);
-        
-        
-  //       if(observer.success) {
-  //         console.log("VerifyEmail>>  Result => ", observer.message);
-  //         this.showForm = true;
-
-  //       } else {
-  //         console.log("VerifyEmail>>  Result => ", observer.error);
-  //         this.showForm = false;
-  //       }
-  //     });
-      
-      
-  //   }
+  public errorNotification() {
     
+    this.toastr.error("Your reset password token session is expired", "Token Expired");
     
-  // }
+  }
 
 
 }

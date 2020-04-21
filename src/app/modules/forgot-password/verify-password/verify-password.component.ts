@@ -29,7 +29,6 @@ export class VerifyPasswordComponent implements OnInit {
     if(this.token){
       this.verifyToken(this.token);
     }
-    this.tokenExpired();
   }
 
   verifyToken(token) {
@@ -48,9 +47,11 @@ export class VerifyPasswordComponent implements OnInit {
           console.log("VerifyEmail>>  Result => ", observer.message);
           this.showForm = true;
           this.email = observer.email;
+          this.resetPass();
         } else {
           console.log("VerifyEmail>>  Result => ", observer.error);
           this.showForm = false;
+          this.tokenExpired();
         }
       });
       
@@ -74,7 +75,8 @@ export class VerifyPasswordComponent implements OnInit {
   }
 
   public resetPass() {
-    this.router.navigate(['/password/reset'], {queryParams: {email: this.email}});
+    this.fpService.setUserEmail(this.email);
+    this.router.navigate(['/password/reset']);
   }
 
 }

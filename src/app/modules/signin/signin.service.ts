@@ -3,13 +3,14 @@ import {Observable} from 'rxjs';
 import { isNull, isNil } from 'lodash';
 import {AuthService} from '@core/services/auth.service';
 import {UserApiService} from '@core/services/user-api.service';
+import {AuthorizationService} from '@core/services/authorization.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SigninService {
 
-  constructor(private authService: AuthService, private userApiService: UserApiService) { 
+  constructor(private authService: AuthService, private userApiService: UserApiService,  private authorizationService: AuthorizationService) {
   }
 
   private activeUser: {_id: string, firstName: string, lastName: string, email: string, dob: string } = {
@@ -43,6 +44,14 @@ export class SigninService {
     });
 
     return resultObsv;
+  }
+
+  public getAuthorizedRoutes(): Observable<any>{
+    return this.authorizationService.getAuthorizedRoutes();
+  }
+
+  public setNavigations(navs){
+    this.authorizationService.setNavigations(navs);
   }
 
 }

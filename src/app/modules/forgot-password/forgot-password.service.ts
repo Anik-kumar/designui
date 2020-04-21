@@ -7,6 +7,7 @@ import { isNull, isNil } from 'lodash';
   providedIn: 'root'
 })
 export class ForgotPasswordService {
+  private userEmail = null;
 
   constructor(private authService: AuthService) { }
 
@@ -19,4 +20,18 @@ export class ForgotPasswordService {
     return this.authService.isResetPassTokenExpired(token);
 
   }
+
+  public setUserEmail(email) {
+    this.userEmail = email;
+  }
+
+  public getUserEmail() {
+    return this.userEmail;
+  }
+
+  public resetPassword(email, pass) {
+    console.log("email: ", email, " ,pass: ", pass);
+    return this.authService.setResetPassword(email, pass);
+  }
+
 }
