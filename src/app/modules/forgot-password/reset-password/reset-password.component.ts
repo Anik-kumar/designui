@@ -8,6 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthService } from "@core/services/auth.service";
 import { ForgotPasswordService } from '../forgot-password.service';
 import { ValidatePassword } from './validate-password';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'app-reset-password',
@@ -19,6 +20,7 @@ export class ResetPasswordComponent implements OnInit {
   public hasEmail = false;
   private email = null;
   resetPassForm: FormGroup;
+  isSubmitted = false;
 
   constructor(private router: Router,
     private fpService: ForgotPasswordService,
@@ -29,23 +31,40 @@ export class ResetPasswordComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    if(this.email){
-      this.hasEmail = true;
-    }
-
     this.resetPassForm = this.formBuilder.group({
-      email: [this.email, [Validators.email]],
+      email: [this.email],
       passwordValidation: this.formBuilder.group({
         password: ['', [Validators.required, Validators.minLength(6)]],
-        confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
       }, {
         validator: [ValidatePassword.MatchPassword]// custom validation,
       })
     });
+
+    if(this.email){
+      this.hasEmail = true;
+    }
+
+
   }
 
   onSubmit() {
+    console.log('Status: ', this.resetPassForm.status, this.resetPassForm.invalid);
+    // console.log('forgotPassForm -> ', this.forgotPassForm.value.email);
+    if (!this.resetPassForm.invalid) {
+      let email = this.resetPassForm.value.email;
+      console.log('resetPassForm -> ', email);
+      this.fpService.sendVerification(email).subscribe((res) => {
+        console.log('Verification Email is sent: ', res);
 
+        if(res._id){
+          console.log(res._id);
+          this.isSubmitted = true;
+        }else {
+          this.isSubmitted = false;
+        }
+      });
+    }
 
     return;
   }

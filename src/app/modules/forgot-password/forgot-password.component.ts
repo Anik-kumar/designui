@@ -38,7 +38,7 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log('Status: ', this.forgotPassForm.status, this.forgotPassForm.invalid)
+    console.log('Status: ', this.forgotPassForm.status, this.forgotPassForm.invalid);
     // console.log('forgotPassForm -> ', this.forgotPassForm.value.email);
     if (!this.forgotPassForm.invalid) {
       let email = this.forgotPassForm.value.email;
