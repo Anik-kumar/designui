@@ -30,6 +30,7 @@ export class DesignComponent implements OnInit {
     value: 'type3'
   }];
   public files: Set<File> = new Set();
+  sideNavStat;
   // public files = new Map<string, File>();
 
   constructor(private router: Router, private formBuilder: FormBuilder, private designService: DesignService, private uploadService: UploadService) {
@@ -89,6 +90,11 @@ export class DesignComponent implements OnInit {
 
   public uploadFile(files: Set<File>) {
     this.uploadService.upload(this.files)
+  }
+
+  toggleNavClass(event) {
+    console.log(event);
+    this.sideNavStat = event;
   }
 
   /*startUpload() {

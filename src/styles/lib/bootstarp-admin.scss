@@ -97,12 +97,12 @@ body{
   z-index:1039
 }
 .nav-fixed #layoutSidenav #layoutSidenav_nav{
-  width:15rem;
+  // width:0rem;
   height:100vh;
   z-index:1038
 }
 .nav-fixed #layoutSidenav #layoutSidenav_nav .sidenav{
-  padding-top:3.625rem
+  // padding-top:3.625rem
 }
 .nav-fixed #layoutSidenav #layoutSidenav_nav .sidenav .sidenav-menu{
   overflow-y:auto

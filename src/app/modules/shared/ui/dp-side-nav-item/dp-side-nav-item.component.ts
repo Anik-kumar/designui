@@ -13,6 +13,7 @@ interface INavItem {
   active:boolean, 
   collapsed: boolean,
   style: object,
+  icon:string,
   subMenu: ISubMenu[]
 } 
 
@@ -48,6 +49,7 @@ export class DpSideNavItemComponent implements OnInit {
     name: 'Dashboard',
     active: false,
     collapsed: true,
+    icon: 'monitor',
     subMenu: [],
     style: {}
   }
