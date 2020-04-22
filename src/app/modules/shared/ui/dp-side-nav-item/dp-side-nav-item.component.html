@@ -1,6 +1,6 @@
   <a class="nav-link " [ngClass]="{'collapsed': activeNavItem.collapsed, 'active': activeNavItem.active}" (click)="toggleCollapse(activeNavItem.name)">
     <div class="nav-link-icon">
-      <i-feather name="activity"></i-feather>
+      <i-feather name="{{activeNavItem.icon}}"></i-feather>
     </div>
       {{activeNavItem.name}}
 

@@ -1,94 +1,97 @@
-<span class="nav-fixed">
-  <app-dp-top-nav></app-dp-top-nav>
-  <div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
-      <app-dp-side-nav [sideNavList]="sideNavList"></app-dp-side-nav>
-    </div>
-    <div id="layoutSidenav_content" class="scrollable">
-      <div class="container">
-        <div class="card o-hidden border-0 shadow-lg my-3">
-          <div class="card-body p-0">
-            <div class="row">
-              <div class="col-lg-7">
-                <div class="p-5">
-                  <div *ngIf="isFileUploadSuccessful">
-                    <div class="alert alert-success" role="alert">
-                      <h4 class="alert-heading">Registration is successful!</h4>
-                    </div>
-                  </div>
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Upload Your Design</h1>
-                  </div>
 
-                  <form [formGroup]="newDesignForm">
-                    <div class="form-group row">
-                      <!--name -->
-                      <div class="col-sm-12 mb-12 mb-sm-0">
-                        <mat-form-field class="example-full-width">
-                          <mat-label>Design Name</mat-label>
-                          <input matInput formControlName="name" placeholder="Name of Design">
-                          <mat-error *ngIf="newDesignForm.get('name').hasError('required')">
-                            Please enter your first name
-                          </mat-error>
-                          <mat-error *ngIf="newDesignForm.get('name').hasError('minlength')">
-                            Firstname has to be at least 3 character long
-                          </mat-error>
-                          <mat-error *ngIf="newDesignForm.get('name').hasError('maxlength')">
-                            Firstname can't be more than 30 character long
-                          </mat-error>
-                        </mat-form-field>
+<div [ngClass]="{'sidenav-toggled': sideNavStat}">
+  <span class="nav-fixed">
+    <app-dp-top-nav (toggleValue)="toggleNavClass($event)"></app-dp-top-nav>
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <app-dp-side-nav [sideNavList]="sideNavList"></app-dp-side-nav>
+      </div>
+      <div id="layoutSidenav_content" class="scrollable">
+        <div class="container">
+          <div class="card o-hidden border-0 shadow-lg my-3">
+            <div class="card-body p-0">
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="p-5">
+                    <div *ngIf="isFileUploadSuccessful">
+                      <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">Registration is successful!</h4>
                       </div>
                     </div>
-
-                    <div class="form-group row">
-                      <div class="col-sm-6 mb-4 mb-sm-0">
-                        <mat-form-field class="example-full-width">
-                          <mat-label>Type</mat-label>
-                          <mat-select formControlName="type">
-                            <mat-option *ngFor="let type of types" [value]="type.value">
-                              {{type.viewValue}}
-                            </mat-option>
-                          </mat-select>
-                          <mat-error *ngIf="newDesignForm.get('type').hasError('required')">
-                            Please select a type
-                          </mat-error>
-                        </mat-form-field>
-                      </div>
+                    <div class="text-center">
+                      <h1 class="h4 text-gray-900 mb-4">Upload Your Design</h1>
                     </div>
-
-                    <div class="form-group row">
-                      <div class="col-md-12">
-                        <app-file-uploader (filesAdded)="filesAdded($event)" (addFiles)="addFiles()"></app-file-uploader>
-
-                        <div *ngFor="let file of files; index as i;">
-                          <span>{{file.name}} <span (click)="removeFiles(file, i)">X</span></span>
+  
+                    <form [formGroup]="newDesignForm">
+                      <div class="form-group row">
+                        <!--name -->
+                        <div class="col-sm-12 mb-12 mb-sm-0">
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Design Name</mat-label>
+                            <input matInput formControlName="name" placeholder="Name of Design">
+                            <mat-error *ngIf="newDesignForm.get('name').hasError('required')">
+                              Please enter your first name
+                            </mat-error>
+                            <mat-error *ngIf="newDesignForm.get('name').hasError('minlength')">
+                              Firstname has to be at least 3 character long
+                            </mat-error>
+                            <mat-error *ngIf="newDesignForm.get('name').hasError('maxlength')">
+                              Firstname can't be more than 30 character long
+                            </mat-error>
+                          </mat-form-field>
                         </div>
-
-
-                        <!-- <div *ngIf="newDesignForm.gfilesAddedet('file').touched && newDesignForm.get('file').invalid" style="color: red;">Upload your design images</div> -->
                       </div>
-
-                    </div>
-
-
-                    <div class="form-group row">
-                      <!-- tags -->
-                      <div class="col-sm-6 mb-4 mb-sm-0">
-                        <mat-form-field class="example-full-width">
-                          <mat-label>Tags</mat-label>
-                          <input matInput formControlName="tags" placeholder="design related tags">
-                          <mat-error *ngIf="newDesignForm.get('tags').hasError('required')">
-                            Enter tags
-                          </mat-error>
-
-                        </mat-form-field>
+  
+                      <div class="form-group row">
+                        <div class="col-sm-6 mb-4 mb-sm-0">
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Type</mat-label>
+                            <mat-select formControlName="type">
+                              <mat-option *ngFor="let type of types" [value]="type.value">
+                                {{type.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="newDesignForm.get('type').hasError('required')">
+                              Please select a type
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
                       </div>
-                    </div>
-
-                    <button mat-raised-button [color]="btnColor" (click)="onSubmit()">Submit</button>
-                    <!-- <button mat-raised-button [color]="btnColor" [disabled]="newDesignForm.invalid || fileAttached" (click)="onSubmit()">Submit</button> -->
-                  </form>
-
+  
+                      <div class="form-group row">
+                        <div class="col-md-12">
+                          <app-file-uploader (filesAdded)="filesAdded($event)" (addFiles)="addFiles()"></app-file-uploader>
+  
+                          <div *ngFor="let file of files; index as i;">
+                            <span>{{file.name}} <span (click)="removeFiles(file, i)">X</span></span>
+                          </div>
+  
+  
+                          <!-- <div *ngIf="newDesignForm.gfilesAddedet('file').touched && newDesignForm.get('file').invalid" style="color: red;">Upload your design images</div> -->
+                        </div>
+  
+                      </div>
+  
+  
+                      <div class="form-group row">
+                        <!-- tags -->
+                        <div class="col-sm-6 mb-4 mb-sm-0">
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Tags</mat-label>
+                            <input matInput formControlName="tags" placeholder="design related tags">
+                            <mat-error *ngIf="newDesignForm.get('tags').hasError('required')">
+                              Enter tags
+                            </mat-error>
+  
+                          </mat-form-field>
+                        </div>
+                      </div>
+  
+                      <button mat-raised-button [color]="btnColor" (click)="onSubmit()">Submit</button>
+                      <!-- <button mat-raised-button [color]="btnColor" [disabled]="newDesignForm.invalid || fileAttached" (click)="onSubmit()">Submit</button> -->
+                    </form>
+  
+                  </div>
                 </div>
               </div>
             </div>
@@ -96,7 +99,5 @@
         </div>
       </div>
     </div>
-  </div>
-</span>
-
-
+  </span>
+</div>

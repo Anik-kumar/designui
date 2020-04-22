@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthorizationService } from '@core/services/authorization.service';
 
 @Component({
   selector: 'app-lists',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListsComponent implements OnInit {
 
-  constructor() { }
+  sideNavStat;
+  public sideNavList = [];
+  constructor(private authorizationService: AuthorizationService) { 
+    this.sideNavList = this.authorizationService.getNavs();
+    console.log(this.sideNavList);
+  }
 
   ngOnInit(): void {
+  }
+
+  toggleNavClass(event) {
+    console.log(event);
+    this.sideNavStat = event;
   }
 
 }

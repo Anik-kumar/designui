@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { AuthorizationService } from '@core/services/authorization.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { AuthorizationService } from '@core/services/authorization.service';
 export class DashboardComponent implements OnInit {
 
   public sideNavList = [];
+  sideNavStat;
   constructor(private authorizationService: AuthorizationService) {
     this.sideNavList = this.authorizationService.getNavs();
     console.log(this.sideNavList);
@@ -16,5 +17,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  toggleNavClass(event) {
+    console.log(event);
+    this.sideNavStat = event;
+  }
+
 
 }
