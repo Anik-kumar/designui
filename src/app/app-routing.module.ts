@@ -12,7 +12,8 @@ const routes: Routes = [
   { path: 'signup', loadChildren: () => import('./modules/signup/signup.module').then(m => m.SignupModule) },
   { path: 'verify-email', loadChildren: () => import('./modules/verify-email/verify-email.module').then(m => m.VerifyEmailModule) },
   { path: 'design', loadChildren: () => import('@modules/design/design.module').then(m => m.DesignModule), canActivate: [AuthGuardService] },
-  { path: 'password', loadChildren: () => import('./modules/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)}
+  { path: 'password', loadChildren: () => import('./modules/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)},
+  { path: 'profile', loadChildren: () => import('./modules/user-profile/user-profile.module').then(m => m.UserProfileModule) }
 
 ];
 

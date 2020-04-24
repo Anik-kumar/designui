@@ -4,6 +4,22 @@
   top: 0rem;
 }
 
-.nav-fixed #layoutSidenav #layoutSidenav_nav .sidenav {
-  top: 0rem;
+
+#layoutSidenav {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+@media (min-width: 320px) {
+  .container {
+    &.full-width{
+      min-width: 100%;
+    }
+  }
+
 }
