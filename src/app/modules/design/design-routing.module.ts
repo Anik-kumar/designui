@@ -3,10 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { DesignComponent } from './design.component';
 import { ListsComponent } from './lists/lists.component';
+import { NewComponent } from './new/new.component';
 
 const routes: Routes = [
   { path: '', component: DesignComponent },
-  { path: 'list', component: ListsComponent }];
+  { path: 'new', component: NewComponent },
+  { path: 'list', component: ListsComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

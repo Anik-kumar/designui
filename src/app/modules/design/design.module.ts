@@ -11,7 +11,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
 
@@ -21,12 +22,13 @@ import { DesignService } from './design.service';
 import { SharedModule } from '@modules/shared/shared.module';
 import { UploadService } from './upload.service';
 import { ListsComponent } from './lists/lists.component';
+import { NewComponent } from './new/new.component';
 // import { FileUploaderComponent } from '@shared/ui/file-uploader/file-uploader.component';
 
 
 
 @NgModule({
-  declarations: [DesignComponent, ListsComponent],
+  declarations: [DesignComponent, ListsComponent, NewComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -40,7 +42,8 @@ import { ListsComponent } from './lists/lists.component';
     MatListModule,
     MatDialogModule,
     MatNativeDateModule,
-
+    MatChipsModule,
+    MatIconModule
   ],
   providers: [
     DesignService,

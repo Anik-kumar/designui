@@ -15,6 +15,14 @@
   bottom: 0;
 }
 
+.example-full-width {
+  width: 100%;
+}
+
+.mat-chip {
+  justify-content: space-between;
+}
+
 @media (min-width: 320px) {
   .container {
     &.full-width{

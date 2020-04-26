@@ -6,8 +6,8 @@ import {
   HttpResponse
 } from '@angular/common/http';
 import { Subject, Observable } from 'rxjs';
-
-const url = 'http://localhost:8080/api/files/upload';
+import { ApiEndpoints } from '../core/api-endpoints';
+const url = 'api/files/upload';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +18,13 @@ export class UploadService {
   public upload(files: Set<File>): { [key: string]: { progress: Observable<number> } } {
     // this will be the our resulting map
     const status: { [key: string]: { progress: Observable<number> } } = {};
+    console.log("Upload files 1 ", files);
 
     files.forEach(file => {
       // create a new multipart-form for every file
       const formData: FormData = new FormData();
       formData.append('file', file, file.name);
+      console.log("Upload files 2 ", file);
 
       // create a http-post request and pass the form
       // tell it to report the upload progress
@@ -58,5 +60,9 @@ export class UploadService {
 
     // return the map of progress.observables
     return status;
+  }
+
+  public createDesign(formData: FormData):  Observable<any> {
+    return this.http.post<any>(ApiEndpoints.UPLOAD_API, formData, { withCredentials: true });
   }
 }

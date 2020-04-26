@@ -243,9 +243,9 @@ export class DpSideNavComponent implements OnInit {
           } else {
             item.style = null;
           }
-          if (!isNil(item.subMenu) && isEmpty(item.subMenu) && !isNil(item.route)){
+          // if (!isNil(item.subMenu) && isEmpty(item.subMenu) && !isNil(item.route)){
             this.router.navigate([item.route]);
-          }
+          // }
         } else {
           item.active = false;
           item.collapsed = true;
@@ -261,6 +261,7 @@ export class DpSideNavComponent implements OnInit {
   }
 
   onClickSubSubMenu(event) {
+    let activeSubSubMenu = null;
     console.log('onClickSubSubMenu: ', event);
     this.leftNavMenu.forEach(navItem => {
       navItem.menu.forEach(subNav => {
@@ -269,6 +270,7 @@ export class DpSideNavComponent implements OnInit {
             console.log('>>> ', subSubNav.name, event.subSubMenuItem);
             if (subSubNav.name == event.subSubMenuItem) {
               subSubNav.active = true;
+              activeSubSubMenu = subSubNav.route;
             } else {
               subSubNav.active = false;
             }
@@ -276,6 +278,9 @@ export class DpSideNavComponent implements OnInit {
         }
       })
     });
+    if(!isNil(activeSubSubMenu)) {
+      this.router.navigate([activeSubSubMenu]);
+    }
     console.log('>> ', this.leftNavMenu);
   }
 }
