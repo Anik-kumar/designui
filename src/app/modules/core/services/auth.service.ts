@@ -119,7 +119,7 @@ export class AuthService {
    * @param {object} data - form object
    */
   public designUpload(data): Observable<any> {
-    return this.http.post<any>(ApiEndpoints.UPLOAD_DESIGN_IMAGE, {}, {withCredentials: true});
+    return this.http.post<any>(ApiEndpoints.UPLOAD_DESIGN_IMAGE, {'data': data}, {withCredentials: true});
   }
 
   /**

@@ -29,4 +29,7 @@ export class ApiEndpoints {
   public static readonly AUTHORIZE_ROUTES = '/api/authorize/routes';
   public static readonly AUTHORIZE_NAV = '/api/authorize/navigations';
 
+  // New Design 
+  public static readonly UPLOAD_API = '/api/files/upload';
+
 }

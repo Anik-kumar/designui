@@ -1,22 +1,28 @@
-  <a class="nav-link " [ngClass]="{'collapsed': activeNavItem.collapsed, 'active': activeNavItem.active}" (click)="toggleCollapse(activeNavItem.name)">
-    <div class="nav-link-icon">
-      <i-feather name="{{activeNavItem.icon}}"></i-feather>
-    </div>
-      {{activeNavItem.name}}
+<a class="nav-link " [ngClass]="{'collapsed': activeNavItem.collapsed, 'active': activeNavItem.active}" (click)="toggleCollapse(activeNavItem.name)">
+  <div class="nav-link-icon">
+    <i-feather name="{{activeNavItem.icon}}"></i-feather>
+  </div>
+    {{activeNavItem.name}}
 
-    <div class="sidenav-collapse-arrow">
-      <fa-icon [icon]="downArrow" class="ng-fa-icon ml-auto"></fa-icon>
-    </div>
-  </a>
-  <nav class="sidenav-menu-nested nav" [ngClass]="{'collapsed': activeNavItem.collapsed}" [ngStyle]="activeNavItem.style">
+  <div class="sidenav-collapse-arrow">
+    <fa-icon [icon]="downArrow" class="ng-fa-icon ml-auto"></fa-icon>
+  </div>
+</a>
 
-    <div class="submenu" *ngFor="let subMenuItem of activeNavItem.subMenu" [ngClass]="{'collapsed': subMenuItem.collapsed}" >
-      <a class="nav-link" [ngClass]="{'collapsed': subMenuItem.collapsed, 'active': subMenuItem.active}" (click)="onSubSubMenuClick(activeNavItem.name, subMenuItem.name)">
-        {{subMenuItem.name}}
-        <div *ngIf="subMenuItem.badge" class="badge badge-primary ml-2">{{subMenuItem.badge}}</div>
-      </a>
-    </div>
-  </nav>
+<nav class="sidenav-menu-nested nav" [ngClass]="{'collapsed': activeNavItem.collapsed}" [ngStyle]="activeNavItem.style">
+
+  <div class="submenu" *ngFor="let subMenuItem of activeNavItem.subMenu" [ngClass]="{'collapsed': subMenuItem.collapsed}" >
+    <a class="nav-link" [ngClass]="{'collapsed': subMenuItem.collapsed, 'active': subMenuItem.active}" (click)="onSubSubMenuClick(activeNavItem.name, subMenuItem.name)">
+      <div class="nav-link-icon">
+        <i-feather name="{{subMenuItem.icon}}"></i-feather>
+      </div>
+      {{subMenuItem.name}}
+      <div *ngIf="subMenuItem.badge" class="badge badge-primary ml-2">
+        {{subMenuItem.badge}}
+      </div>
+    </a>
+  </div>
+</nav>
 
 
 

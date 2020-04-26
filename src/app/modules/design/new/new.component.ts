@@ -3,8 +3,8 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {ISelect} from '@core/interface/iSelect';
-import { DesignService } from './design.service';
-import { UploadService } from './upload.service';
+import { DesignService } from '../design.service';
+import { UploadService } from '../upload.service';
 import { _, remove} from 'lodash';
 import {AuthorizationService} from '@core/services/authorization.service';
 import { MatChipInputEvent } from '@angular/material/chips';
@@ -14,11 +14,11 @@ export interface Tags {
 }
 
 @Component({
-  selector: 'app-design',
-  templateUrl: './design.component.html',
-  styleUrls: ['./design.component.scss']
+  selector: 'app-new',
+  templateUrl: './new.component.html',
+  styleUrls: ['./new.component.scss']
 })
-export class DesignComponent implements OnInit {
+export class NewComponent implements OnInit {
 
   public sideNavList = [];
   newDesignForm: FormGroup;
@@ -172,51 +172,4 @@ export class DesignComponent implements OnInit {
     }
   }
 
-  /*startUpload() {
-    // // if everything was uploaded already, just close the dialog
-    // if (this.uploadSuccessful) {
-    //   return this.dialogRef.close();
-    // }
-
-    // set the component state to "uploading"
-    this.uploading = true;
-
-    // start the upload and save the progress map
-    this.progress = this.uploadService.upload(this.files);
-    console.log(this.progress);
-    for (const key in this.progress) {
-      this.progress[key].progress.subscribe(val => console.log(val));
-    }
-
-    // convert the progress map into an array
-    let allProgressObservables = [];
-    for (let key in this.progress) {
-      allProgressObservables.push(this.progress[key].progress);
-    }
-
-    // Adjust the state variables
-
-    // The OK-button should have the text "Finish" now
-    this.primaryButtonText = 'Finish';
-
-    // The dialog should not be closed while uploading
-    this.canBeClosed = false;
-    this.dialogRef.disableClose = true;
-
-    // Hide the cancel-button
-    this.showCancelButton = false;
-
-    // When all progress-observables are completed...
-    forkJoin(allProgressObservables).subscribe(end => {
-      // ... the dialog can be closed again...
-      this.canBeClosed = true;
-      this.dialogRef.disableClose = false;
-
-      // ... the upload was successful...
-      this.uploadSuccessful = true;
-
-      // ... and the component is no longer uploading
-      this.uploading = false;
-    });
-  }*/
 }
