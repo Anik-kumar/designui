@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -43,7 +44,9 @@ import { NewComponent } from './new/new.component';
     MatDialogModule,
     MatNativeDateModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule,
+    MatExpansionModule
   ],
   providers: [
     DesignService,

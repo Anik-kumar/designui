@@ -1,7 +1,11 @@
 #layoutSidenav_content, 
 .nav-fixed #layoutSidenav #layoutSidenav_content{
   padding-left: 0rem;
-  top: 0rem;
+  top: 1rem;
+  padding-top: 3.625rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  
 }
 
 
@@ -14,6 +18,7 @@
   left: 0;
   bottom: 0;
 }
+
 
 .example-full-width {
   width: 100%;
