@@ -24,6 +24,17 @@
   justify-content: space-between;
 }
 
+.alert-danger button{
+  background-color: #F8D7DA;
+  color: red;
+  width: 100%
+}
+.alert-success button{
+  background-color: #D4EDDA;
+  color: green;
+  width: 100%
+}
+
 @media (min-width: 320px) {
   .container {
     &.full-width{

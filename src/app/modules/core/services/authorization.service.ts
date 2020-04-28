@@ -25,6 +25,11 @@ export class AuthorizationService {
     return this.http.get<any>(ApiEndpoints.AUTHORIZE_NAV, { withCredentials: true });
   }
 
+  public getUserDesigns(): Observable<any> {
+    // GET_USERS_DESIGNS
+    return this.http.get<any>(ApiEndpoints.GET_USERS_DESIGNS, { withCredentials: true });
+  }
+
   public setNavigations(navs) {
     console.log('setNavigations ---', navs);
     this.leftNavigation = navs;

@@ -13,16 +13,23 @@
               <div class="row">
                 <div class="col-lg-7">
                   <div class="p-5">
-                    <div *ngIf="isFileUploadSuccessful">
-                      <div class="alert alert-success" role="alert">
-                        <h4 class="alert-heading">Registration is successful!</h4>
-                      </div>
-                    </div>
                     <div class="text-center">
                       <h1 class="h4 text-gray-900 mb-4">Upload Your Design</h1>
                     </div>
+                    <div *ngIf="isSuccessful">
+                      <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">Your Design is added successful!</h4>
+                        <button mat-raised-button (click)="changeState()">Add More</button>
+                      </div>
+                    </div>
+                    <div *ngIf="isSuccessful==false">
+                      <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Your Design is not added for some reason!</h4>
+                        <button mat-raised-button (click)="changeState()">Try Again</button>
+                      </div>
+                    </div>
   
-                    <form [formGroup]="newDesignForm">
+                    <form *ngIf="isSuccessful == null" [formGroup]="newDesignForm">
                       <div class="form-group row">
                         <!--name -->
                         <!-- <div class="col-sm-12 mb-12 mb-sm-0">

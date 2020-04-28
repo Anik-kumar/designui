@@ -11,6 +11,7 @@ export class ApiEndpoints {
   public static readonly UPLOAD_DESIGN_IMAGE = '/api/user/new-design';
   public static readonly SEND_RESET_PASS = '/api/user/send-reset-pass';
   public static readonly VERIFY_RESET_PASS = '/api/user/verify-reset-pass';
+  public static readonly GET_USERS_DESIGNS = '/api/user/get-designs';
 
   // Auth Api
   public static readonly AUTH_TOKEN = '/api/auth/token';

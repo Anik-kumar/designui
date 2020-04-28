@@ -26,4 +26,8 @@ export class DesignService {
     return this.uploadService.createDesign(formData);
   }
 
+  public getUserDesigns() {
+    return this.authorizationService.getUserDesigns();
+  }
+
 }

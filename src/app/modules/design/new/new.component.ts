@@ -5,9 +5,10 @@ import { Router } from '@angular/router';
 import {ISelect} from '@core/interface/iSelect';
 import { DesignService } from '../design.service';
 import { UploadService } from '../upload.service';
-import { _, remove} from 'lodash';
+import { _, remove, isNil} from 'lodash';
 import {AuthorizationService} from '@core/services/authorization.service';
 import { MatChipInputEvent } from '@angular/material/chips';
+import { ToastrService } from 'ngx-toastr';
 
 export interface Tags {
   tag: string;
@@ -23,7 +24,7 @@ export class NewComponent implements OnInit {
   public sideNavList = [];
   newDesignForm: FormGroup;
   fileAttached = false;
-  isFileUploadSuccessful = false;
+  isSuccessful: boolean;
   btnColor = 'primary';
   types: ISelect[] = [{
     viewValue: 'Type 1',
@@ -48,7 +49,8 @@ export class NewComponent implements OnInit {
   constructor(private router: Router, 
     private formBuilder: FormBuilder, 
     private designService: DesignService, 
-    private uploadService: UploadService) {
+    private uploadService: UploadService,
+    private toastr: ToastrService) {
     this.sideNavList = this.designService.getNavs();
   }
 
@@ -64,36 +66,6 @@ export class NewComponent implements OnInit {
     });
   }
 
-  /*onSubmit() {
-    console.log('Status: ', this.newDesignForm.status, this.newDesignForm.invalid);
-    // console.log();
-    
-    console.log('newDesignForm', this.newDesignForm);
-    if (!this.newDesignForm.invalid) {
-      let regForm = {
-        postTitle: this.newDesignForm.value.postTitle,
-        title: this.newDesignForm.value.title,
-        type: this.newDesignForm.value.type,
-        tags: this.newDesignForm.value.tags,
-        file: this.files,
-        description: this.newDesignForm.value.describtion
-      };
-      console.log(regForm);
-      // let result = this.uploadFile(this.files, regForm);
-      this.designService.designUpload(regForm).subscribe((res) => {
-        console.log('Design upload done: ', res);
-        // console.log('design com -> ', result);
-
-        if(res._id){
-          console.log(res._id);
-          this.isFileUploadSuccessful = true;
-        }else {
-          this.isFileUploadSuccessful = false;
-        }
-      });
-    }
-  }*/
-
   onSubmit() {
     console.log(this.newDesignForm);
 
@@ -105,6 +77,16 @@ export class NewComponent implements OnInit {
     formData.append('description', this.newDesignForm.get('description').value);
     this.designService.createNewDessign(formData).subscribe(observer => {
       console.log('Response: ', observer);
+
+      if(observer.key.includes('design/') && !isNil(observer.Key) && !isNil(observer.Location)) {
+        this.isSuccessful = true;
+        this.showSuccessMessage();
+        this.newDesignForm.reset();
+      }else {
+        this.isSuccessful = false;
+        this.showFailedMessage();
+        this.newDesignForm.reset();
+      }
     });
   }
 
@@ -164,12 +146,30 @@ export class NewComponent implements OnInit {
     }
   }
 
+
   remove(tag: Tags): void {
     const index = this.tags.indexOf(tag);
 
     if (index >= 0) {
       this.tags.splice(index, 1);
     }
+  }
+
+
+  changeState() {
+    this.newDesignForm.reset();
+    this.tags = [];
+    this.files = new Set();
+    this.fileAttached = false;
+    this.isSuccessful = null;
+  }
+
+  showSuccessMessage() {
+    this.toastr.success("Design is Added", "Success");
+  }
+
+  showFailedMessage() {
+    this.toastr.error("Design failed to Add", "Error");
   }
 
 }
