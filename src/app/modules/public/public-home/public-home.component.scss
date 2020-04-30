@@ -1,0 +1,54 @@
+.bg-grad{
+  //position: relative;
+  background:#665fee;
+  background:-moz-linear-gradient(45deg,#665fee 0%,#27c2de 100%);
+  /* background:-webkit-linear-gradient(45deg,#665fee 0%,#27c2de 100%);
+   */
+  background:-o-linear-gradient(45deg,#665fee 0%,#27c2de 100%);
+  background:linear-gradient(45deg,#665fee 0%,#27c2de 100%);
+  filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#665fee',endColorstr='#27c2de',GradientType=1 );
+  /* content:"";
+   */
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+}
+.wd-50 {
+  width: 50%;
+}
+.btn-custom {
+  padding: 3px 45px;
+  background-color: transparent;
+  border-color: #fff;
+
+  &:hover {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+}
+
+.welcome {
+  color: #fff;
+  text-align: center;
+  font-family: Metropolis;
+  font-weight: 300;
+}
+@media (min-width: 320px) {
+  .welcome {
+    margin-top: 55%;
+  }
+}
+@media (min-width: 576px) {
+  .welcome {
+    margin-top: 55%;
+  }
+}
+
+@media (min-width: 768px) {
+  .welcome {
+    margin-top: 30%;
+  }
+}
