@@ -6,7 +6,8 @@ import {AuthGuardService} from '@app/auth-guard.service';
 
 // const routes: Routes = [];
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: '', loadChildren: () => import('./modules/public/public.module').then(m => m.PublicModule) },
+  // { path: '', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'dashboard', loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule), canActivate: [AuthGuardService] },
   { path: 'signin', loadChildren: () => import('./modules/signin/signin.module').then(m => m.SigninModule) },
   { path: 'signup', loadChildren: () => import('./modules/signup/signup.module').then(m => m.SignupModule) },
