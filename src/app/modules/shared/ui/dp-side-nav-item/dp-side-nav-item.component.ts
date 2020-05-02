@@ -26,25 +26,6 @@ export class DpSideNavItemComponent implements OnInit {
 
   downArrow = faAngleDown;
   isDashboardCollapsed = false;
-  // collapsableList = new Map([
-  //   ['dashboard', {
-  //     'collapsed': true,
-  //     'style': { 'height': '0px'}
-  //   }]])
-  // collapsableList = new Map([
-  //   ['dashboard', {
-  //     'collapsed': true,
-  //     'style': { 'height': '0px'}
-  //   }],
-  //   ['layout', true],
-  //   ['components', true],
-  //   ['utilities', true],
-  //   ['pages', true],
-  //   ['flows', true],
-  //   ['dashboard', true],
-  //   ['dashboard', true],
-  //   ['dashboard', true]
-  // ]); 
   activeNavItem = {
     name: 'Dashboard',
     active: false,

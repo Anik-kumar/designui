@@ -1,20 +1,3 @@
-#layoutSidenav_content, 
-.nav-fixed #layoutSidenav #layoutSidenav_content{
-  padding-left: 0rem;
-  top: 0rem;
-  padding-top: 3.625rem;
-}
-
-
-#layoutSidenav {
-  position: absolute;
-  display: flex;
-  width: 100%;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-}
 
 .example-full-width {
   width: 100%;
@@ -28,9 +11,22 @@
   max-width: 400px;
 }
 
+.alignLeft{
+  display: flex;
+  justify-content: start;
+}
+
 .example-header-image {
   background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
   background-size: cover;
+}
+
+.mat-button {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 @media (min-width: 320px) {
