@@ -39,4 +39,9 @@ export class AuthorizationService {
     console.log('getNavs ---', this.leftNavigation);
     return this.leftNavigation;
   }
+
+  public getOneUserDesign(designID): Observable<any> {
+    return this.http.post<any>(ApiEndpoints.GET_ONE_DESIGN, {'designId': designID}, {withCredentials: true});
+  }
+
 }

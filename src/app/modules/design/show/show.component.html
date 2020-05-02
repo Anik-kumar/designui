@@ -1,0 +1,86 @@
+<div [ngClass]="{'sidenav-toggled': sideNavStat}">
+  <span class="nav-fixed">
+    <app-dp-top-nav (toggleValue)="toggleNavClass($event)"></app-dp-top-nav>
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <app-dp-side-nav [sideNavList]="sideNavList"></app-dp-side-nav>
+      </div>
+      <div id="layoutSidenav_content" class="scrollable">
+        <div class="container">
+          <div class="card o-hidden border-0 shadow-lg my-3">
+            <div class="card-body p-0">
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="p-5">
+                    <div class="text-center">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                  <div class="">
+                    <div class="centerDiv">
+                      <div *ngIf="userDesign" class=" col-sm-12">
+                        <h4 align="center" class="text-gray-900 mb-4">Raw Design</h4>
+                        <mat-card class="example-card">
+                          <mat-card-header>
+                            <div mat-card-avatar class="example-header-image"></div>
+                            <mat-card-title>{{userDesign.raw_design.title}}</mat-card-title>
+                            <mat-card-subtitle>Type {{userDesign.type}}</mat-card-subtitle>
+                            <mat-card-subtitle>Created {{time}} , {{date}}</mat-card-subtitle>
+                          </mat-card-header>
+                          <img mat-card-image src="{{userDesign.raw_design.public_url}}">
+                          <mat-card-content>
+                            <p>
+                              Description: {{userDesign.description}}
+                            </p>
+                            <p>
+                              Tags:
+                              <a href="#" *ngFor="let tag of userDesign.raw_design.tag"> {{tag}} </a>
+                            </p>
+                          </mat-card-content>
+                          <mat-card-actions>
+                            <button mat-button> {{userDesign.raw_design.likes}} LIKE</button>
+                            <button mat-button> {{userDesign.votes}} VOTE</button>
+                          </mat-card-actions>
+                        </mat-card>
+                        
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="">
+                  <div class="centerDiv">
+                    <div *ngIf="userPhotos" class=" col-sm-12">
+                      <h4 align="center" class="text-gray-900 mb-4">Photos</h4>
+                      <mat-card *ngFor="let item of userPhotos" class="example-card">
+                        <mat-card-header>
+                          <div mat-card-avatar class="example-header-image"></div>
+                          <mat-card-title>{{item.title}}</mat-card-title>
+                          <mat-card-subtitle>Created {{time}} , {{date}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <img mat-card-image src="{{item.public_url}}">
+                        <mat-card-content>
+                          <p>
+                            Tags:
+                            <a href="#" *ngFor="let tag of item.tag"> {{tag}} </a>
+                          </p>
+                        </mat-card-content>
+                        <mat-card-actions>
+                          <button mat-button> {{item.likes}} LIKE</button>
+                        </mat-card-actions>
+                      </mat-card>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+</div>

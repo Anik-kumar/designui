@@ -12,6 +12,8 @@ import { UploadService } from './upload.service';
 })
 export class DesignService {
 
+  designId: string;
+
   constructor(private router: Router, private authService: AuthService, private authorizationService: AuthorizationService, private uploadService: UploadService) { }
 
   public designUpload(form) {
@@ -28,6 +30,18 @@ export class DesignService {
 
   public getUserDesigns() {
     return this.authorizationService.getUserDesigns();
+  }
+
+  public getOneUserDesign(design) {
+    return this.authorizationService.getOneUserDesign(design);
+  }
+
+  public setDesignId(id) {
+    this.designId = id;
+  }
+
+  public getDesignId() {
+    return this.designId;
   }
 
 }

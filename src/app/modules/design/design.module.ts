@@ -24,12 +24,13 @@ import { SharedModule } from '@modules/shared/shared.module';
 import { UploadService } from './upload.service';
 import { ListsComponent } from './lists/lists.component';
 import { NewComponent } from './new/new.component';
+import { ShowComponent } from './show/show.component';
 // import { FileUploaderComponent } from '@shared/ui/file-uploader/file-uploader.component';
 
 
 
 @NgModule({
-  declarations: [DesignComponent, ListsComponent, NewComponent],
+  declarations: [DesignComponent, ListsComponent, NewComponent, ShowComponent],
   imports: [
     CommonModule,
     FormsModule,

@@ -1,0 +1,19 @@
+
+
+.example-card {
+  width: 50%;
+  height: 40%;
+  margin: auto;
+  background-color: #a9a9a9;
+}
+
+.mat-button:hover {
+  background-color: gainsboro;
+}
+
+@media (min-width: 576px){
+  .col-sm-12 {
+      flex: 0 0 100%;
+      max-width: 100%;
+  }
+}
