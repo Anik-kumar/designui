@@ -61,11 +61,15 @@ export class AuthService {
     return this.loggedInUser;
   }
 
-  public setLoggedInUser(user: UserInterface) {
-    this.loggedInUser._id = user._id;
-    this.loggedInUser.name = user.firstName + ' ' + user.lastName;
+  public setLoggedInUser(user: {email: string, token: string, unique_id: string, name: {first: string, last: string}, role: []}) {
+    this.loggedInUser._id = user.unique_id;
+    this.loggedInUser.name = user.name.first + ' ' + user.name.last;
     this.loggedInUser.email = user.email;
-    this.loggedInUser.dob = user.dob;
+    this.loggedInUser.dob = null;
+    console.log('setLoggedInUser: ', user);
+    this.localStore.setToLocalStore('ud', JSON.stringify(user));
+    this.localStore.setToLocalStore('uid', user.unique_id);
+    // this.localStore.setToLocalStore('uid',);
   }
 
   public isAuthenticated(): any {

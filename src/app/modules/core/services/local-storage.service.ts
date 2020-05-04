@@ -21,6 +21,26 @@ export class LocalStorageService {
     localStorage.removeItem(key);
   }
 
+  public getNav() {
+    const navJson = localStorage.getItem('nav');
+    const navObj = JSON.parse(navJson);
+    return navObj;
+  }
+
+  public getToken() {
+    return localStorage.getItem('token');
+  }
+
+  public getUserDetails() {
+    const userJson = localStorage.getItem('ud');
+    const userObj = JSON.parse(userJson);
+    return userObj;
+  }
+
+  public getLoginStatus() {
+    return localStorage.getItem('isLoggedIn') === 'true' ? true : false;
+  }
+
   public clearAll() {
     localStorage.clear();
   }
