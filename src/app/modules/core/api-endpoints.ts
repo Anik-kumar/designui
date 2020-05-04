@@ -24,6 +24,7 @@ export class ApiEndpoints {
   // Token Api
   public static readonly VALIDATE_TOKEN_HS = '/api/token/verify-hs';
   public static readonly VALIDATE_TOKEN_RS = '/api/token/verify-rs';
+  public static readonly RENEW_TOKEN = '/api/token/renew';
 
   public static readonly HOME_URL = '/home';
 
