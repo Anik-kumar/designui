@@ -42,6 +42,7 @@ export class AuthService {
 
   public setLoggedInStatus(status: boolean) {
     this.isLoggedIn = status;
+    this.localStore.removeFromLocalStore('isLoggedIn');
     this.localStore.setToLocalStore('isLoggedIn', status);
   }
 
@@ -52,6 +53,7 @@ export class AuthService {
 
   public setAuthorizationToken(token: string) {
     this.authToken = token;
+    this.localStore.removeFromLocalStore('token')
     this.localStore.setToLocalStore('token', token);
   }
 
@@ -92,8 +94,8 @@ export class AuthService {
     return this.isLoggedIn;
   }
 
-  public isAuthorized(): any {
-
+  public renewToken(data) {
+    return this.http.post<any>(ApiEndpoints.RENEW_TOKEN, {}, { withCredentials: true });
   }
 
 

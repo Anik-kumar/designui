@@ -1,0 +1,25 @@
+#layoutSidenav_content,
+.nav-fixed #layoutSidenav #layoutSidenav_content{
+  padding-left: 0rem;
+  top: 0rem;
+  padding-top: 3.625rem;
+}
+ 
+#layoutSidenav {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+ 
+ 
+.mat-card>:first-child,
+.mat-card-content>:first-child,
+.mat-card-content p{
+  word-wrap: break-word;
+  white-space: normal;
+  line-height: 1.2rem;
+}
