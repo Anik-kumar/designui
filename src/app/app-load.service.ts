@@ -16,12 +16,12 @@ export class AppLoadService {
       new Promise((resolve1, reject1) => {
       try {
         if (this.authService.isAuthenticated()) {
-        this.authService.renewToken({}).subscribe(observe => {
-          console.log('Renew Token: ', observe);
-        });
+          this.authService.renewToken({}).subscribe(observe => {
+            console.log('Renew Token: ', observe);
+          });
         }
         setTimeout( () => {
-        resolve1('>>>> Success!');
+          resolve1('>>>> Success!');
         }, 9000);
       } catch (e) {
         reject1();
@@ -30,7 +30,7 @@ export class AppLoadService {
 
       }).finally(() => console.log('>> Finally '));
 
-      }, 60000);
+      }, 6*60000);
       resolve();
     });
   }

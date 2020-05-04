@@ -33,6 +33,8 @@ export class AuthorizationService {
   public setNavigations(navs) {
     console.log('setNavigations ---', navs);
     this.leftNavigation = navs;
+    this.localStore.removeFromLocalStore('nav');
+    this.localStore.setToLocalStore('nav', JSON.stringify(navs));
   }
 
   public getNavs() {
