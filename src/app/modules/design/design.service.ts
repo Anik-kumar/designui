@@ -13,6 +13,7 @@ import { UploadService } from './upload.service';
 export class DesignService {
 
   designId: string;
+  designObj: object;
 
   constructor(private router: Router, private authService: AuthService, private authorizationService: AuthorizationService, private uploadService: UploadService) { }
 
@@ -42,6 +43,14 @@ export class DesignService {
 
   public getDesignId() {
     return this.designId;
+  }
+
+  public setEditDesignObj(obj) {
+    this.designObj = obj;
+  }
+
+  public getEditDesignObj() {
+    return this.designObj;
   }
 
 }

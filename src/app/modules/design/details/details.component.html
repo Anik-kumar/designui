@@ -43,6 +43,7 @@
                           <mat-card-actions>
                             <button mat-button> {{userDesign.raw_design.likes}} LIKE</button>
                             <button mat-button> {{userDesign.votes}} VOTE</button>
+                            <button mat-button (click)="editDesign(userDesign, userDesign.title)"> EDIT</button>
                           </mat-card-actions>
                         </mat-card>
                         
@@ -84,3 +85,4 @@
     </div>
   </span>
 </div>
+

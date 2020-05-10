@@ -18,19 +18,22 @@ import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { DesignRoutingModule } from './design-routing.module';
-import { DesignComponent } from './design.component';
-import { DesignService } from './design.service';
 import { SharedModule } from '@modules/shared/shared.module';
+import { DesignService } from './design.service';
 import { UploadService } from './upload.service';
+import { DesignComponent } from './design.component';
 import { ListsComponent } from './lists/lists.component';
 import { NewComponent } from './new/new.component';
-import { ShowComponent } from './show/show.component';
+// import { ShowComponent } from './show/show.component';
+import { InnerListComponent } from './inner-list/inner-list.component';
+import { EditComponent } from './edit/edit.component';
+import { DetailsComponent } from './details/details.component';
 // import { FileUploaderComponent } from '@shared/ui/file-uploader/file-uploader.component';
 
 
 
 @NgModule({
-  declarations: [DesignComponent, ListsComponent, NewComponent, ShowComponent],
+  declarations: [DesignComponent, ListsComponent, NewComponent, InnerListComponent, EditComponent, DetailsComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -52,6 +55,9 @@ import { ShowComponent } from './show/show.component';
   providers: [
     DesignService,
     UploadService
+  ],
+  exports: [
+    
   ]
 })
 export class DesignModule { }

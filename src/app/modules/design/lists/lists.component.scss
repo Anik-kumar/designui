@@ -1,32 +1,61 @@
 
-.example-full-width {
-  width: 100%;
-}
-
 .mat-chip {
   justify-content: space-between;
-}
-
-.example-card {
-  max-width: 400px;
-}
-
-.alignLeft{
-  display: flex;
-  justify-content: start;
-}
-
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
 }
 
 .mat-button {
   padding-left: 0;
   padding-right: 0;
-  padding-bottom: 1rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.example-card {
+  max-width: 90%;
+  width: 90%;
+  // word-wrap: break-word;
+  // white-space: normal;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 1.2rem;
+  margin: 0px auto;
+  max-height: 80px;
+  text-align: left;
+  text-overflow: ellipsis;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  
+}
+
+
+.example-card:hover{
+  width: 100%;
+  background-color: red;
+}
+
+.alignLeft{
+  display: flex;
+  justify-content: start;
+  width: 100%;
+}
+
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-block-start: 1%;
+  float: left;
+  // display: table;
+}
+
+
+.design-img img{
+  border-radius: 45%;
 }
 
 @media (min-width: 320px) {
@@ -34,6 +63,10 @@
     &.full-width{
       min-width: 100%;
     }
+  }
+
+  .full-width{
+    min-width: 100%;
   }
 
 }

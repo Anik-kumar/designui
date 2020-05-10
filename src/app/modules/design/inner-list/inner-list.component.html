@@ -1,0 +1,14 @@
+ 
+    <a mat-button class="btn-link full-width">
+      <mat-card class="example-card" (click)="showSingleDesign(designObj.design_id, designObj.title)">
+        <div class="design-img">
+          <img src="{{designObj.raw_design.public_url}}" alt="image" height="50" width="100">
+        </div>
+        <div>
+          {{designObj.title}} {{designObj.type}} 
+          Description: {{designObj.description}}
+        </div>
+      </mat-card>
+    </a>
+
+

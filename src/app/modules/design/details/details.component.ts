@@ -5,11 +5,11 @@ import { DesignService } from '@modules/design/design.service';
 import { AuthorizationService } from '@core/services/authorization.service';
 
 @Component({
-  selector: 'app-show',
-  templateUrl: './show.component.html',
-  styleUrls: ['./show.component.scss']
+  selector: 'app-details',
+  templateUrl: './details.component.html',
+  styleUrls: ['./details.component.scss']
 })
-export class ShowComponent implements OnInit {
+export class DetailsComponent implements OnInit {
 
   userDesignId = null;
   userDesign = null;
@@ -64,6 +64,13 @@ export class ShowComponent implements OnInit {
 
   }
   
-
+  editDesign(userDesignObj, title) {
+    title = title.replace('/\s/g', '-');
+    if(!isNil(userDesignObj._id)) {
+      // this.router.navigate(['/design/show', id]);
+      this.designService.setEditDesignObj(userDesignObj);
+      this.router.navigate(['/design/edit', title]);
+    }
+  }
 
 }

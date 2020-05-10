@@ -19,37 +19,57 @@
                   </div>
                 </div>
               </div>
-              <div class="row">
-                  <div class="">
-                    <div class="">
-                        <div *ngFor="let design of designs" class="alignLeft col-sm-12">
-                          <a mat-button>
-                            <mat-card class="example-card" (click)="showSingleDesign(design.design_id, design.title)">
-                              <mat-card-header>
-                                <div mat-card-avatar class="example-header-image"></div>
-                                <mat-card-title>{{design.title}}</mat-card-title>
-                                <mat-card-subtitle>{{design.type}}</mat-card-subtitle>
-                                <mat-card-subtitle>{{design.date_created}}</mat-card-subtitle>
-                              </mat-card-header>
-                              <img mat-card-image src="{{design.raw_design.public_url}}">
-                              <mat-card-content>
-                                <p>
-                                  {{design.description}}
-                                </p>
-                                <p>
-                                  {{design.tags}}
-                                </p>
-                              </mat-card-content>
-                              <mat-card-actions>
-                                <button mat-button> {{design.likes}} LIKE</button>
-                                <button mat-button> {{design.votes}} VOTE</button>
-                              </mat-card-actions>
-                            </mat-card>
-                          </a>
-                        </div>
-                      
-                    </div>
+              <div class="row">  
+                <div class="col-11">
+                  <div class="center-block">
+                    <app-inner-list *ngFor="let design of designs" [designObj]="design"></app-inner-list>
                   </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-11">
+                  <div class="center-block">
+                    <!-- <table mat-table> -->
+                      <!-- <tr>
+                        <td>Design</td>
+                        <td>Title</td>
+                        <td>Type</td>
+                        <td>Description</td>
+                      </tr> -->
+                      
+                      <!-- <tr *ngFor="let design of designs" (click)="showSingleDesign(design.design_id, design.title)">
+                        <a mat-button class="btn-link full-width">
+                        
+                          <td>
+                            <img src="{{design.raw_design.public_url}}" alt="image" height="50" width="120">
+                          </td>
+                          <td>{{design.title}}</td>
+                          <td>{{design.type}}</td>
+                          <td> {{design.description}} </td>
+                        </a>
+                      </tr> -->
+                      <!-- <tr *ngFor="let design of designs">
+                        <td>
+                          <img src="{{design.raw_design.public_url}}" alt="image" height="50" width="120">
+                        </td>
+                        <td>{{design.title}}</td>
+                        <td>{{design.type}}</td>
+                        <td> {{design.description}} </td>
+                        <td> <button class="mat-raised-button">SHOW</button> </td>
+                        <td> <button class="mat-raised-button">EDIT</button> </td>
+                      </tr> 
+                    
+                    </table> -->
+                    <!-- <a mat-button class="btn-link full-width">
+                      <mat-card class="example-card" (click)="showSingleDesign(design.design_id, design.title)">
+                          
+                        
+                        Description: 
+                      </mat-card>
+                    </a> -->
+                    
+                  </div>
+                </div>
               </div>
             </div>
           </div>
