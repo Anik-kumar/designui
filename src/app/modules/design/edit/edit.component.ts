@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Router } from '@angular/router';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { _, remove, isNil} from 'lodash';
+import { remove, isNil, cloneDeep } from 'lodash';
+
 
 import { DesignService } from '@modules/design/design.service';
 import { AuthorizationService } from '@core/services/authorization.service';
@@ -48,11 +49,13 @@ export class EditComponent implements OnInit {
 
   isChanged = false;
   isFileChanged = false;
+  isTagChanged = false;
   tags = [];
   oldTitle = "";
   oldType = "";
   oldDescription = "";
   oldFile = "";
+  oldTags = []
 
   constructor(private router: Router,
     private designService: DesignService,
@@ -61,6 +64,7 @@ export class EditComponent implements OnInit {
     private uploadService: UploadService,
     private toastr: ToastrService) { 
       this.sideNavList = this.authorizationService.getNavs();
+      console.log('edit design');
     }
 
   ngOnInit(): void {
@@ -73,11 +77,12 @@ export class EditComponent implements OnInit {
       console.log("Error retriving design object.");
     }
     this.tags = this.userDesignObj.tags;
+    this.oldTags = cloneDeep(this.userDesignObj.tags);
     this.oldTitle = this.userDesignObj.title;
     this.oldType = this.userDesignObj.type;
     this.oldDescription = this.userDesignObj.description;
     this.oldFile = this.userDesignObj.raw_design.public_url;
-    console.log('edit design');
+    
     this.editDesignForm = this.formBuilder.group({
       // postTitle: [null, Validators.required],
       title: [this.userDesignObj.title, Validators.required],
@@ -118,9 +123,9 @@ export class EditComponent implements OnInit {
   }
 
   public removeFiles(fileName, i) {
-    this.files = remove(this.files, function(n) {
-      return n.name == fileName;
-    });
+    // this.files = remove(this.files, function(n) {
+    //   return n.name == fileName;
+    // });
   }
 
   public filesAdded(files) {
@@ -132,27 +137,117 @@ export class EditComponent implements OnInit {
     this.fileAttached = true;
   }
 
-  public checkForTitleChange() {
+  public checkForChange() {
+    let changed = false
     if(this.oldTitle !== this.editDesignForm.get('title').value) {
-      this.isChanged = true;
+      changed = changed || true;
       console.log("title changed", this.oldTitle, this.editDesignForm.get('title').value);
     }
-  }
+    if (this.oldDescription !== this.editDesignForm.get('description').value) {
+      changed = changed || true;
+    }
+    if (this.oldType !== this.editDesignForm.get('type').value) {
+      changed = changed || true;
+    }
+    console.log('tags: ', this.tags)
+    console.log('oldTags: ', this.oldTags)
+    if (this.oldTags.length != this.tags.length) {
+      changed = changed || true;
+    } else {
+      // let newtags = this.tags.filter(tag => !this.oldTags.includes(tag));
+      let newtags = this.tags.filter(tag => {
+        if (this.oldTags.includes(tag)) {
+          return false;
+        } else {
+          return true;
+        }
+      });
+      console.log('New Tages: ', newtags)
+      if (newtags.length > 0) {
+        changed = changed || true;
+      }
+    }
+    this.isChanged = changed;
 
-  public checkForTypeChange() {
+
+    // // -----  
+    // if(this.oldTitle !== this.editDesignForm.get('title').value) {
+    //   //this.isChanged = true;
+    //   changed = changed || true;
+    //   console.log("title changed", this.oldTitle, this.editDesignForm.get('title').value);
+    // }
+    // else {
+    //   //this.isChanged = false;
+    //   if(this.oldType !== this.editDesignForm.get('type').value || this.oldDescription !== this.editDesignForm.get('description').value) {
+    //     this.isChanged = true;
+    //   }else {
+    //     this.isChanged = false;
+    //   }
+    //   console.log("title reverted");
+    // }
+
+    // if(this.oldType !== this.editDesignForm.get('type').value) {
+    //   this.isChanged = true;
+    //   console.log("type changed", this.oldType, this.editDesignForm.get('type').value);
+    // } else {
+    //   // this.isChanged = false;
+    //   if(this.oldTitle !== this.editDesignForm.get('title').value || this.oldDescription !== this.editDesignForm.get('description').value) {
+    //     this.isChanged = true;
+    //   }else {
+    //     this.isChanged = false;
+    //   }
+    //   console.log("type reverted");
+    // } 
     
-    if(this.oldType !== this.editDesignForm.get('type').value) {
-      this.isChanged = true;
-      console.log("type changed", this.oldType, this.editDesignForm.get('type').value);
-    }
+    // if(this.oldDescription !== this.editDesignForm.get('description').value) {
+    //   this.isChanged = true;
+    //   console.log("description changed");
+    // } else {
+    //   //this.isChanged = false;
+    //   if(this.oldType !== this.editDesignForm.get('type').value || this.oldTitle!== this.editDesignForm.get('title').value) {
+    //     this.isChanged = true;
+    //   }else {
+    //     this.isChanged = false;
+    //   }
+    //   console.log("description reverted");
+    // }
   }
 
-  public checkForDescripChange() {
-    if(this.oldDescription !== this.editDesignForm.get('description').value) {
-      this.isChanged = true;
-      console.log("description changed");
-    }
+  public check() {
+
   }
+
+  // public checkForTitleChange() {
+  //   if(this.oldTitle !== this.editDesignForm.get('title').value) {
+  //     this.isChanged = true;
+  //     console.log("title changed", this.oldTitle, this.editDesignForm.get('title').value);
+  //   } 
+  //   else {
+  //     //this.isChanged = false;
+  //     console.log("title reverted");
+  //   }
+  // }
+
+  // public checkForTypeChange() {
+    
+  //   if(this.oldType !== this.editDesignForm.get('type').value) {
+  //     this.isChanged = true;
+  //     console.log("type changed", this.oldType, this.editDesignForm.get('type').value);
+  //   } else {
+  //     this.isChanged = false;
+  //     console.log("type reverted");
+  //   }
+  // }
+
+  // public checkForDescripChange() {
+  //   if(this.oldDescription !== this.editDesignForm.get('description').value) {
+  //     this.isChanged = true;
+  //     console.log("description changed");
+  //   } else {
+  //     //this.isChanged = false;
+  //     console.log("description reverted");
+  //   }
+  // }
 
   public checkForFileChange() {
     console.log("files changed");
@@ -184,7 +279,12 @@ export class EditComponent implements OnInit {
       });
 
       if(flag===false) {
+        this.isTagChanged = true;
+        console.log('new tag added');
         this.tags.push(value.trim());
+      }else{
+        this.isTagChanged = false;
+        console.log('tag exists');
       }
     }
 
@@ -192,6 +292,7 @@ export class EditComponent implements OnInit {
     if (input) {
       input.value = '';
     }
+    this.checkForChange()
   }
 
   remove(tag: Tags): void {
@@ -199,7 +300,10 @@ export class EditComponent implements OnInit {
 
     if (index >= 0) {
       this.tags.splice(index, 1);
+      this.isTagChanged = false;
+      console.log('tag removed');
     }
+    this.checkForChange();
   }
 
   changeState() {
@@ -216,6 +320,11 @@ export class EditComponent implements OnInit {
 
   showFailedMessage() {
     this.toastr.error("Design failed to Add", "Error");
+  }
+
+
+  onCancel() {
+    // this.router.navigate(['/design/details']);
   }
 
 }

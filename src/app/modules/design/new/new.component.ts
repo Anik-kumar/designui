@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import {ISelect} from '@core/interface/iSelect';
 import { DesignService } from '../design.service';
 import { UploadService } from '../upload.service';
-import { _, remove, isNil} from 'lodash';
+import { remove, isNil} from 'lodash';
 import {AuthorizationService} from '@core/services/authorization.service';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ToastrService } from 'ngx-toastr';
@@ -91,9 +91,9 @@ export class NewComponent implements OnInit {
   }
 
   public removeFiles(fileName, i) {
-    this.files = remove(this.files, function(n) {
-      return n.name == fileName;
-    });
+    // this.files = remove(this.files, function(n) {
+    //   return n.name == fileName;
+    // });
   }
 
   public filesAdded(files) {
