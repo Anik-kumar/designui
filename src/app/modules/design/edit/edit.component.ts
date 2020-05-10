@@ -10,6 +10,7 @@ import { DesignService } from '@modules/design/design.service';
 import { AuthorizationService } from '@core/services/authorization.service';
 import { ToastrService } from 'ngx-toastr';
 import { UploadService } from '../upload.service';
+import { DesignFormInterface } from '@app/interface/design-form.interface';
 
 export interface Tags {
   tag: string;
@@ -56,6 +57,14 @@ export class EditComponent implements OnInit {
   oldDescription = "";
   oldFile = "";
   oldTags = []
+  initialData: DesignFormInterface = {
+    title: '',
+    tags: [],
+    type: '',
+    description: '',
+    file: null,
+    publicUrl: ''
+  }
 
   constructor(private router: Router,
     private designService: DesignService,
@@ -70,14 +79,25 @@ export class EditComponent implements OnInit {
   ngOnInit(): void {
     if(!this.userDesignObj) {
       this.userDesignObj = this.designService.getEditDesignObj();
-      console.log(this.userDesignObj);
+
+      console.log('---- Parent ngOnInit: userDesignObj: ', this.userDesignObj);
     }
 
     if(!this.userDesignObj) {
       console.log("Error retriving design object.");
     }
+    this.initialData.title = this.userDesignObj.title;
+    this.initialData.type = this.userDesignObj.type;
+    this.initialData.tags = this.userDesignObj.tags;
+    this.initialData.description = this.userDesignObj.description;
+    this.initialData.publicUrl = this.userDesignObj.raw_design.public_url;
+    
+    console.log('---- Parent ngOnInit: initialData: ', this.initialData);
+
     this.tags = this.userDesignObj.tags;
     this.oldTags = cloneDeep(this.userDesignObj.tags);
+
+    
     this.oldTitle = this.userDesignObj.title;
     this.oldType = this.userDesignObj.type;
     this.oldDescription = this.userDesignObj.description;
@@ -93,15 +113,18 @@ export class EditComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    console.log(this.editDesignForm);
+  onSubmit(editForm: FormGroup) {
+    console.log('--- On Submit: ', event);
+    //console.log(this.editDesignForm);
 
     const formData: FormData = new FormData();
-    formData.append('file', this.editDesignForm.get('file').value, this.editDesignForm.get('file').value.name);
-    formData.append('title', this.editDesignForm.get('title').value);
-    formData.append('type', this.editDesignForm.get('type').value);
-    formData.append('tags', this.editDesignForm.get('tags').value);
-    formData.append('description', this.editDesignForm.get('description').value);
+    formData.append('file', editForm.get('file').value, editForm.get('file').value.name);
+    formData.append('title', editForm.get('title').value);
+    formData.append('type', editForm.get('type').value);
+    formData.append('tags', editForm.get('tags').value);
+    formData.append('description', editForm.get('description').value);
+    let uri_title = editForm.get('title').value.trim().replace(/ /g, "-").toLowerCase();
+
     this.designService.createNewDessign(formData).subscribe(observer => {
       console.log('Response: ', observer);
 
@@ -109,6 +132,8 @@ export class EditComponent implements OnInit {
         this.isSuccessful = true;
         this.showSuccessMessage();
         this.editDesignForm.reset();
+
+        this.router.navigate(['/design/details/'+uri_title]);
       }else {
         this.isSuccessful = false;
         this.showFailedMessage();
@@ -324,6 +349,7 @@ export class EditComponent implements OnInit {
 
 
   onCancel() {
+    console.log('On Cancel');
     // this.router.navigate(['/design/details']);
   }
 

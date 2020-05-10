@@ -28,12 +28,13 @@ import { NewComponent } from './new/new.component';
 import { InnerListComponent } from './inner-list/inner-list.component';
 import { EditComponent } from './edit/edit.component';
 import { DetailsComponent } from './details/details.component';
+import { DesignFormComponent } from './design-form/design-form.component';
 // import { FileUploaderComponent } from '@shared/ui/file-uploader/file-uploader.component';
 
 
 
 @NgModule({
-  declarations: [DesignComponent, ListsComponent, NewComponent, InnerListComponent, EditComponent, DetailsComponent],
+  declarations: [DesignComponent, ListsComponent, NewComponent, InnerListComponent, EditComponent, DetailsComponent, DesignFormComponent],
   imports: [
     CommonModule,
     FormsModule,

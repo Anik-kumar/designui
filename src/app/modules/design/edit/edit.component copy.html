@@ -1,0 +1,162 @@
+
+<div [ngClass]="{'sidenav-toggled': sideNavStat}">
+  <span class="nav-fixed">
+    <app-dp-top-nav (toggleValue)="toggleNavClass($event)"></app-dp-top-nav>
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <app-dp-side-nav [sideNavList]="sideNavList"></app-dp-side-nav>
+      </div>
+      <div id="layoutSidenav_content" class="scrollable">
+        <div class="container">
+          <div class="card o-hidden border-0 shadow-lg my-3">
+            <div class="card-body p-0">
+              <div class="row">
+                <div class="col-lg-7">
+                  <div class="p-5">
+                    <div class="text-center">
+                      <h1 class="h4 text-gray-900 mb-4">Upload Your Design</h1>
+                    </div>
+                    <div *ngIf="isSuccessful">
+                      <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">Your Design is added successful!</h4>
+                        <button mat-raised-button (click)="changeState()">Add More</button>
+                      </div>
+                    </div>
+                    <div *ngIf="isSuccessful==false">
+                      <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Your Design is not added for some reason!</h4>
+                        <button mat-raised-button (click)="changeState()">Try Again</button>
+                      </div>
+                    </div>
+  
+                    <form *ngIf="isSuccessful == null" [formGroup]="editDesignForm">
+                      <div class="form-group row">
+                        <!--name -->
+                        <!-- <div class="col-sm-12 mb-12 mb-sm-0">
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Design Post Title</mat-label>
+                            <input matInput formControlName="postTitle" placeholder="Name of Design">
+                            <mat-error *ngIf="editDesignForm.get('postTitle').hasError('required')">
+                              Please enter your first name
+                            </mat-error>
+                            <mat-error *ngIf="editDesignForm.get('postTitle').hasError('minlength')">
+                              Firstname has to be at least 3 character long
+                            </mat-error>
+                            <mat-error *ngIf="editDesignForm.get('postTitle').hasError('maxlength')">
+                              Firstname can't be more than 30 character long
+                            </mat-error>
+                          </mat-form-field>
+                        </div> -->
+                      </div>
+
+                      <div class="form-group row">
+                        <!--name -->
+                        <div class="col-sm-12 mb-12 mb-sm-0">
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Design Name</mat-label>
+                            <input matInput formControlName="title" placeholder="Name of Design" (change)="checkForChange()">
+                            <mat-error *ngIf="editDesignForm.get('title').hasError('required')">
+                              Please enter your first name
+                            </mat-error>
+                            <mat-error *ngIf="editDesignForm.get('title').hasError('minlength')">
+                              Firstname has to be at least 3 character long
+                            </mat-error>
+                            <mat-error *ngIf="editDesignForm.get('title').hasError('maxlength')">
+                              Firstname can't be more than 30 character long
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <div class="col-sm-12 mb-8 mb-sm-0">
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Type</mat-label>
+                            <mat-select formControlName="type" (selectionChange)="checkForChange()">
+                              <mat-option *ngFor="let type of types" [value]="type.value">
+                                {{type.viewValue}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="editDesignForm.get('type').hasError('required')">
+                              Please select a type
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+  
+                      <div class="form-group row">
+                        <div class="col-md-12">
+                          <div>
+                            <img src="{{userDesignObj.raw_design.public_url}}" alt="image" width="200" height="70">
+                          </div>
+                          <div *ngFor="let file of files; index as i;">
+                            <button mat-button>
+                              <span (click)="removeFiles(file, i)">{{file.name}}
+                                <mat-icon>close</mat-icon>
+                              </span>
+                            </button>
+                          </div>
+                          <span ng-show="editDesignForm.get('files').touched || editDesignForm.get('files').dirty" class="caution">
+                            Uploading a new design will remove old design
+                          </span>
+                          <app-file-uploader (filesAdded)="filesAdded($event)" (addFiles)="addFiles()" (change)="checkForFileChange()"></app-file-uploader>
+                          <br><br>
+                          <!-- <div *ngIf="editDesignForm.gfilesAddedet('file').touched && editDesignForm.get('file').invalid" style="color: red;">Upload your design images</div> -->
+                        </div>
+  
+                      </div>
+  
+                      <div class="form-group row">
+                        <!-- tags -->
+                        <div class="col-sm-12 mb-8 mb-sm-0">
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Tags</mat-label>
+                            <mat-chip-list #chipList aria-label="Tag selection">
+                              <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                                        [removable]="removable" (removed)="remove(tag)">
+                                {{tag}}
+                                <mat-icon matChipRemove *ngIf="removable" aria-hidden="true">close</mat-icon>
+                              </mat-chip>
+                              <input formControlName="tags" placeholder="design related tags"
+                                    [matChipInputFor]="chipList"
+                                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                    [matChipInputAddOnBlur]="addOnBlur"
+                                    (matChipInputTokenEnd)="add($event)">
+                            </mat-chip-list>
+                            <mat-error *ngIf="editDesignForm.get('tags').hasError('required')">
+                              Enter tags
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <!-- description -->
+                        <div class="col-sm-12 mb-8 mb-sm-0">
+                          <mat-form-field class="example-full-width">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput formControlName="description" placeholder="About Design" (change)="checkForChange()"></textarea>
+                            <mat-error *ngIf="editDesignForm.get('description').hasError('required')">
+                              Enter tags
+                            </mat-error>
+                          </mat-form-field>
+                        </div>
+                      </div>
+  
+                      <!-- <button mat-raised-button [color]="btnColor" (click)="onSubmit()">Submit</button> -->
+                      
+                      {{isChanged}} {{editDesignForm.invalid}} {{editDesignForm.pristine}}
+                      <!-- <button mat-raised-button [color]="btnColor"  [disabled]="(isChanged==false && isTagChanged==false && isFileChanged==false) || editDesignForm.invalid || editDesignForm.pristine" (click)="onSubmit()">Submit</button> -->
+                      
+                      <button mat-raised-button [color]="btnColor"  [disabled]="isChanged==false  || editDesignForm.invalid || editDesignForm.pristine" (click)="onSubmit()">Submit</button>
+                      <button mat-raised-button (click)="onCancel()">Go Back</button>
+                    </form>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </span>
+</div>
