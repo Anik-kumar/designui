@@ -8,11 +8,14 @@ export class ApiEndpoints {
   public static readonly GET_USERS_API = '/api/user/all';
   public static readonly FIND_USER_API = '/api/user/findone';
   public static readonly FIND_EMAIL_API = '/api/user/findEmail';
-  public static readonly UPLOAD_DESIGN_IMAGE = '/api/user/new-design';
   public static readonly SEND_RESET_PASS = '/api/user/send-reset-pass';
   public static readonly VERIFY_RESET_PASS = '/api/user/verify-reset-pass';
-  public static readonly GET_USERS_DESIGNS = '/api/user/get-designs';
-  public static readonly GET_ONE_DESIGN = '/api/user/find-design';
+  
+  // Design Api
+  public static readonly UPLOAD_DESIGN_IMAGE = '/api/design/new';
+  public static readonly GET_USERS_DESIGNS = '/api/design/get-all';
+  public static readonly GET_ONE_DESIGN = '/api/design/find-one';
+  public static readonly UPDATE_DESIGN = '/api/design/update';
 
   // Auth Api
   public static readonly AUTH_TOKEN = '/api/auth/token';
@@ -32,7 +35,8 @@ export class ApiEndpoints {
   public static readonly AUTHORIZE_ROUTES = '/api/authorize/routes';
   public static readonly AUTHORIZE_NAV = '/api/authorize/navigations';
 
-  // New Design 
+  // New Design File
   public static readonly UPLOAD_API = '/api/files/upload';
-
+  public static readonly UPDATE_DESIGN_FILE = '/api/files/update-file';
+  public static readonly UPDATE_USER_DESIGN = '/api/files/update';
 }

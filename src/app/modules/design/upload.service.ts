@@ -65,4 +65,22 @@ export class UploadService {
   public createDesign(formData: FormData):  Observable<any> {
     return this.http.post<any>(ApiEndpoints.UPLOAD_API, formData, { withCredentials: true });
   }
+
+  public updateDesign(data: any, isFileAttach: boolean):  Observable<any> {
+    
+    // let data = {
+    //   'title': formData.get('title'),
+    //   'type': formData.get('type'),
+    //   'tags': formData.get('tags'),
+    //   'description': formData.get('description'),
+    //   'design_id': designId
+    // };
+    console.log("Data => ", data);
+    if(isFileAttach) {
+      return this.http.post<any>(ApiEndpoints.UPDATE_DESIGN_FILE, data, { withCredentials: true });
+    } else {
+      return this.http.post<any>(ApiEndpoints.UPDATE_USER_DESIGN, data, { withCredentials: true });
+    }
+
+  }
 }

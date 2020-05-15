@@ -65,7 +65,7 @@ export class DetailsComponent implements OnInit {
   }
   
   editDesign(userDesignObj, title) {
-    title = title.replace('/\s/g', '-');
+    title = title.replace(/ /g, '-');
     if(!isNil(userDesignObj._id)) {
       // this.router.navigate(['/design/show', id]);
       this.designService.setEditDesignObj(userDesignObj);

@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import {ISelect} from '@core/interface/iSelect';
 import { DesignService } from './design.service';
 import { UploadService } from './upload.service';
-import { _, remove, isNil} from 'lodash';
+import { remove, isNil} from 'lodash';
 import {AuthorizationService} from '@core/services/authorization.service';
 import { MatChipInputEvent } from '@angular/material/chips';
 
@@ -74,7 +74,7 @@ export class DesignComponent implements OnInit {
     formData.append('type', this.newDesignForm.get('type').value);
     formData.append('tags', this.newDesignForm.get('tags').value);
     formData.append('description', this.newDesignForm.get('description').value);
-    this.designService.createNewDessign(formData).subscribe(observer => {
+    this.designService.createNewDesign(formData).subscribe(observer => {
       console.log('Response: ', observer);
 
       
@@ -83,9 +83,9 @@ export class DesignComponent implements OnInit {
 
 
   public removeFiles(fileName, i) {
-    this.files = remove(this.files, function(n) {
-      return n.name == fileName;
-    });
+    // this.files = remove(this.files, function(n) {
+    //   return n.name == fileName;
+    // });
   }
 
   public filesAdded(files) {

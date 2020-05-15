@@ -1,0 +1,101 @@
+<form *ngIf="isSuccessful == null" [formGroup]="editDesignForm">
+
+  <div class="form-group row">
+    <!--name -->
+    <div class="col-sm-12 mb-12 mb-sm-0">
+      <mat-form-field class="example-full-width">
+        <mat-label>Design Name</mat-label>
+        <input matInput formControlName="title" placeholder="Name of Design" (change)="checkForChange()">
+        <mat-error *ngIf="editDesignForm.get('title').hasError('required')">
+          Please enter your first name
+        </mat-error>
+        <mat-error *ngIf="editDesignForm.get('title').hasError('minlength')">
+          Firstname has to be at least 3 character long
+        </mat-error>
+        <mat-error *ngIf="editDesignForm.get('title').hasError('maxlength')">
+          Firstname can't be more than 30 character long
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-12 mb-8 mb-sm-0">
+      <mat-form-field class="example-full-width">
+        <mat-label>Type</mat-label>
+        <mat-select formControlName="type" (selectionChange)="checkForChange()">
+          <mat-option *ngFor="let type of types" [value]="type.value">
+            {{type.viewValue}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="editDesignForm.get('type').hasError('required')">
+          Please select a type
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <div class="col-md-12">
+      <span class="alert alert-warning" >
+        <u>Uploading a new design will remove old design</u> <br>
+      </span>
+      <div class="margin-1">
+        <img src="{{initialData.publicUrl}}" *ngIf="isInEditMode && !_isNil(initialData.publicUrl)" alt="image" width="200" height="70">
+      </div>
+      <div *ngFor="let file of files; index as i;" class="margin-1">
+        <!-- <button mat-button> -->
+          <span></span>
+          <span (click)="removeFiles(file, i)">{{file.name}}
+            <mat-icon>close</mat-icon>
+          </span>
+        <!-- </button> -->
+      </div>
+      
+      <app-file-uploader class="margin-1" (filesAdded)="filesAdded($event)" (addFiles)="addFiles()" (change)="checkForFileChange()"></app-file-uploader>
+      <br><br>
+      <!-- <div *ngIf="editDesignForm.gfilesAddedet('file').touched && editDesignForm.get('file').invalid" style="color: red;">Upload your design images</div> -->
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <!-- tags -->
+    <div class="col-sm-12 mb-8 mb-sm-0">
+      <mat-form-field class="example-full-width">
+        <mat-label>Tags</mat-label>
+        <mat-chip-list #chipList aria-label="Tag selection">
+          <mat-chip *ngFor="let tag of tags" [selectable]="selectable"
+                    [removable]="removable" (removed)="remove(tag)">
+            {{tag}}
+            <mat-icon matChipRemove *ngIf="removable" aria-hidden="true">close</mat-icon>
+          </mat-chip>
+          <input placeholder="design related tags"
+                [matChipInputFor]="chipList"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="add($event)">
+        </mat-chip-list>
+        <mat-error *ngIf="editDesignForm.get('tags').hasError('required')">
+          Enter tags
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-group row">
+    <!-- description -->
+    <div class="col-sm-12 mb-8 mb-sm-0">
+      <mat-form-field class="example-full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" placeholder="About Design" (change)="checkForChange()"></textarea>
+        <mat-error *ngIf="editDesignForm.get('description').hasError('required')">
+          Enter tags
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  
+  {{isChanged}} {{editDesignForm.invalid}} {{editDesignForm.pristine}} {{fileAttached}}
+  <!-- <button mat-raised-button [color]="btnColor"  [disabled]="(isChanged==false && isTagChanged==false && isFileChanged==false) || editDesignForm.invalid || editDesignForm.pristine" (click)="onSubmit()">Submit</button> -->
+  
+  <button mat-raised-button [color]="btnColor" type="button"  [disabled]="isChanged==false || editDesignForm.invalid  " (click)="onSubmit()">Submit</button>
+  <button mat-raised-button type="button" (click)="onCancel()">Go Back</button>
+</form>
