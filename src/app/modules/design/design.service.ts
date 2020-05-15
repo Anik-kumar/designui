@@ -25,8 +25,12 @@ export class DesignService {
     return this.authorizationService.getNavs();
   }
 
-  public createNewDessign(formData: FormData) {
+  public createNewDesign(formData: FormData) {
     return this.uploadService.createDesign(formData);
+  }
+
+  public updateDesign(data: any, isFileAttach: boolean) {
+    return this.uploadService.updateDesign(data, isFileAttach);
   }
 
   public getUserDesigns() {

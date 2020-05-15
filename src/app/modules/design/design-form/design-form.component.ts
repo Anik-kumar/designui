@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { DesignFormInterface } from '@app/interface/design-form.interface';
-import {isNil} from 'lodash'
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { isNil, cloneDeep } from 'lodash';
 
 export interface Tags {
   tag: string;
@@ -40,7 +40,7 @@ export class DesignFormComponent implements OnInit {
     viewValue: 'Type 3',
     value: 'type3'
   }];
-  tags = [];
+  tags = new Array();
   selectable = true;
   removable = true;
   addOnBlur = true;
@@ -50,14 +50,17 @@ export class DesignFormComponent implements OnInit {
   public files: Set<File> = new Set();
   @Output() submit = new EventEmitter();
   @Output() cancel = new EventEmitter();
+  // @Output() isFileAttached = new EventEmitter();
+
   @Input()
   set formDefaultData(data: DesignFormInterface) {
     console.log('---- formDefaultData: ', data );
     if (!isNil(data)) {
-      this.initialData = data;
-      data.tags.forEach(tag => {
-        this.tags.push(tag);
-      })
+      this.initialData = cloneDeep(data);
+      // data.tags.forEach(tag => {
+      //   this.tags.push(tag);
+      // })
+      this.tags = cloneDeep(data.tags);
       console.log('Initial Form Data: ', this.initialData);
     }
   }
@@ -70,17 +73,20 @@ export class DesignFormComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-
+    // this.tags = this.initialData.tags;
+    if (isNil(this.initialData.tags)) {
+      this.initialData.tags = [];
+    }
+    let itags = cloneDeep(this.initialData.tags);
     this.editDesignForm = this.formBuilder.group({
       // postTitle: [null, Validators.required],
       title: [this.initialData.title, Validators.required],
       type: [this.initialData.type, Validators.required],
-      tags: [this.initialData.tags, Validators.required],
+      tags: [itags, Validators.required],
       file: [null],
       description: [this.initialData.description]
     });
-    console.log('---- ngOnInit : editDesignForm: ', this.editDesignForm );
-    
+    console.log('---- ngOnInit Design form : editDesignForm: ', this.editDesignForm );
   }
 
   public _isNil(data) {
@@ -99,12 +105,18 @@ export class DesignFormComponent implements OnInit {
       this.editDesignForm.patchValue({file: file});
     });
     this.fileAttached = true;
+    console.log('File ',this.editDesignForm.get('file').value)
+    //this.editDesignForm.get('file').markAsPristine({onlySelf: true});
+    //this.editDesignForm.get('file').markAsTouched();
+    this.editDesignForm.get('file').markAsDirty();
+    this.checkForChange();
   }
 
   public checkForChange() {
     if (!this.isInEditMode) {
       return null;
     }
+    console.log('initial data: ', this.initialData);
     let changed = false
     if(this.initialData.title !== this.editDesignForm.get('title').value) {
       changed = changed || true;
@@ -115,12 +127,13 @@ export class DesignFormComponent implements OnInit {
     if (this.initialData.type !== this.editDesignForm.get('type').value) {
       changed = changed || true;
     }
-    console.log('tags: ', this.tags)
-    console.log('oldTags: ', this.initialData.tags)
+
     if (this.initialData.tags.length != this.tags.length) {
       changed = changed || true;
     } else {
       // let newtags = this.tags.filter(tag => !this.initialData.tags.includes(tag));
+      console.log("initial ", this.initialData.tags);
+      console.log("new ", this.tags);
       let newtags = this.tags.filter((tag: string) => {
         if (!isNil(this.initialData) && !isNil(this.initialData.tags) && this.initialData.tags.includes(tag)) {
           return false;
@@ -128,17 +141,23 @@ export class DesignFormComponent implements OnInit {
           return true;
         }
       });
-      console.log('New Tages: ', newtags)
+      console.log('New Tages: ', newtags);
       if (newtags.length > 0) {
         changed = changed || true;
       }
     }
+    
+    if(!isNil(this.editDesignForm.get('file').value)) {
+      changed = changed || true;
+    }
     this.isChanged = changed;
+    console.log('isChanged: ', this.isChanged);
+    console.log(this.editDesignForm);
   }
 
   public checkForFileChange() {
-    console.log("files changed");
-    console.log(this.editDesignForm.get('files').value);
+    //console.log("files changed");
+    // console.log(this.editDesignForm.get('files').value);
   }
 
   public addFiles() {
@@ -149,8 +168,6 @@ export class DesignFormComponent implements OnInit {
     const input = event.input;
     const value = event.value;
     let flag=false;
-    // console.log(event);
-    // console.log(input, value);
 
     // Add our fruit
     if ((value || '').trim()) {
@@ -161,11 +178,14 @@ export class DesignFormComponent implements OnInit {
       });
 
       if(flag===false) {
-        this.isTagChanged = true;
-        console.log('new tag added');
         this.tags.push(value.trim());
+        console.log('initial tag: ', this.initialData);
+        console.log('Value: ', this.editDesignForm.get('tags').value);
+        let formTags = this.editDesignForm.get('tags').value;
+        formTags.push(value.trim());
+        this.editDesignForm.get('tags').setValue(formTags);
+        console.log('Tag added : ', this.editDesignForm.get('tags').value);
       }else{
-        this.isTagChanged = false;
         console.log('tag exists');
       }
     }
@@ -182,9 +202,12 @@ export class DesignFormComponent implements OnInit {
 
     if (index >= 0) {
       this.tags.splice(index, 1);
-      this.isTagChanged = false;
-      console.log('tag removed');
+      console.log('tag removed', this.editDesignForm.get('tags').value);
+      let formTags = this.editDesignForm.get('tags').value;
+      formTags.splice(index, 1);
+      this.editDesignForm.get('tags').setValue(formTags)
     }
+    console.log('tags: ', this.editDesignForm.get('tags').value);
     this.checkForChange();
   }
 

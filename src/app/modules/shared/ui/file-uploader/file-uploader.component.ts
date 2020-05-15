@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
+import { isNil, isEmpty} from 'lodash'
 
 @Component({
   selector: 'app-file-uploader',
@@ -17,6 +18,7 @@ export class FileUploaderComponent implements OnInit {
 
   @Output() filesAdded = new EventEmitter();
   @Output() onAddFiles = new EventEmitter();
+  @Output() onFileAttached = new EventEmitter();
   // @Output() onClickSubSubMenu = new EventEmitter();
 
   constructor() { }
@@ -26,20 +28,22 @@ export class FileUploaderComponent implements OnInit {
 
 
   onFilesAdded() {
-    console.log('--- onFilesAdded ---')
     const files: { [key: string]: File } = this.file.nativeElement.files;
-    console.log(files);
-    for (let key in files) {
-      if (!isNaN(parseInt(key))) {
-        this.files.add(files[key]);
+    
+    if (!isNil(files) && !isEmpty(files)) {
+      //this.onFileAttached.emit();
+      for (let key in files) {
+        if (!isNaN(parseInt(key))) {
+          this.files.add(files[key]);
+        }
       }
+  
+      this.filesAdded.emit(this.files);
     }
-
-    this.filesAdded.emit(this.files);
+    
   }
 
   addFiles() {
-    console.log('--- addFiles ---');
     this.file.nativeElement.click();
     this.onAddFiles.emit();
   }

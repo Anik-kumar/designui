@@ -1,0 +1,33 @@
+.caution {
+  color: #ff0000;
+  padding: 1rem;
+}
+
+app-file-uploader {
+  height: 25%;
+}
+
+.margin-1{
+  margin: 1rem;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.mat-chip {
+  justify-content: space-between;
+}
+
+button {
+  margin: 2px;
+}
+
+@media (min-width: 320px) {
+  .container {
+    &.full-width{
+      min-width: 80%;
+    }
+  }
+
+}

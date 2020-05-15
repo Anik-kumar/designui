@@ -84,7 +84,7 @@
   
                       <div class="form-group row">
                         <div class="col-md-12">
-                          <div *ngFor="let file of files; index as i;">
+                          <div class="margin-1" *ngFor="let file of files; index as i;">
                             
                             <button mat-button>
                               <span (click)="removeFiles(file, i)">{{file.name}}
@@ -109,7 +109,7 @@
                                 {{tag}}
                                 <mat-icon matChipRemove *ngIf="removable" aria-hidden="true">close</mat-icon>
                               </mat-chip>
-                              <input formControlName="tags" placeholder="design related tags"
+                              <input placeholder="design related tags"
                                     [matChipInputFor]="chipList"
                                     [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                     [matChipInputAddOnBlur]="addOnBlur"

@@ -74,7 +74,7 @@ export class DesignComponent implements OnInit {
     formData.append('type', this.newDesignForm.get('type').value);
     formData.append('tags', this.newDesignForm.get('tags').value);
     formData.append('description', this.newDesignForm.get('description').value);
-    this.designService.createNewDessign(formData).subscribe(observer => {
+    this.designService.createNewDesign(formData).subscribe(observer => {
       console.log('Response: ', observer);
 
       

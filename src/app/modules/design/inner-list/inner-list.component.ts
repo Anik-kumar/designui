@@ -36,13 +36,12 @@ export class InnerListComponent implements OnInit {
 
   showSingleDesign(id, title) {
     // console.log("Design Id " , id);
-    title = title.replace('/\s/g', '-');
-    console.log("inner list clicked");
+    title = title.replace(/[^a-zA-Z0-9]/g, '-');
+    // console.log("inner list clicked");
     if(!isNil(id)) {
-      // this.router.navigate(['/design/show', id]);
       this.designService.setDesignId(id);
       this.router.navigate(['/design/details', title]);
-      console.log("inner list clicked");
+      // console.log("inner list clicked");
     }
   }
   

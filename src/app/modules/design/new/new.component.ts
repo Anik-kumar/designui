@@ -71,23 +71,28 @@ export class NewComponent implements OnInit {
 
     const formData: FormData = new FormData();
     formData.append('file', this.newDesignForm.get('file').value, this.newDesignForm.get('file').value.name);
+    console.log('tags: ', this.newDesignForm.get('tags').value);
     formData.append('title', this.newDesignForm.get('title').value);
     formData.append('type', this.newDesignForm.get('type').value);
     formData.append('tags', this.newDesignForm.get('tags').value);
     formData.append('description', this.newDesignForm.get('description').value);
-    this.designService.createNewDessign(formData).subscribe(observer => {
-      console.log('Response: ', observer);
-
-      if(observer.key.includes('design/') && !isNil(observer.Key) && !isNil(observer.Location)) {
-        this.isSuccessful = true;
-        this.showSuccessMessage();
-        this.newDesignForm.reset();
-      }else {
-        this.isSuccessful = false;
-        this.showFailedMessage();
-        this.newDesignForm.reset();
-      }
-    });
+    try {
+      this.designService.createNewDesign(formData).subscribe(observer => {
+        console.log('Response: ', observer);
+  
+        if(observer.key.includes('design/') && !isNil(observer.Key) && !isNil(observer.Location)) {
+          this.isSuccessful = true;
+          this.showSuccessMessage();
+          this.newDesignForm.reset();
+        }else {
+          this.isSuccessful = false;
+          this.showFailedMessage();
+          this.newDesignForm.reset();
+        }
+      });
+    } catch(err) {
+      console.log("Error in design ", err);
+    }
   }
 
   public removeFiles(fileName, i) {
@@ -137,6 +142,16 @@ export class NewComponent implements OnInit {
 
       if(!flag) {
         this.tags.push(value.trim());
+        console.log(this.newDesignForm);
+        if (this.newDesignForm.get('tags').value == null) {
+          this.newDesignForm.get('tags').setValue([value.trim()]);
+          
+        } else {
+          let v = this.newDesignForm.get('tags').value;
+          v.push(value.trim());
+          this.newDesignForm.get('tags').setValue(v);
+        }
+        this.newDesignForm.get('tags').value;
       }
     }
 

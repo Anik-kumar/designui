@@ -1,7 +1,4 @@
 <form *ngIf="isSuccessful == null" [formGroup]="editDesignForm">
-  <div class="form-group row">
-    
-  </div>
 
   <div class="form-group row">
     <!--name -->
@@ -39,24 +36,25 @@
 
   <div class="form-group row">
     <div class="col-md-12">
-      <div>
+      <span class="alert alert-warning" >
+        <u>Uploading a new design will remove old design</u> <br>
+      </span>
+      <div class="margin-1">
         <img src="{{initialData.publicUrl}}" *ngIf="isInEditMode && !_isNil(initialData.publicUrl)" alt="image" width="200" height="70">
       </div>
-      <div *ngFor="let file of files; index as i;">
-        <button mat-button>
+      <div *ngFor="let file of files; index as i;" class="margin-1">
+        <!-- <button mat-button> -->
+          <span></span>
           <span (click)="removeFiles(file, i)">{{file.name}}
             <mat-icon>close</mat-icon>
           </span>
-        </button>
+        <!-- </button> -->
       </div>
-      <span ng-show="editDesignForm.get('files').touched || editDesignForm.get('files').dirty" class="caution">
-        Uploading a new design will remove old design
-      </span>
-      <app-file-uploader (filesAdded)="filesAdded($event)" (addFiles)="addFiles()" (change)="checkForFileChange()"></app-file-uploader>
+      
+      <app-file-uploader class="margin-1" (filesAdded)="filesAdded($event)" (addFiles)="addFiles()" (change)="checkForFileChange()"></app-file-uploader>
       <br><br>
       <!-- <div *ngIf="editDesignForm.gfilesAddedet('file').touched && editDesignForm.get('file').invalid" style="color: red;">Upload your design images</div> -->
     </div>
-
   </div>
 
   <div class="form-group row">
@@ -70,7 +68,7 @@
             {{tag}}
             <mat-icon matChipRemove *ngIf="removable" aria-hidden="true">close</mat-icon>
           </mat-chip>
-          <input formControlName="tags" placeholder="design related tags"
+          <input placeholder="design related tags"
                 [matChipInputFor]="chipList"
                 [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                 [matChipInputAddOnBlur]="addOnBlur"
@@ -94,12 +92,10 @@
       </mat-form-field>
     </div>
   </div>
-
-  <!-- <button mat-raised-button [color]="btnColor" (click)="onSubmit()">Submit</button> -->
   
-  {{isChanged}} {{editDesignForm.invalid}} {{editDesignForm.pristine}}
+  {{isChanged}} {{editDesignForm.invalid}} {{editDesignForm.pristine}} {{fileAttached}}
   <!-- <button mat-raised-button [color]="btnColor"  [disabled]="(isChanged==false && isTagChanged==false && isFileChanged==false) || editDesignForm.invalid || editDesignForm.pristine" (click)="onSubmit()">Submit</button> -->
   
-  <button mat-raised-button [color]="btnColor"  [disabled]="isChanged==false  || editDesignForm.invalid || editDesignForm.pristine" (click)="onSubmit()">Submit</button>
-  <button mat-raised-button (click)="onCancel()">Go Back</button>
+  <button mat-raised-button [color]="btnColor" type="button"  [disabled]="isChanged==false || editDesignForm.invalid  " (click)="onSubmit()">Submit</button>
+  <button mat-raised-button type="button" (click)="onCancel()">Go Back</button>
 </form>
