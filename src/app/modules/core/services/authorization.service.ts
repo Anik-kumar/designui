@@ -46,4 +46,8 @@ export class AuthorizationService {
     return this.http.post<any>(ApiEndpoints.GET_ONE_DESIGN, {'designId': designID}, {withCredentials: true});
   }
 
+  public getUserDesignByTitle(title) {
+    return this.http.get<any>(ApiEndpoints.GET_DESIGN_BY_TITLE + title);
+  }
+
 }

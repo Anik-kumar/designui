@@ -41,6 +41,10 @@ export class DesignService {
     return this.authorizationService.getOneUserDesign(design);
   }
 
+  public getUserDesignByTitle(title) {
+    return this.authorizationService.getUserDesignByTitle(title);
+  }
+
   public setDesignId(id) {
     this.designId = id;
   }
