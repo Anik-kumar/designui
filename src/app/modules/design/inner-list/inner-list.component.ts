@@ -23,20 +23,9 @@ export class InnerListComponent implements OnInit {
     // console.log(this.designObj);
   }
 
-  
-  // editDesign(id, title) {
-  //   // console.log("Design Id " , id);
-  //   title = title.replace('/\s/g', '-');
-  //   if(!isNil(id)) {
-  //     // this.router.navigate(['/design/show', id]);
-  //     this.designService.setEditDesignObj(this.designObj);
-  //     this.router.navigate(['/design/edit', title]);
-  //   }
-  // }
-
   showSingleDesign(id, title) {
     // console.log("Design Id " , id);
-    title = title.replace(/[^a-zA-Z0-9]/g, '-');
+    title = title.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-');
     // console.log("inner list clicked");
     if(!isNil(id)) {
       this.designService.setDesignId(id);
