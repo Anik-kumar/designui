@@ -9,8 +9,45 @@
       </div>
       <div id="layoutSidenav_content" class="scrollable">
         <main>
-          <router-outlet></router-outlet>
-          
+          <!-- <router-outlet></router-outlet> -->
+          <div class="row">
+            <div class="col-sm-11 brdr-s mr-auto">
+              <h3>Overview</h3>
+              <div class="row">
+                <div class="col-sm-3 image-box">
+                  <img class="image" src="https://dummyimage.com/600x400/000/fff.jpg" width="128" height="128" alt="">
+                </div>
+                <div class="col-sm-8 mr-1r profile-info brdr-s">
+                  <div class="inner-pro name">
+                    <span class="h3">Name Anik Kumar Sarker</span>
+                  </div>
+                  <div class="inner-pro">
+                    <span>Email anik.kumar.sarker@email.co</span>
+                  </div>
+                  <div class="inner-pro">
+                    <span>Type Customer</span>
+                  </div>
+                  <div class="inner-pro">
+                    <span>Reward points 121212121</span>
+                  </div>
+                  
+                </div>
+              </div>
+              <br>
+            </div>
+            <div class="col-sm-11 brdr-s mr-auto">
+              <div class="nav navbar mr-auto">
+                <!-- <div [routerLinkActive]="['link-active']"> -->
+                  <a *ngFor="let item of activeClassList" [routerLink]="[item.link]" class="btn btn-default" (click)="toggleActiveClass(item)" [ngClass]="{'active': item.value}">{{item.title}}</a>
+                <!-- </div> -->
+                
+              </div>
+              <div class="inner-pro">
+                <router-outlet></router-outlet>
+              </div>
+            </div>
+          </div>
+
         </main>
       </div>
     </div>

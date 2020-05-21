@@ -22,15 +22,18 @@ import { SharedModule } from '@modules/shared/shared.module';
 import { UserProfileComponent } from './user-profile.component';
 import { GeneralComponent } from './general/general.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { AdvancedComponent } from './advanced/advanced.component';
+import { DesignsComponent } from './designs/designs.component';
 
 
 @NgModule({
-  declarations: [UserProfileComponent, GeneralComponent, ChangePasswordComponent],
+  declarations: [UserProfileComponent, GeneralComponent, ChangePasswordComponent, AdvancedComponent, DesignsComponent],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     UserProfileRoutingModule,
     SharedModule,
-    ReactiveFormsModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,

@@ -1,0 +1,52 @@
+.image{
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.image-box {
+  float: left;
+  width: 20%;
+  margin: 1rem;
+  border: 1px solid yellowgreen;
+}
+
+.profile-info {
+  float: left;
+  width: 79%;
+  padding-top: 1%;
+}
+
+.inner-pro {
+  margin: 2px;
+  margin-top: 8px;
+  font-family: "Montserrat:light";
+  border: 1px dotted slateblue;
+}
+
+.name {
+  font-family: "Montserrat:lightItalic";
+  text-transform: uppercase;
+}
+
+.brdr-s{
+  border: 1px solid forestgreen;
+}
+
+.mr-auto {
+  margin: auto;
+}
+
+.navbar {
+  justify-content: start;
+  padding-left: 0;
+}
+.btn-default {
+  width: 25%;
+  text-transform: uppercase;
+}
+.active, .btn-default:hover {
+  background-color: lavender;
+}
+

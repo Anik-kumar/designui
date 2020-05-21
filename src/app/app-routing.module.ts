@@ -15,7 +15,7 @@ const routes: Routes = [
   { path: 'design', loadChildren: () => import('@modules/design/design.module').then(m => m.DesignModule), canActivate: [AuthGuardService] },
   // { path: 'design', loadChildren: () => import('@modules/design/design.module').then(m => m.DesignModule) },
   { path: 'password', loadChildren: () => import('./modules/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)},
-  { path: 'profile', loadChildren: () => import('./modules/user-profile/user-profile.module').then(m => m.UserProfileModule) }
+  { path: 'profile', loadChildren: () => import('./modules/user-profile/user-profile.module').then(m => m.UserProfileModule), canActivate: [AuthGuardService] }
 
 ];
 

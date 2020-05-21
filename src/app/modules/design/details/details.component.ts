@@ -38,7 +38,6 @@ export class DetailsComponent implements OnInit {
     // console.log('url -> ' , tmpUrl);
     // console.log('url -> ' , this.userDesignTitle);
 
-
     if(!this.userDesignId) {
       this.userDesignId = this.designService.getDesignId();  
     }
@@ -55,7 +54,6 @@ export class DetailsComponent implements OnInit {
         this.getDesignInfoByTitle();
       }
     }
-    
   }
 
   toggleNavClass(event) {
@@ -78,7 +76,6 @@ export class DetailsComponent implements OnInit {
       this.time = this.createDate.toLocaleTimeString();
       this.userPhotos = observer.data.photos;
     });
-
   }
 
   getDesignInfoById() {
