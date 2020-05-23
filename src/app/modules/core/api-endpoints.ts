@@ -10,6 +10,7 @@ export class ApiEndpoints {
   public static readonly FIND_EMAIL_API = '/api/user/findEmail';
   public static readonly SEND_RESET_PASS = '/api/user/send-reset-pass';
   public static readonly VERIFY_RESET_PASS = '/api/user/verify-reset-pass';
+  public static readonly GET_USER_PROFILE = '/api/user/profile';
   
   // Design Api
   public static readonly UPLOAD_DESIGN_IMAGE = '/api/design/new';

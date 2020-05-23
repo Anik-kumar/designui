@@ -243,9 +243,9 @@ export class DpSideNavComponent implements OnInit {
           } else {
             item.style = null;
           }
-          // if (!isNil(item.subMenu) && isEmpty(item.subMenu) && !isNil(item.route)){
+          if (!isNil(item.subMenu) && isEmpty(item.subMenu) && !isNil(item.route)){
             this.router.navigate([item.route]);
-          // }
+          }
         } else {
           item.active = false;
           item.collapsed = true;

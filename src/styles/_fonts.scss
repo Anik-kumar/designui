@@ -106,3 +106,103 @@
   font-weight:800;
   font-style:italic
 }
+
+// raleway
+@font-face{
+  font-family:Raleway;
+  src:url(./fonts/raleway/Raleway-Regular.ttf);
+  font-weight:400;
+  font-style:normal
+}
+
+@font-face{
+  font-family:'Raleway:light';
+  src:url(./fonts/raleway/Raleway-Light.ttf);
+  font-weight:300;
+  font-style:normal
+}
+
+@font-face{
+  font-family:'Raleway:thin';
+  src:url(./fonts/raleway/Raleway-Thin.ttf);
+  font-weight:100;
+  font-style:normal
+}
+@font-face{
+  font-family:'Raleway:medium';
+  src:url(./fonts/raleway/Raleway-Medium.ttf);
+  font-weight:500;
+  font-style:normal
+}
+
+@font-face{
+  font-family:'Raleway:semi';
+  src:url(./fonts/raleway/Raleway-SemiBold.ttf);
+  font-weight:600;
+  font-style:normal
+}
+
+
+// montserrat
+@font-face{
+  font-family:'Montserrat';
+  src:url(./fonts/montserrat/Montserrat-Regular.ttf);
+  font-weight:400;
+  font-style:normal
+}
+
+@font-face{
+  font-family:'Montserrat:thin';
+  src:url(./fonts/montserrat/Montserrat-Thin.ttf);
+  font-weight:100;
+  font-style:normal
+}
+
+@font-face{
+  font-family:'Montserrat:light';
+  src:url(./fonts/montserrat/Montserrat-Light.ttf);
+  font-weight:300;
+  font-style:normal
+}
+
+@font-face{
+  font-family:'Montserrat:medium';
+  src:url(./fonts/montserrat/Montserrat-Medium.ttf);
+  font-weight:500;
+  font-style:normal
+}
+
+@font-face{
+  font-family:'Montserrat:semi';
+  src:url(./fonts/montserrat/Montserrat-SemiBold.ttf);
+  font-weight:600;
+  font-style:normal
+}
+
+@font-face{
+  font-family:'Montserrat:extraLight';
+  src:url(./fonts/montserrat/Montserrat-ExtraLight.ttf);
+  font-weight:200;
+  font-style:normal
+}
+
+@font-face{
+  font-family:'Montserrat:italic';
+  src:url(./fonts/montserrat/Montserrat-Italic.ttf);
+  font-weight:400;
+  font-style:normal
+}
+
+@font-face{
+  font-family:'Montserrat:extraLightItalic';
+  src:url(./fonts/montserrat/Montserrat-ExtraLightItalic.ttf);
+  font-weight:200;
+  font-style:normal
+}
+
+@font-face{
+  font-family:'Montserrat:lightItalic';
+  src:url(./fonts/montserrat/Montserrat-LightItalic.ttf);
+  font-weight:300;
+  font-style:normal
+}

@@ -25,11 +25,6 @@ export class AuthorizationService {
     return this.http.get<any>(ApiEndpoints.AUTHORIZE_NAV, { withCredentials: true });
   }
 
-  public getUserDesigns(): Observable<any> {
-    // GET_USERS_DESIGNS
-    return this.http.get<any>(ApiEndpoints.GET_USERS_DESIGNS, { withCredentials: true });
-  }
-
   public setNavigations(navs) {
     console.log('setNavigations ---', navs);
     this.leftNavigation = navs;
@@ -42,12 +37,21 @@ export class AuthorizationService {
     return this.leftNavigation;
   }
 
+  public getUserDesigns(): Observable<any> {
+    // GET_USERS_DESIGNS
+    return this.http.get<any>(ApiEndpoints.GET_USERS_DESIGNS, { withCredentials: true });
+  }
+
   public getOneUserDesign(designID): Observable<any> {
     return this.http.post<any>(ApiEndpoints.GET_ONE_DESIGN, {'designId': designID}, {withCredentials: true});
   }
 
   public getUserDesignByTitle(title) {
     return this.http.get<any>(ApiEndpoints.GET_DESIGN_BY_TITLE + title);
+  }
+
+  public getUserProfileDetails() {
+    return this.http.get<any>(ApiEndpoints.GET_USER_PROFILE);
   }
 
 }
