@@ -12,10 +12,37 @@ import { AuthorizationService } from '@core/services/authorization.service';
 })
 export class UserProfileService {
 
+  private userProfileDetails;
+  private userDesignDetails;
+
   constructor(private router: Router, private authService: AuthService, private authorizationService: AuthorizationService) { }
 
   public getNavs() {
     return this.authorizationService.getNavs();
+  }
+
+  public _getUserProfileData() {
+    return this.authorizationService.getUserProfileDetails();
+  }
+
+  public _getUserProfileDesigns() {
+    return this.authorizationService.getUserDesigns();
+  }
+
+  public setUserProfileDetails(obj) {
+    this.userProfileDetails = obj;
+  }
+
+  public getUserProfileDetails() {
+    return this.userProfileDetails;
+  }
+
+  public setUserDesignDetails(obj) {
+    this.userDesignDetails = obj;
+  }
+
+  public getUserDesignDetails() {
+    return this.userDesignDetails;
   }
 
 }
