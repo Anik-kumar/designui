@@ -20,10 +20,11 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ReviewDesignComponent } from './review-design/review-design.component';
 
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [AdminComponent, ReviewDesignComponent],
   imports: [
     CommonModule,
     FormsModule,
