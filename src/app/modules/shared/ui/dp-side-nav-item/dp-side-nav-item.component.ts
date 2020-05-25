@@ -14,6 +14,7 @@ interface INavItem {
   collapsed: boolean,
   style: object,
   icon:string,
+  matIcon:string,
   subMenu: ISubMenu[]
 } 
 
@@ -31,6 +32,7 @@ export class DpSideNavItemComponent implements OnInit {
     active: false,
     collapsed: true,
     icon: 'monitor',
+    matIcon: '',
     subMenu: [],
     style: {}
   }

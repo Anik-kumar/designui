@@ -1,6 +1,7 @@
 <a class="nav-link " [ngClass]="{'collapsed': activeNavItem.collapsed, 'active': activeNavItem.active}" (click)="toggleCollapse(activeNavItem.name)">
   <div class="nav-link-icon">
-    <i-feather name="{{activeNavItem.icon}}"></i-feather>
+    <i-feather *ngIf="!activeNavItem.matIcon" name="{{activeNavItem.icon}}"></i-feather>
+    <mat-icon *ngIf="!activeNavItem.icon">{{activeNavItem.matIcon}}</mat-icon>
   </div>
     {{activeNavItem.name}}
 
@@ -14,7 +15,9 @@
   <div class="submenu" *ngFor="let subMenuItem of activeNavItem.subMenu" [ngClass]="{'collapsed': subMenuItem.collapsed}" >
     <a class="nav-link" [ngClass]="{'collapsed': subMenuItem.collapsed, 'active': subMenuItem.active}" (click)="onSubSubMenuClick(activeNavItem.name, subMenuItem.name)">
       <div class="nav-link-icon">
-        <i-feather name="{{subMenuItem.icon}}"></i-feather>
+        <i-feather *ngIf="!subMenuItem.matIcon" name="{{subMenuItem.icon}}"></i-feather>
+        <!-- <fa-icon [icon]="['fas', 'coffee']"></fa-icon> -->
+        <mat-icon *ngIf="!subMenuItem.icon">{{subMenuItem.matIcon}}</mat-icon>
       </div>
       {{subMenuItem.name}}
       <div *ngIf="subMenuItem.badge" class="badge badge-primary ml-2">

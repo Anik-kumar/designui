@@ -24,6 +24,7 @@ import { PublicModule } from '@modules/public/public.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { IconsModule } from '@modules/icons/icons.module';
+import {MatIconModule} from '@angular/material/icon';
 import { SharedModule } from '@modules/shared/shared.module';
 
 import { environment } from '../environments/environment';
@@ -52,7 +53,8 @@ export function get_settings(appLoadService: AppLoadService) {
     FontAwesomeModule,
     CoreModule,
     PublicModule,
-    IconsModule
+    IconsModule,
+    MatIconModule
   ],
   providers: [
     httpInterceptorProviders,
