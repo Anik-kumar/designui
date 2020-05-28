@@ -20,6 +20,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatNativeDateModule } from '@angular/material/core';
+import { CdkTableModule } from '@angular/cdk/table';
+import { MatTableModule } from '@angular/material/table'; 
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReviewDesignComponent } from './review-design/review-design.component';
 
 
@@ -41,7 +44,10 @@ import { ReviewDesignComponent } from './review-design/review-design.component';
     MatChipsModule,
     MatIconModule,
     MatCardModule,
-    MatExpansionModule
+    MatExpansionModule,
+    CdkTableModule,
+    MatTableModule,
+    MatPaginatorModule
   ]
 })
 export class AdminModule { }
