@@ -1,4 +1,4 @@
-<div >
+<!-- <div >
   <ul *ngFor="let item of userDesigns">
     <li>{{item.design_id}}</li>
     <li>{{item.title}}</li>
@@ -6,4 +6,202 @@
     <li>{{item.whereami.current_state}}</li>
     <li>{{item.whereami.previous_state}}</li>
   </ul>
+</div> -->
+
+<!-- <table cdk-table [dataSource]="dataSource">
+
+  <ng-container cdkColumnDef="design_id">
+    <th cdk-header-cell *cdkHeaderCellDef> ID </th>
+    <td cdk-cell *cdkCellDef="let element"> {{element.design_id}} </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="title">
+    <th cdk-header-cell *cdkHeaderCellDef> Title </th>
+    <td cdk-cell *cdkCellDef="let element"> {{element.title}} </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="type">
+    <th cdk-header-cell *cdkHeaderCellDef> Type </th>
+    <td cdk-cell *cdkCellDef="let element"> {{element.type}} </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="current_state">
+    <th cdk-header-cell *cdkHeaderCellDef> Current State </th>
+    <td cdk-cell *cdkCellDef="let element"> {{element.whereami.current_state}} </td>
+  </ng-container>
+
+  <ng-container cdkColumnDef="previous_state">
+    <th cdk-header-cell *cdkHeaderCellDef> Previous State </th>
+    <td cdk-cell *cdkCellDef="let element"> {{element.whereami.previous_state}} </td>
+  </ng-container>
+
+  <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
+  <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
+</table> -->
+
+<br>
+<h3 class="txt-center">Submitted Designs</h3>
+<div *ngIf="submitLength > 0; else noDataSubmit" class="mat-elevation-z8">
+  <mat-table [dataSource]="submitDataSource" >
+    
+    <ng-container matColumnDef="design_id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.design_id}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="current_state">
+      <mat-header-cell *matHeaderCellDef> Current State </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.whereami.current_state}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="previous_state">
+      <mat-header-cell *matHeaderCellDef> Previous State </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.whereami.previous_state}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="reviewButton">
+      <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        <button mat-raised-button>Review</button>  
+        <button mat-icon-button (click)="onClickLaunch(element.design_id)"> <mat-icon>launch</mat-icon> </button>
+        <button mat-icon-button color="warn"> <mat-icon>delete_outline</mat-icon> </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="loading">
+      
+      <mat-footer-cell *matFooterCellDef colspan='6'>
+        loading..
+      </mat-footer-cell>
+    </ng-container> -->
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <!-- <mat-footer-row *matFooterRowDef="['loading']"></mat-footer-row> -->
+  </mat-table>
+  <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 5, 10]" showFirstLastButtons></mat-paginator>
 </div>
+
+<br>
+<h3 class="txt-center">Approved Designs</h3>
+<div *ngIf="approveLength > 0; else noDataApprove" class="mat-elevation-z8">
+  <table mat-table [dataSource]="approvedDataSource" >
+    
+    <ng-container matColumnDef="design_id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.design_id}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+  
+    
+    <ng-container matColumnDef="current_state">
+      <th mat-header-cell *matHeaderCellDef> Current State </th>
+      <td mat-cell *matCellDef="let element"> {{element.whereami.current_state}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="previous_state">
+      <th mat-header-cell *matHeaderCellDef> Previous State </th>
+      <td mat-cell *matCellDef="let element"> {{element.whereami.previous_state}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reviewButton">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element"> 
+        <button mat-raised-button>Review Again</button>  
+        <button mat-icon-button> <mat-icon>launch</mat-icon> </button>
+        <button mat-icon-button color="warn"> <mat-icon>delete_outline</mat-icon> </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 5, 10]" showFirstLastButtons></mat-paginator>
+</div>
+
+<br>
+<h3 class="txt-center">Rejected Designs</h3>
+<div *ngIf="rejectLength > 0 ; else noDataReject" class="mat-elevation-z8">
+  <table mat-table [dataSource]="rejectedDataSource" >
+    <!-- Position Column -->
+    <ng-container matColumnDef="design_id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.design_id}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="current_state">
+      <th mat-header-cell *matHeaderCellDef> Current State </th>
+      <td mat-cell *matCellDef="let element"> {{element.whereami.current_state}} </td>
+    </ng-container>
+  
+    <ng-container matColumnDef="previous_state">
+      <th mat-header-cell *matHeaderCellDef> Previous State </th>
+      <td mat-cell *matCellDef="let element"> {{element.whereami.previous_state}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="reviewButton">
+      <th mat-header-cell *matHeaderCellDef>  </th>
+      <td mat-cell *matCellDef="let element"> 
+        <button mat-raised-button>Review Again</button>  
+        <button mat-icon-button> <mat-icon>launch</mat-icon> </button>
+        <button mat-icon-button color="warn"> <mat-icon>delete_outline</mat-icon> </button>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 5, 10]" showFirstLastButtons></mat-paginator>
+</div>
+
+<ng-template #noDataReject>
+  <div class="mat-elevation-z8">
+    <p class="txt-center">There are no Rejected designs</p>
+  </div>
+</ng-template>
+
+<ng-template #noDataApprove>
+  <div class="mat-elevation-z8">
+    <p class="txt-center">There are no Approved designs</p>
+  </div>
+</ng-template>
+
+<ng-template #noDataSubmit>
+  <div class="mat-elevation-z8">
+    <p class="txt-center">There are no Submitted designs</p>
+  </div>
+</ng-template>
