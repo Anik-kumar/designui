@@ -54,4 +54,20 @@ export class AuthorizationService {
     return this.http.get<any>(ApiEndpoints.GET_USER_PROFILE);
   }
 
+  public setUserDesignStateSubmitted(designId) {
+    return this.http.get<any>(ApiEndpoints.MAKE_STATE_SUBMIT + designId);
+  }
+
+  public setUserDesignStateReviewing(designId) {
+    return this.http.get<any>(ApiEndpoints.MAKE_STATE_REVIEW + designId);
+  }
+
+  public setUserDesignStateApproved(designId) {
+    return this.http.get<any>(ApiEndpoints.MAKE_STATE_APPROVE + designId);
+  }
+
+  public setUserDesignStateRejected(designId) {
+    return this.http.get<any>(ApiEndpoints.MAKE_STATE_REJECT + designId);
+  }
+
 }

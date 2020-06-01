@@ -84,4 +84,11 @@ export class ReviewDesignComponent implements OnInit, AfterViewInit {
     this.rejectedDataSource.paginator = this.paginator.toArray()[2];
   }
 
+  onClickLaunch(designId) {
+    // alert(designId);
+    this.adminService.makeDesignStateReviewing(designId).subscribe(observer => {
+      console.log('onclicklaunch ', observer);
+    });
+  }
+
 }
