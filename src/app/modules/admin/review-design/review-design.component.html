@@ -72,7 +72,7 @@
     <ng-container matColumnDef="reviewButton">
       <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
       <mat-cell *matCellDef="let element"> 
-        <button mat-raised-button>Review</button>  
+        <button mat-raised-button (click)="onClickLaunch(element.design_id)">Review</button>  
         <button mat-icon-button (click)="onClickLaunch(element.design_id)"> <mat-icon>launch</mat-icon> </button>
         <button mat-icon-button color="warn"> <mat-icon>delete_outline</mat-icon> </button>
       </mat-cell>

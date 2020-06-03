@@ -17,6 +17,7 @@ export class AuthService {
     firstName: string,
     lastName: string,
     email: string,
+    type: string,
     token: string,
   };
 
@@ -24,11 +25,12 @@ export class AuthService {
 
   private authToken: string;
 
-  private loggedInUser: {_id: string, unique_id: string, name: string, email: string, dob: string } = {
+  private loggedInUser: {_id: string, unique_id: string, name: string, email: string, type: string, dob: string } = {
     _id: null,
     unique_id: '',
     name: '',
     email: '',
+    type: '',
     dob: ''
   };
 
@@ -61,11 +63,12 @@ export class AuthService {
     return this.loggedInUser;
   }
 
-  public setLoggedInUser(user: {email: string, token: string, unique_id: string, name: {first: string, last: string}, role: []}) {
+  public setLoggedInUser(user: {email: string, token: string, unique_id: string, type: string, name: {first: string, last: string}, role: []}) {
     this.loggedInUser._id = user.unique_id;
     this.loggedInUser.name = user.name.first + ' ' + user.name.last;
     this.loggedInUser.email = user.email;
     this.loggedInUser.dob = null;
+    this.loggedInUser.type = user.type;
     console.log('setLoggedInUser: ', user);
     this.localStore.setToLocalStore('ud', JSON.stringify(user));
     this.localStore.setToLocalStore('uid', user.unique_id);

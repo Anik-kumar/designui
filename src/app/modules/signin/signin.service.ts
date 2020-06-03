@@ -13,12 +13,13 @@ export class SigninService {
   constructor(private authService: AuthService, private userApiService: UserApiService,  private authorizationService: AuthorizationService) {
   }
 
-  private activeUser: {_id: string, firstName: string, lastName: string, email: string, dob: string } = {
+  private activeUser: {_id: string, firstName: string, lastName: string, email: string, dob: string, type: string } = {
     _id: null,
     firstName: '',
     lastName: '',
     email: '',
-    dob: ''
+    dob: '',
+    type: ''
   };
 
   public signin(email: string, pass: string): Observable<any> {
@@ -35,7 +36,8 @@ export class SigninService {
             dob: user.dob,
             email: user.email,
             firstName: user.firstName,
-            lastName: user.lastName
+            lastName: user.lastName,
+            type: user.type
           };
         }
         console.log(">> Token: " + this.authService.getAuthorizationToken());

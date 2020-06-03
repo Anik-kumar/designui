@@ -12,6 +12,8 @@ import { AuthorizationService } from '@core/services/authorization.service';
 export class AdminService {
 
   private designs;
+  private isUserAdmin = null;
+  private isUserReviewer = null;
 
   constructor(
     private router: Router, 
@@ -32,6 +34,22 @@ export class AdminService {
 
   makeDesignStateReviewing(designId) {
     return this.authorizationService.setUserDesignStateReviewing(designId);
+  }
+
+  setIsUserAdmin(value) {
+    this.isUserAdmin = value;
+  }
+
+  getIsUserAdmin() {
+    return this.isUserAdmin;
+  }
+
+  setIsUserReviewer(value) {
+    this.isUserReviewer = value;
+  }
+
+  getIsUserReviewer() {
+    return this.isUserReviewer;
   }
 
 }

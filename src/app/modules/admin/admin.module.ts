@@ -24,10 +24,11 @@ import { CdkTableModule } from '@angular/cdk/table';
 import { MatTableModule } from '@angular/material/table'; 
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReviewDesignComponent } from './review-design/review-design.component';
+import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, ReviewDesignComponent],
+  declarations: [AdminComponent, ReviewDesignComponent, ReviewDialogComponent],
   imports: [
     CommonModule,
     FormsModule,
