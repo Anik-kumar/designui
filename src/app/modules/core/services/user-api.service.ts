@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiEndpoints } from '../api-endpoints';
-import { HttpClient } from '@angular/common/http';
 import {ISignup} from '@modules/signup/isignup';
 
 @Injectable({

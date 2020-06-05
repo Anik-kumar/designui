@@ -15,6 +15,7 @@ export class ApiEndpoints {
   // Design Api
   public static readonly UPLOAD_DESIGN_IMAGE = '/api/design/new';
   public static readonly GET_USERS_DESIGNS = '/api/design/get-all';
+  public static readonly GET_USERS_DESIGNS_UNRESTRICT = '/api/design//get-all-unrestrict';
   public static readonly GET_ONE_DESIGN = '/api/design/find-one';
   public static readonly UPDATE_DESIGN = '/api/design/update';
   public static readonly GET_DESIGN_BY_TITLE = '/api/design/details/';

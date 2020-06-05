@@ -42,6 +42,11 @@ export class AuthorizationService {
     return this.http.get<any>(ApiEndpoints.GET_USERS_DESIGNS, { withCredentials: true });
   }
 
+  public getUserDesignsUnrestrict(): Observable<any> {
+    // GET_USERS_DESIGNS
+    return this.http.get<any>(ApiEndpoints.GET_USERS_DESIGNS_UNRESTRICT, { withCredentials: true });
+  }
+
   public getOneUserDesign(designID): Observable<any> {
     return this.http.post<any>(ApiEndpoints.GET_ONE_DESIGN, {'designId': designID}, {withCredentials: true});
   }

@@ -1,0 +1,31 @@
+<h2 mat-dialog-title>Review Design</h2>
+<mat-dialog-content>
+  <div>
+    <ul>
+      <li> Design ID: {{design.design_id}} </li>
+      <li> Title: {{design.title}} </li>
+      <li> Type: {{design.type}} </li>
+      <li>
+        <img src="{{design.raw_design.public_url}}" alt="image" width="350" height="">
+      </li>
+      <li> Description: {{design.description}} </li>
+      <li> Tags: {{design.tags}} </li>
+      <li>Current State: {{design.whereami.current_state}}</li>
+      <li>Previous State: {{design.whereami.previous_state}}</li>
+    </ul>
+  </div>
+  <div *ngIf="isComment">
+    <form class="user" #loginForm="ngForm" autocomplete="on">
+      <div class="form-group">
+        <input type="text" class="form-control" id="comment" name="comment" aria-describedby="" placeholder="Enter comment" ngModel required>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn-app" mat-button >Approve</button>
+  <button class="btn-com" mat-button (click)="toggleIsComment()">Comment</button>
+  <button class="btn-rej" mat-button >Revert to Submit</button>
+  <button class="btn-rej" mat-button >Reject</button>
+  <button class="btn-close" mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>
