@@ -15,7 +15,12 @@ export class ApiEndpoints {
   // Design Api
   public static readonly UPLOAD_DESIGN_IMAGE = '/api/design/new';
   public static readonly GET_USERS_DESIGNS = '/api/design/get-all';
-  public static readonly GET_USERS_DESIGNS_UNRESTRICT = '/api/design//get-all-unrestrict';
+  public static readonly GET_SUBMITTED_DESIGNS = '/api/design/admin/get-submitted';
+  public static readonly GET_REVIEWING_DESIGNS = '/api/design/admin/get-reviewing';
+  public static readonly GET_APPROVED_DESIGNS = '/api/design/admin/get-approved';
+  public static readonly GET_REJECTED_DESIGNS = '/api/design/admin/get-rejected';
+  public static readonly GET_USERS_DESIGNS_UNRESTRICT = '/api/design/admin/get-all';
+  public static readonly GET_USERS_DESIGNS_BY_STATE = '/api/design/admin/get-all-state';
   public static readonly GET_ONE_DESIGN = '/api/design/find-one';
   public static readonly UPDATE_DESIGN = '/api/design/update';
   public static readonly GET_DESIGN_BY_TITLE = '/api/design/details/';

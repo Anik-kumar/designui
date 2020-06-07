@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { asLiteral } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-review-dialog',
@@ -19,6 +20,18 @@ export class ReviewDialogComponent implements OnInit {
 
   toggleIsComment() {
     this.isComment = !this.isComment;
+  }
+
+  approveDesign() {
+    // 
+  }
+
+  revertDesignToSubmit() {
+    // 
+  }
+
+  rejectDesign() {
+    // 
   }
 
 

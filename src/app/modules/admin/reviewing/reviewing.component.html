@@ -1,48 +1,6 @@
-<!-- <div >
-  <ul *ngFor="let item of userDesigns">
-    <li>{{item.design_id}}</li>
-    <li>{{item.title}}</li>
-    <li>{{item.type}}</li>
-    <li>{{item.whereami.current_state}}</li>
-    <li>{{item.whereami.previous_state}}</li>
-  </ul>
-</div> -->
-
-<!-- <table cdk-table [dataSource]="dataSource">
-
-  <ng-container cdkColumnDef="design_id">
-    <th cdk-header-cell *cdkHeaderCellDef> ID </th>
-    <td cdk-cell *cdkCellDef="let element"> {{element.design_id}} </td>
-  </ng-container>
-
-  <ng-container cdkColumnDef="title">
-    <th cdk-header-cell *cdkHeaderCellDef> Title </th>
-    <td cdk-cell *cdkCellDef="let element"> {{element.title}} </td>
-  </ng-container>
-
-  <ng-container cdkColumnDef="type">
-    <th cdk-header-cell *cdkHeaderCellDef> Type </th>
-    <td cdk-cell *cdkCellDef="let element"> {{element.type}} </td>
-  </ng-container>
-
-  <ng-container cdkColumnDef="current_state">
-    <th cdk-header-cell *cdkHeaderCellDef> Current State </th>
-    <td cdk-cell *cdkCellDef="let element"> {{element.whereami.current_state}} </td>
-  </ng-container>
-
-  <ng-container cdkColumnDef="previous_state">
-    <th cdk-header-cell *cdkHeaderCellDef> Previous State </th>
-    <td cdk-cell *cdkCellDef="let element"> {{element.whereami.previous_state}} </td>
-  </ng-container>
-
-  <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
-  <tr cdk-row *cdkRowDef="let row; columns: displayedColumns;"></tr>
-</table> -->
-
-<br>
 <h3 class="txt-center">Submitted Designs</h3>
-<div *ngIf="submitLength > 0; else noDataSubmit" class="mat-elevation-z8">
-  <mat-table [dataSource]="submitDataSource" >
+<div *ngIf="reviewingLength > 0; else noDataSubmit" class="mat-elevation-z8">
+  <mat-table [dataSource]="reviewingDataSource" >
     
     <ng-container matColumnDef="design_id">
       <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
@@ -72,8 +30,8 @@
     <ng-container matColumnDef="reviewButton">
       <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
       <mat-cell *matCellDef="let element"> 
-        <button mat-raised-button (click)="onClickLaunch(element.design_id, element.user_unique_id)">Review</button>  
-        <button mat-icon-button (click)="onClickLaunch(element.design_id, element.user_unique_id)"> <mat-icon>launch</mat-icon> </button>
+        <button mat-raised-button (click)="onClickReviewAgain(element.design_id, element.user_unique_id)">Review</button>  
+        <button mat-icon-button (click)="onClickReviewAgain(element.design_id, element.user_unique_id)"> <mat-icon>launch</mat-icon> </button>
         <button mat-icon-button color="warn"> <mat-icon>delete_outline</mat-icon> </button>
       </mat-cell>
     </ng-container>
@@ -95,7 +53,7 @@
 
 <ng-template #noDataSubmit>
   <div class="mat-elevation-z8">
-    <strong>Loading....</strong>
-    <p class="txt-center">There are no Submitted designs</p>
+    <strong class="txt-center">Loading...</strong>
+    <p class="txt-center">There are no Reviewing designs</p>
   </div>
 </ng-template>

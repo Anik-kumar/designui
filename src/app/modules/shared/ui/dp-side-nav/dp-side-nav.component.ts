@@ -227,7 +227,7 @@ export class DpSideNavComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(JSON.stringify(this.leftNavMenu));
+    // console.log(JSON.stringify(this.leftNavMenu));
   }
 
   onNavItemClick(event) {

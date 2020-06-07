@@ -59,20 +59,24 @@ export class AuthorizationService {
     return this.http.get<any>(ApiEndpoints.GET_USER_PROFILE);
   }
 
-  public setUserDesignStateSubmitted(designId) {
-    return this.http.get<any>(ApiEndpoints.MAKE_STATE_SUBMIT + designId);
+  public getUserDesignsByState(state) {
+    return this.http.post<any>(ApiEndpoints.GET_USERS_DESIGNS_BY_STATE, {"state": state});
   }
 
-  public setUserDesignStateReviewing(designId) {
-    return this.http.get<any>(ApiEndpoints.MAKE_STATE_REVIEW + designId);
+  public setUserDesignStateSubmitted(designId, designOwnerId) {
+    return this.http.post<any>(ApiEndpoints.MAKE_STATE_SUBMIT + designId, {"designOwnerId": designOwnerId });
   }
 
-  public setUserDesignStateApproved(designId) {
-    return this.http.get<any>(ApiEndpoints.MAKE_STATE_APPROVE + designId);
+  public setUserDesignStateReviewing(designId, designOwnerId) {
+    return this.http.post<any>(ApiEndpoints.MAKE_STATE_REVIEW + designId, {"designOwnerId": designOwnerId });
   }
 
-  public setUserDesignStateRejected(designId) {
-    return this.http.get<any>(ApiEndpoints.MAKE_STATE_REJECT + designId);
+  public setUserDesignStateApproved(designId, designOwnerId) {
+    return this.http.post<any>(ApiEndpoints.MAKE_STATE_APPROVE + designId, {"designOwnerId": designOwnerId });
+  }
+
+  public setUserDesignStateRejected(designId, designOwnerId) {
+    return this.http.post<any>(ApiEndpoints.MAKE_STATE_REJECT + designId, {"designOwnerId": designOwnerId });
   }
 
 }
