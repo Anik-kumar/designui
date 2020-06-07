@@ -32,8 +32,8 @@ export class AdminService {
     this.designs = obj;
   }
 
-  makeDesignStateReviewing(designId) {
-    return this.authorizationService.setUserDesignStateReviewing(designId);
+  makeDesignStateReviewing(designId, designOwnerId) {
+    return this.authorizationService.setUserDesignStateReviewing(designId, designOwnerId);
   }
 
   setIsUserAdmin(value) {

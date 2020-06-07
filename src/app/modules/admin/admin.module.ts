@@ -25,10 +25,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { ReviewDesignComponent } from './review-design/review-design.component';
 import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
+import { ApprovedComponent } from './approved/approved.component';
+import { RejectedComponent } from './rejected/rejected.component';
+import { ReviewingComponent } from './reviewing/reviewing.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, ReviewDesignComponent, ReviewDialogComponent],
+  declarations: [AdminComponent, ReviewDesignComponent, ReviewDialogComponent, ApprovedComponent, RejectedComponent, ReviewingComponent],
   imports: [
     CommonModule,
     FormsModule,

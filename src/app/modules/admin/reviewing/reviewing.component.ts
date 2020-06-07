@@ -11,26 +11,23 @@ import { ReviewDialogComponent } from '../review-dialog/review-dialog.component'
 import { ToastrService } from "ngx-toastr";
 
 @Component({
-  selector: 'app-review-design',
-  templateUrl: './review-design.component.html',
-  styleUrls: ['./review-design.component.scss']
+  selector: 'app-reviewing',
+  templateUrl: './reviewing.component.html',
+  styleUrls: ['./reviewing.component.scss']
 })
-export class ReviewDesignComponent implements OnInit {
+export class ReviewingComponent implements OnInit {
 
   userDesigns;
   displayedColumns: string[] = ['design_id', 'title', 'type', 'current_state', 'previous_state', 'reviewButton'];
-  submittedDesigns = [];
+  reviewingDesigns = [];
   dataSource;
-  dataSource2;
-  submitDataSource;
-  submitLength = 0;
+  reviewingDataSource;
+  reviewingLength = 0;
   isAdmin = null;
   isReviewer = null;
 
   @ViewChild(MatPaginator) paginator :MatPaginator;
   @ViewChild(MatSort) sort : MatSort;
-  // @ViewChildren(MatPaginator) paginator2: MatPaginator;
-  // @ViewChildren(MatPaginator) paginator3: MatPaginator;
 
   constructor(
     private authorizationService: AuthorizationService,
@@ -44,22 +41,22 @@ export class ReviewDesignComponent implements OnInit {
   ngOnInit(): void {
     if(this.isAdmin || this.isReviewer) {
       
-      this.authorizationService.getUserDesignsUnrestrict().subscribe(observer => {
+      this.authorizationService.getUserDesignsByState('reviewing').subscribe(observer => {
         // observer { success: .., result: [..] }
         this.userDesigns = observer.data;
-        console.log("---> ", this.userDesigns);
+        // console.log("---> ", this.userDesigns);
+
+        // this.userDesigns.forEach(design => {
+        //   if(design.whereami.current_state == 'reviewing') {
+        //     this.reviewingDesigns.push(design);
+        //   }
+        // });
   
-        this.userDesigns.forEach(design => {
-          if(design.whereami.current_state == 'submitted') {
-            this.submittedDesigns.push(design);
-          }
-        });
-  
-        this.submitDataSource = new MatTableDataSource<any[]>(this.submittedDesigns);
-        this.submitLength = this.submittedDesigns.length;
+        this.reviewingDataSource = new MatTableDataSource<any[]>(this.reviewingDesigns);
+        this.reviewingLength = this.reviewingDesigns.length;
         this.adminService.setDesigns(this.userDesigns);
-        this.submitDataSource.paginator = this.paginator;
-        this.submitDataSource.sort = this.sort;
+        this.reviewingDataSource.paginator = this.paginator;
+        this.reviewingDataSource.sort = this.sort;
         // console.log("submit data source -> ", this.submitDataSource);
         // console.log("submit data source -> ", this.submitDataSource.filteredData);
         // console.log("submit data source -> ", this.submitDataSource.filteredData.length);
@@ -69,12 +66,10 @@ export class ReviewDesignComponent implements OnInit {
       // console.log('Permission denied for this action.');
       this.toastr.warning("Permission denied for this action", "Invalid Request");
     }
-
-    
   }
 
 
-  onClickLaunch(designId, designOwnerId) {
+  onClickReviewAgain(designId, designOwnerId) {
     // alert(designId);
     let tmp;
     this.userDesigns.forEach(design => {
@@ -88,7 +83,7 @@ export class ReviewDesignComponent implements OnInit {
       }
     });
     this.adminService.makeDesignStateReviewing(designId, designOwnerId).subscribe(observer => {
-      console.log('onclicklaunch ', observer);
+      console.log('onClickReviewAgain ', observer);
     });
   }
 

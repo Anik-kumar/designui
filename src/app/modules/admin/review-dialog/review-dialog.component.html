@@ -23,9 +23,9 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button class="btn-app" mat-button >Approve</button>
+  <button class="btn-app" mat-button (click)="approveDesign()">Approve</button>
   <button class="btn-com" mat-button (click)="toggleIsComment()">Comment</button>
-  <button class="btn-rej" mat-button >Revert to Submit</button>
-  <button class="btn-rej" mat-button >Reject</button>
+  <button class="btn-rej" mat-button (click)="revertDesignToSubmit()">Revert to Submit</button>
+  <button class="btn-rej" mat-button (click)="rejectDesign()">Reject</button>
   <button class="btn-close" mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>
