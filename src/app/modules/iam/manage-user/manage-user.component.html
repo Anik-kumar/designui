@@ -1,0 +1,13 @@
+<div [ngClass]="{'sidenav-toggled': sideNavStat}">
+  <span class="nav-fixed">
+    <app-dp-top-nav (toggleValue)="toggleNavClass($event)"></app-dp-top-nav>
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <app-dp-side-nav [sideNavList]="sideNavList"></app-dp-side-nav>
+      </div>
+      <div id="layoutSidenav_content" class="scrollable">
+         <h2>Manage User</h2>
+      </div>
+    </div>
+  </span>
+</div>
