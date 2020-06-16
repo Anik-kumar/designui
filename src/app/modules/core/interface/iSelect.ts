@@ -1,4 +1,4 @@
 export interface ISelect {
-  value: string;
+  value: string | number;
   viewValue: string;
 }

@@ -21,7 +21,7 @@ export class AuthorizationService {
   }
 
   public getAuthorizedRoutes(): Observable<any> {
-    // AUTHORIZE_NAV
+    console.log('- - - - - - -  getAuthorizedRoutes  - - - - - - - - - - ');
     return this.http.get<any>(ApiEndpoints.AUTHORIZE_NAV, { withCredentials: true });
   }
 

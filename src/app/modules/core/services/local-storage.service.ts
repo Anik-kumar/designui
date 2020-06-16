@@ -44,4 +44,8 @@ export class LocalStorageService {
   public clearAll() {
     localStorage.clear();
   }
+
+  public actionOnLogout() {
+    this.clearAll();
+  }
 }

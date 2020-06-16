@@ -2,21 +2,21 @@ import { Component, OnInit, Input, EventEmitter, Output  } from '@angular/core';
 import { Router } from '@angular/router';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 
-interface ISubMenu { 
+interface ISubMenu {
   name: string,
   collapsed: boolean,
   active: boolean,
   badge: string
 }
-interface INavItem { 
-  name:string, 
-  active:boolean, 
+interface INavItem {
+  name:string,
+  active:boolean,
   collapsed: boolean,
   style: object,
   icon:string,
   matIcon:string,
   subMenu: ISubMenu[]
-} 
+}
 
 @Component({
   selector: 'app-dp-side-nav-item',
@@ -44,19 +44,19 @@ export class DpSideNavItemComponent implements OnInit {
   @Input()
   set navItem(item: INavItem) {
     this.activeNavItem = item;
-    console.log('Input navItem: ', item);
+    // console.log('Input navItem: ', item);
   }
 
   @Input()
   set navName(item: string) {
     this.activeNavName = item;
-    console.log('Input navMenuItem: ', item);
+    // console.log('Input navMenuItem: ', item);
   }
 
   @Input()
   set navSubMenuItem(item: string) {
     this.activeSubMenuName = item;
-    console.log('Input navMenuItem: ', item);
+    // console.log('Input navMenuItem: ', item);
   }
 
 
