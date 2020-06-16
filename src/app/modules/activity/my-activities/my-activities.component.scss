@@ -1,0 +1,27 @@
+#layoutSidenav_content{
+  flex-direction: column;
+  height: 100%;
+  flex-wrap: nowrap;
+  font-size: 0.9rem;
+  overflow: scroll;
+  background-color: #fff;
+}
+
+pre {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  overflow: auto;
+  font-size: 87%;
+  line-height: 1.45;
+}
+.data-table {
+  padding: 1.5rem;
+  padding-top: 0rem;
+}
+
+.sticky-cell {
+  top: 0rem;
+  position: sticky;
+  z-index: 100;
+  background-color: #fff;
+}
