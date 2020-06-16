@@ -1,0 +1,35 @@
+<div [ngClass]="{'sidenav-toggled': sideNavStat}">
+  <span class="nav-fixed">
+    <app-dp-top-nav (toggleValue)="toggleNavClass($event)"></app-dp-top-nav>
+    <div id="layoutSidenav">
+      <div id="layoutSidenav_nav">
+        <app-dp-side-nav [sideNavList]="sideNavList"></app-dp-side-nav>
+      </div>
+      <div id="layoutSidenav_content" class="scrollable" (scroll)="onScroll($event)">
+        <div class="data-table">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="sticky-cell" *ngFor="let heading of displayedColumns; index as i;" >{{heading}}</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let showMore = false; let log of activityData; index as i;">
+                <th scope="row">{{log.position}}</th>
+                <td>{{log.timestamp}}</td>
+                <td>{{log.description}}. <a href="javascript:void(0);" (click)="toggleShowMore(i)" *ngIf="log.moreInfo.length>0">more</a>
+                  <pre *ngIf="showMoreFlag.get('ix_'+i.toString())">
+                    {{formatMoreInfo(log.moreInfo)}}
+                  </pre>
+                </td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br />
+        <br />
+      </div>
+    </div>
+  </span>
+</div>
