@@ -219,9 +219,8 @@ export class DpSideNavComponent implements OnInit {
   @Input()
   set sideNavList(navList) {
     console.log('input sideNavList', navList)
-    //this.activeNavItem = navList;
-    // this.leftNavMenu = navList['test_nav'];
-    this.leftNavMenu = navList['base_nav'];
+    // this.leftNavMenu = navList['base_nav'];
+    this.leftNavMenu = navList;
   }
 
   constructor(private router: Router) { }

@@ -5,6 +5,7 @@ import {UserInterface} from '@interface/user.interface';
 import { LocalStorageService } from './local-storage.service';
 import { isNil, isNull} from 'lodash';
 import { ApiEndpoints } from '../api-endpoints';
+import { USER_TYPE } from '../../../enum/user-type.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,8 @@ export class AuthService {
   constructor( private http: HttpClient, private localStore: LocalStorageService) { }
 
   private authToken: string;
+  private userType: number;
+  private adminTypeUser: boolean;
 
   private loggedInUser: {_id: string, unique_id: string, name: string, email: string, type: string, dob: string } = {
     _id: null,
@@ -55,7 +58,7 @@ export class AuthService {
 
   public setAuthorizationToken(token: string) {
     this.authToken = token;
-    this.localStore.removeFromLocalStore('token')
+    this.localStore.removeFromLocalStore('token');
     this.localStore.setToLocalStore('token', token);
   }
 
@@ -76,29 +79,43 @@ export class AuthService {
   }
 
   public isAuthenticated(): any {
-    // let cookieStr = document.cookie;
-    // var cookFlag = true;
-    // if(!cookieStr){
-    //   cookFlag = false;
-    // }
-    // const dirtyCookies = cookieStr.split(';');
-    // const cleanCookies = [];
-    //
-    // dirtyCookies.forEach(temp => {
-    //   cleanCookies.push(temp.split('='));
-    // });
-    //
-    // if(cleanCookies[0][0] === 'Username' && cookFlag){
-    //   const cookieUsername = cleanCookies[0][1];
-    // }
-    // if(cleanCookies[1][0] === 'Password' && cookFlag){
-    //   const cookiePassword = cleanCookies[1][1];
-    // }
-    // if(cleanCookies[2][0] === 'Token' && cookFlag){
-    //   const cookieToken = cleanCookies[2][1];
-    // }
-
     return this.isLoggedIn;
+  }
+
+  public setUserType(userType) {
+    this.userType = userType;
+  }
+
+  public getUserType(): number {
+    return this.userType;
+  }
+
+  public setAdminTypeUser(yes: boolean) {
+    this.adminTypeUser = yes;
+  }
+
+  public isAdminTypeUser(): boolean {
+    return this.adminTypeUser;
+  }
+
+  public isAdminUser(): boolean {
+    return this.userType === USER_TYPE.ADMIN;
+  }
+
+  public isSuperAdminUser(): any {
+    return this.userType === USER_TYPE.SUPER_ADMIN;
+  }
+
+  public isReviewer(): boolean {
+    return this.userType === USER_TYPE.REVIEWER;
+  }
+
+  public isDesignerTypeUser(): any {
+    return this.userType === USER_TYPE.DESIGNER;
+  }
+
+  public isCustomerTypeUser(): any {
+    return this.userType === USER_TYPE.CUSTOMER;
   }
 
   public renewToken(data) {
@@ -146,6 +163,19 @@ export class AuthService {
 
   public setResetPassword(email, pass) {
     return this.http.post<any>(ApiEndpoints.RESET_PASS, {'email': email, 'password': pass}, {withCredentials: true});
+  }
+
+  public actionOnLogout() {
+    this.isLoggedIn = false;
+    this.authToken = null;
+    this.loggedInUser = {
+      _id: null,
+      unique_id: '',
+      name: '',
+      email: '',
+      type: '',
+      dob: ''
+    };
   }
 
 }

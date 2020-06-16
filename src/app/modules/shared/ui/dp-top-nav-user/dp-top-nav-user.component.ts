@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from '../../../core/services/local-storage.service';
+import { AuthService } from '../../../core/services/auth.service';
+import { Router} from '@angular/router';
+import {UserApiService} from '@core/services/user-api.service';
 
 @Component({
   selector: 'app-dp-top-nav-user',
@@ -10,7 +14,7 @@ export class DpTopNavUserComponent implements OnInit {
   isOpen = false;
   styles = {};
 
-  constructor() { }
+  constructor(private router: Router, private authService: AuthService, private localStore: LocalStorageService, private userApiService: UserApiService) { }
 
   ngOnInit(): void {
   }
@@ -32,6 +36,19 @@ export class DpTopNavUserComponent implements OnInit {
         willChange: 'transform',
       };
     }
+  }
+
+  logout(): void {
+    let user = this.authService.getLoggedInUser();
+    this.userApiService.logout({
+      userId: user._id,
+      name: user.name,
+      email: user.email
+    }).subscribe((observer) => {
+      this.localStore.actionOnLogout(); // remove everything from local store and auth service
+      this.authService.actionOnLogout();
+      this.router.navigate(['/']);
+    });
   }
 
 }

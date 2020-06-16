@@ -11,7 +11,7 @@ export class ApiEndpoints {
   public static readonly SEND_RESET_PASS = '/api/user/send-reset-pass';
   public static readonly VERIFY_RESET_PASS = '/api/user/verify-reset-pass';
   public static readonly GET_USER_PROFILE = '/api/user/profile';
-  
+
   // Design Api
   public static readonly UPLOAD_DESIGN_IMAGE = '/api/design/new';
   public static readonly GET_USERS_DESIGNS = '/api/design/get-all';
@@ -32,6 +32,7 @@ export class ApiEndpoints {
   // Auth Api
   public static readonly AUTH_TOKEN = '/api/auth/token';
   public static readonly LOGIN = '/api/auth/login';
+  public static readonly LOGOUT = '/api/auth/logout';
   public static readonly SIGNUP = '/api/auth/signup';
   public static readonly USER_EMAIL_VERIFY = '/api/auth/verify-email';
   public static readonly RESET_PASS = '/api/auth/reset-pass';
@@ -51,5 +52,9 @@ export class ApiEndpoints {
   public static readonly UPLOAD_API = '/api/files/upload';
   public static readonly UPDATE_DESIGN_FILE = '/api/files/update-file';
   public static readonly UPDATE_USER_DESIGN = '/api/files/update';
+
+  // Activities API
+  public static readonly MY_ACTIVITIES_API = '/api/activity/mine';
+  public static readonly ALL_ACTIVITIES_API = '/api/activity/all';
 
 }

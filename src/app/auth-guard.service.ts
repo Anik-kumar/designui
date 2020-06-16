@@ -33,7 +33,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanDeact
       this.toastrService.error('Please authenticate using signin.');
       return this.router.parseUrl('/signin');
     }
-    
+
     if (this.localStorageService.getLoginStatus()) {
       const user = this.localStorageService.getUserDetails();
       const nav = this.localStorageService.getNav();
@@ -42,7 +42,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanDeact
       this.authService.setLoggedInStatus(this.localStorageService.getLoginStatus());
       this.authService.setAuthorizationToken(this.localStorageService.getToken());
     }
-
+    console.log('AuthGuardService => isAuthenticated || isAuthenticatedLocalStore: ', (isAuthenticated || isAuthenticatedLocalStore));
     return isAuthenticated || isAuthenticatedLocalStore;
   }
 
@@ -55,7 +55,7 @@ export class AuthGuardService implements CanActivate, CanActivateChild, CanDeact
     }
     return isAuthenticated;
   }
-  
+
   canDeactivate(
     component: unknown,
     currentRoute: ActivatedRouteSnapshot,

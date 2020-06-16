@@ -9,6 +9,8 @@ import { SignupService } from './signup.service';
 import {Subscription} from 'rxjs';
 // import { ValidateEmail } from './validate-email';
 
+import { USER_TYPE, USER_TYPE_TEXT } from '../../enum/user-type.enum';
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -24,14 +26,17 @@ export class SignupComponent implements OnInit, OnDestroy {
   isSignupSuccess = false;
   isEmailExists = false;
   userTypes: ISelect[] = [{
-    viewValue: 'I\'m a Designer',
-    value: 'DESIGNER',
+    viewValue: `I\'m a ${USER_TYPE_TEXT.DESIGNER}`,
+    value: USER_TYPE_TEXT.DESIGNER.toUpperCase(),
   }, {
-    viewValue: 'I\'m a Customer',
-    value: 'CUSTOMER'
+    viewValue: `I\'m a ${USER_TYPE_TEXT.CUSTOMER}`,
+    value: USER_TYPE_TEXT.CUSTOMER.toUpperCase()
   }, {
-    viewValue: 'I\'m a Reviewer',
-    value: 'REVIEWER'
+    viewValue: `I\'m a ${USER_TYPE_TEXT.VISITOR}`,
+    value: USER_TYPE_TEXT.VISITOR.toUpperCase()
+  }, {
+    viewValue: `I\'m a ${USER_TYPE_TEXT.REVIEWER}`,
+    value: USER_TYPE_TEXT.REVIEWER.toUpperCase()
   }];
   genders: ISelect[] = [{
     viewValue: 'Male',
@@ -63,7 +68,7 @@ export class SignupComponent implements OnInit, OnDestroy {
       }),
       gender: ['', [Validators.required]],
       dob: ['', Validators.required],
-      userType: ['', Validators.required]
+      userType: [-1, Validators.required]
     });
   }
 

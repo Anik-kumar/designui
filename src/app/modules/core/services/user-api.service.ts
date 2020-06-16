@@ -24,5 +24,9 @@ export class UserApiService {
   createUser(newUser: ISignup): Observable<any> {
     return this.http.post<any>(ApiEndpoints.SIGNUP, newUser, { withCredentials: true });
   }
+
+  logout(userInfo: {userId: string, name: string, email: string}) {
+    return this.http.post<any>(ApiEndpoints.LOGOUT, userInfo, { withCredentials: true });
+  }
 }
 

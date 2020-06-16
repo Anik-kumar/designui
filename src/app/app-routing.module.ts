@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AuthGuardService} from '@app/auth-guard.service';
+import {IamGuardService} from '@app/iam-guard.service';
 
 
 
@@ -16,7 +17,9 @@ const routes: Routes = [
   // { path: 'design', loadChildren: () => import('@modules/design/design.module').then(m => m.DesignModule) },
   { path: 'password', loadChildren: () => import('./modules/forgot-password/forgot-password.module').then(m => m.ForgotPasswordModule)},
   { path: 'profile', loadChildren: () => import('./modules/user-profile/user-profile.module').then(m => m.UserProfileModule), canActivate: [AuthGuardService] },
-  { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuardService] }
+  { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuardService] },
+  { path: 'activity', loadChildren: () => import('./modules/activity/activity.module').then(m => m.ActivityModule), canActivate: [AuthGuardService] },
+  { path: 'iam', loadChildren: () => import('./modules/iam/iam.module').then(m => m.IamModule), canActivate: [AuthGuardService, IamGuardService] }
 
 ];
 
