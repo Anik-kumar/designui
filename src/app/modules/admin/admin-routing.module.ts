@@ -9,7 +9,7 @@ import { ReviewingComponent } from "./reviewing/reviewing.component";
 
 const routes: Routes = [
   { path: '', component: AdminComponent, children: [
-    { path: 'review', component: ReviewDesignComponent },
+    { path: 'submitted', component: ReviewDesignComponent },
     { path: 'approved', component: ApprovedComponent },
     { path: 'rejected', component: RejectedComponent },
     { path: 'reviewing', component: ReviewingComponent }

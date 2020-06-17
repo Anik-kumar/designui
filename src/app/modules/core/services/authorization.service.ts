@@ -59,6 +59,22 @@ export class AuthorizationService {
     return this.http.get<any>(ApiEndpoints.GET_USER_PROFILE);
   }
 
+  public getSubmittedDesigns() {
+    return this.http.get<any>(ApiEndpoints.GET_SUBMITTED_DESIGNS);
+  }
+
+  public getApprovedDesigns() {
+    return this.http.get<any>(ApiEndpoints.GET_APPROVED_DESIGNS);
+  }
+
+  public getRejectedDesigns() {
+    return this.http.get<any>(ApiEndpoints.GET_REJECTED_DESIGNS);
+  }
+
+  public getReviewingDesigns() {
+    return this.http.get<any>(ApiEndpoints.GET_REVIEWING_DESIGNS);
+  }
+
   public getUserDesignsByState(state) {
     return this.http.post<any>(ApiEndpoints.GET_USERS_DESIGNS_BY_STATE, {"state": state});
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '@core/services/local-storage.service';
 import { AuthorizationService } from '@core/services/authorization.service';
 import { AdminService } from "./admin.service";
+import { USER_TYPE } from '@app/enum/user-type.enum';
 
 @Component({
   selector: 'app-admin',
@@ -31,10 +32,10 @@ export class AdminComponent implements OnInit {
   checkUserType() {
     const tmpUser = this.localStorage.getUserDetails();
     console.log('Current User Details -> ', tmpUser);
-    if(tmpUser.type.toLowerCase() === "admin") {
+    if(tmpUser.type >= USER_TYPE.ADMIN) {
       this.adminService.setIsUserAdmin(true);
     }
-    if(tmpUser.type.toLowerCase() === "reviewer") {
+    if(tmpUser.type >= USER_TYPE.REVIEWER) {
       this.adminService.setIsUserReviewer(true);
     }
   }

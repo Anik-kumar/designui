@@ -9,6 +9,7 @@ import { AuthorizationService } from '@core/services/authorization.service';
 import { AdminService } from '@modules/admin/admin.service';
 import { ReviewDialogComponent } from '../review-dialog/review-dialog.component';
 import { ToastrService } from "ngx-toastr";
+import { isNil } from 'lodash';
 
 @Component({
   selector: 'app-rejected',
@@ -42,22 +43,24 @@ export class RejectedComponent implements OnInit{
   ngOnInit(): void {
     if(this.isAdmin || this.isReviewer) {
       
-      this.authorizationService.getUserDesignsUnrestrict().subscribe(observer => {
+      this.authorizationService.getRejectedDesigns().subscribe(observer => {
         // observer { success: .., result: [..] }
-        this.userDesigns = observer.data;
-        console.log("---> ", this.userDesigns);
+        if(isNil(observer.data) || observer.data.length < 1) {
+          this.toastr.warning("There is no designs", "No Data");
+        } else if(observer.success) { 
+          this.userDesigns = observer.data;
+          console.log("---> ", this.userDesigns);
+          this.rejectedDesigns = observer.data;
   
-        this.userDesigns.forEach(design => {
-          if(design.whereami.current_state == 'rejected') {
-            this.rejectedDesigns.push(design);
-          }
-        });
-
-        this.rejectedDataSource = new MatTableDataSource<any[]>(this.rejectedDesigns);
-        this.rejectLength = this.rejectedDesigns.length;
-        this.adminService.setDesigns(this.userDesigns);
-        this.rejectedDataSource.paginator = this.paginator;
-        this.rejectedDataSource.sort = this.sort;
+          this.rejectedDataSource = new MatTableDataSource<any[]>(this.rejectedDesigns);
+          this.rejectLength = this.rejectedDesigns.length;
+          this.adminService.setDesigns(this.userDesigns);
+          this.rejectedDataSource.paginator = this.paginator;
+          this.rejectedDataSource.sort = this.sort;
+        }else {
+          // console.log('Permission denied for this action.');
+          this.toastr.warning("Error retrieving designs", "Request Failed");
+        }
         // console.log("submit data source -> ", this.submitDataSource);
         // console.log("submit data source -> ", this.submitDataSource.filteredData);
         // console.log("submit data source -> ", this.submitDataSource.filteredData.length);
