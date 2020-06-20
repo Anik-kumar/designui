@@ -1,0 +1,59 @@
+<h3 class="txt-center">Currently Reviewing Designs</h3>
+<div *ngIf="reviewingLength > 0; else noDataSubmit" class="mat-elevation-z8">
+  <mat-table [dataSource]="reviewingDataSource" >
+    
+    <ng-container matColumnDef="design_id">
+      <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.design_id}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="current_state">
+      <mat-header-cell *matHeaderCellDef> Current State </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.whereami.current_state}} </mat-cell>
+    </ng-container>
+  
+    <ng-container matColumnDef="previous_state">
+      <mat-header-cell *matHeaderCellDef> Previous State </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.whereami.previous_state}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="reviewButton">
+      <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+      <mat-cell *matCellDef="let element"> 
+        <button mat-raised-button (click)="onClickReviewAgain(element.design_id, element.user_unique_id)">Review</button>  
+        <button mat-icon-button (click)="onClickReviewAgain(element.design_id, element.user_unique_id)"> <mat-icon>launch</mat-icon> </button>
+        <button mat-icon-button color="warn"> <mat-icon>delete_outline</mat-icon> </button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="loading">
+      
+      <mat-footer-cell *matFooterCellDef colspan='6'>
+        loading..
+      </mat-footer-cell>
+    </ng-container> -->
+  
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <!-- <mat-footer-row *matFooterRowDef="['loading']"></mat-footer-row> -->
+  </mat-table>
+  <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 5, 10]" showFirstLastButtons></mat-paginator>
+</div>
+
+
+<ng-template #noDataSubmit>
+  <div class="mat-elevation-z8">
+    <strong class="txt-center">Loading...</strong>
+    <p class="txt-center">There are no Reviewing designs</p>
+  </div>
+</ng-template>
