@@ -28,10 +28,14 @@ import { ReviewDialogComponent } from './review-dialog/review-dialog.component';
 import { ApprovedComponent } from './approved/approved.component';
 import { RejectedComponent } from './rejected/rejected.component';
 import { ReviewingComponent } from './reviewing/reviewing.component';
+import { AllSubmittedComponent } from './all-submitted/all-submitted.component';
+import { AllApprovedComponent } from './all-approved/all-approved.component';
+import { AllRejectedComponent } from './all-rejected/all-rejected.component';
+import { AllReviewingComponent } from './all-reviewing/all-reviewing.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, ReviewDesignComponent, ReviewDialogComponent, ApprovedComponent, RejectedComponent, ReviewingComponent],
+  declarations: [AdminComponent, ReviewDesignComponent, ReviewDialogComponent, ApprovedComponent, RejectedComponent, ReviewingComponent, AllSubmittedComponent, AllApprovedComponent, AllRejectedComponent, AllReviewingComponent],
   imports: [
     CommonModule,
     FormsModule,
