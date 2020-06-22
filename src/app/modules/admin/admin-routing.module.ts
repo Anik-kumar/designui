@@ -10,6 +10,7 @@ import { AllApprovedComponent } from "./all-approved/all-approved.component";
 import { AllRejectedComponent } from "./all-rejected/all-rejected.component";
 import { AllReviewingComponent } from "./all-reviewing/all-reviewing.component";
 import { AllSubmittedComponent } from "./all-submitted/all-submitted.component";
+import { DesignInfoComponent } from "./design-info/design-info.component";
 
 const routes: Routes = [
   { path: '', component: AdminComponent, children: [
@@ -20,7 +21,8 @@ const routes: Routes = [
     { path: 'all/submitted', component: AllSubmittedComponent }, 
     { path: 'all/approved', component: AllApprovedComponent }, 
     { path: 'all/rejected', component: AllRejectedComponent }, 
-    { path: 'all/reviewing', component: AllReviewingComponent }
+    { path: 'all/reviewing', component: AllReviewingComponent },
+    { path: 'design-info/:designId', component: DesignInfoComponent }
   ]}
 ];
 

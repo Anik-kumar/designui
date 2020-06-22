@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>Review Design</h2>
-<mat-dialog-content>
+<mat-dialog-content *ngIf="design; else noData">
   <div>
     <ul>
       <li> Design ID: {{design.design_id}} </li>
@@ -10,14 +10,14 @@
       </li>
       <li> Description: {{design.description}} </li>
       <li> Tags: {{design.tags}} </li>
-      <li>Current State: {{design.whereami.current_state}}</li>
-      <li>Previous State: {{design.whereami.previous_state}}</li>
+      <li> Current State: {{design.whereami.current_state}}</li>
+      <li> Previous State: {{design.whereami.previous_state}}</li>
     </ul>
   </div>
   <div *ngIf="isComment">
     <form class="user" [formGroup]="commentForm" autocomplete="on">
       <div class="form-group">
-        <input type="text" class="form-control" formControlName="comment" aria-describedby="" placeholder="Enter comment">
+        <input type="text" class="form-control" formControlName="comment" placeholder="Enter comment">
         <button mat-raised-button type="submit" (click)="onSubmit()">Submit</button>
       </div>
     </form>
@@ -30,3 +30,7 @@
   <button class="btn-rej" mat-button (click)="rejectDesign()">Reject</button>
   <button class="btn-close" mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>
+
+<ng-template #noData>
+  <h5>No data loaded</h5>
+</ng-template>

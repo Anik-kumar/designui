@@ -75,8 +75,12 @@ export class AuthorizationService {
     return this.http.get<any>(ApiEndpoints.GET_REVIEWING_DESIGNS);
   }
 
-  public getUserDesignsByState(state) {
+  public getUserDesignsByState(state): Observable<any> {
     return this.http.post<any>(ApiEndpoints.GET_USERS_DESIGNS_BY_STATE, {"state": state});
+  }
+
+  public getOneUserDesignAsAdmin(designId): Observable<any> {
+    return this.http.post<any>(ApiEndpoints.FIND_ONE_DESIGN_ADMIN, {"design_id": designId})
   }
 
   public setUserDesignStateSubmitted(designId, designOwnerId) {
@@ -93,6 +97,10 @@ export class AuthorizationService {
 
   public setUserDesignStateRejected(designId, designOwnerId) {
     return this.http.post<any>(ApiEndpoints.MAKE_STATE_REJECT + designId, {"designOwnerId": designOwnerId });
+  }
+
+  public makeCommentOnUserDesign(formData): Observable<any> {
+    return this.http.post<any>(ApiEndpoints.MAKE_COMMENT_ON_DESIGN, formData, {withCredentials: true});
   }
 
 }

@@ -37,7 +37,7 @@ export class AllReviewingComponent implements OnInit {
   ngOnInit(): void {
     if(this.isAdmin) {
       
-      this.authorizationService.getReviewingDesigns().subscribe(observer => {
+      this.authorizationService.getUserDesignsByState('reviewing').subscribe(observer => {
         // observer { success: .., result: [..] }
         if(isNil(observer.data) || observer.data.length < 1) {
           this.toastr.warning("There is no designs", "No Data");

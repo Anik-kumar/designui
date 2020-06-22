@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
 
   checkUserType() {
     const tmpUser = this.localStorage.getUserDetails();
-    console.log('Current User Details -> ', tmpUser);
+    // console.log('Current User Details -> ', tmpUser);
     if(tmpUser.type >= USER_TYPE.ADMIN) {
       this.adminService.setIsUserAdmin(true);
     }

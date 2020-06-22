@@ -26,6 +26,7 @@ export class ApiEndpoints {
   public static readonly GET_USERS_DESIGNS_UNRESTRICT = '/api/design/admin/get-all';
   public static readonly GET_USERS_DESIGNS_BY_STATE = '/api/design/admin/get-all-by-state';
   public static readonly GET_USERS_DESIGNS_BY_ADMIN_STATE = '/api/design/admin/get-all-by-admin-state';
+  public static readonly FIND_ONE_DESIGN_ADMIN = '/api/design/admin/find-one';
   public static readonly GET_ONE_DESIGN = '/api/design/find-one';
   public static readonly UPDATE_DESIGN = '/api/design/update';
   public static readonly GET_DESIGN_BY_TITLE = '/api/design/details/';
@@ -33,6 +34,7 @@ export class ApiEndpoints {
   public static readonly MAKE_STATE_REVIEW = '/api/design/state/review/';
   public static readonly MAKE_STATE_APPROVE = '/api/design/state/approve/';
   public static readonly MAKE_STATE_REJECT = '/api/design/state/reject/';
+  public static readonly MAKE_COMMENT_ON_DESIGN = '/api/design/admin/make-comment';
 
   // Auth Api
   public static readonly AUTH_TOKEN = '/api/auth/token';
