@@ -72,8 +72,9 @@
     <ng-container matColumnDef="reviewButton">
       <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
       <mat-cell *matCellDef="let element"> 
-        <button mat-raised-button (click)="onClickLaunch(element.design_id, element.user_unique_id)">Review</button>  
-        <button mat-icon-button (click)="onClickLaunch(element.design_id, element.user_unique_id)"> <mat-icon>launch</mat-icon> </button>
+        <!-- <button mat-raised-button (click)="onClickLaunch(element.design_id, element.user_unique_id)">Review</button>   -->
+        <a mat-raised-button href="admin/design-info/{{element.design_id}}" target="_blank"> <mat-icon>launch</mat-icon> Review</a>
+        <!-- <button mat-icon-button (click)="onClickLaunch(element.design_id, element.user_unique_id)"> <mat-icon>launch</mat-icon> </button> -->
         <button mat-icon-button color="warn"> <mat-icon>delete_outline</mat-icon> </button>
       </mat-cell>
     </ng-container>

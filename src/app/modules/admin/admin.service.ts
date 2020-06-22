@@ -5,6 +5,7 @@ import { isNull, isNil } from 'lodash';
 import { AuthService } from '@core/services/auth.service';
 import { UserApiService } from '@core/services/user-api.service';
 import { AuthorizationService } from '@core/services/authorization.service';
+import { ICommentForm } from '@interface/comment.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class AdminService {
     this.designs = obj;
   }
 
-  makeDesignStateReviewing(designId, designOwnerId) {
+  makeDesignStateReviewing(designId, designOwnerId): Observable<any> {
     return this.authorizationService.setUserDesignStateReviewing(designId, designOwnerId);
   }
 
@@ -50,6 +51,14 @@ export class AdminService {
 
   getIsUserReviewer() {
     return this.isUserReviewer;
+  }
+
+  getUserDesignInfo(designId): Observable<any> {
+    return this.authorizationService.getOneUserDesignAsAdmin(designId);
+  }
+  
+  makeCommentOnDesign(formData: ICommentForm): Observable<any> {
+    return this.authorizationService.makeCommentOnUserDesign(formData);
   }
 
 }

@@ -32,10 +32,11 @@ import { AllSubmittedComponent } from './all-submitted/all-submitted.component';
 import { AllApprovedComponent } from './all-approved/all-approved.component';
 import { AllRejectedComponent } from './all-rejected/all-rejected.component';
 import { AllReviewingComponent } from './all-reviewing/all-reviewing.component';
+import { DesignInfoComponent } from './design-info/design-info.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, ReviewDesignComponent, ReviewDialogComponent, ApprovedComponent, RejectedComponent, ReviewingComponent, AllSubmittedComponent, AllApprovedComponent, AllRejectedComponent, AllReviewingComponent],
+  declarations: [AdminComponent, ReviewDesignComponent, ReviewDialogComponent, ApprovedComponent, RejectedComponent, ReviewingComponent, AllSubmittedComponent, AllApprovedComponent, AllRejectedComponent, AllReviewingComponent, DesignInfoComponent],
   imports: [
     CommonModule,
     FormsModule,

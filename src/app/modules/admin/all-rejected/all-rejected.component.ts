@@ -43,7 +43,7 @@ export class AllRejectedComponent implements OnInit {
           this.toastr.warning("There is no designs", "No Data");
         } else if(observer.success) { 
           this.userDesigns = observer.data;
-          console.log("---> ", this.userDesigns);
+          // console.log("---> ", this.userDesigns);
           this.rejectedDesigns = observer.data;
   
           this.rejectedDataSource = new MatTableDataSource<any[]>(this.rejectedDesigns);
