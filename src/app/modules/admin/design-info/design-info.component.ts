@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { isNil } from 'lodash';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { AdminService } from '../admin.service';
-import { AuthorizationService } from '@core/services/authorization.service';
 import { observable, from } from 'rxjs';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { LocalStorageService } from '@core/services/local-storage.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { AdminService } from '../admin.service';
+import { AuthorizationService } from '@core/services/authorization.service';
 import { ICommentForm } from '@interface/comment.interface';
 import { ToastrService } from "ngx-toastr";
+import { ConfirmRejectComponent } from '../confirm-reject-dialog/confirm-reject-dialog.component';
+import { faOm } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-design-info',
@@ -25,12 +28,13 @@ export class DesignInfoComponent implements OnInit {
 
   constructor(private router: Router,
     private adminService: AdminService,
-    private authorizationService: AuthorizationService,
+    private authorizationService: AuthorizationService, 
     private formBuilder: FormBuilder,
     private localService: LocalStorageService,
-    private toastr: ToastrService) { 
+    private toastr: ToastrService,
+    public dialog: MatDialog) { 
       this.loggedInUser = localService.getUserDetails();
-      console.log("signed in user -> " , this.loggedInUser);
+      // console.log("signed in user -> " , this.loggedInUser);
     }
 
   ngOnInit(): void {
@@ -64,7 +68,7 @@ export class DesignInfoComponent implements OnInit {
   }
 
 
-  onSubmit() {
+  onSubmitComment() {
 
     // console.log(this.commentForm);
     let form: ICommentForm = {
@@ -72,19 +76,24 @@ export class DesignInfoComponent implements OnInit {
       receiver_id: this.design.user_unique_id,
       design_id: this.design.design_id,
       comment: this.commentForm.value.comment
-    }
+    };
+
     this.adminService.makeDesignStateReviewing(this.design.design_id, this.design.user_unique_id).subscribe(observer => {
       console.log('Design state changed ', observer);
-      this.toastr.info(observer.message, "", {timeOut: 2500});
+      this.toastr.success(observer.message, 'Success', {timeOut: 7000, progressBar: true});
     });
 
+    this.doComment(form);
+  
+  }
+
+  doComment(form) {
     this.adminService.makeCommentOnDesign(form).subscribe(observer => {
       console.log(observer);
       form.comment = "";
       this.commentForm.controls.comment.reset();      
-      this.toastr.success(observer.message, 'Success', {timeOut: 7000, progressBar: true});
+      this.toastr.info(observer.message, "", {timeOut: 1500});
     });
-  
   }
 
   toggleIsComment() {
@@ -92,16 +101,81 @@ export class DesignInfoComponent implements OnInit {
   }
 
   approveDesign() {
-    // 
-    console.log(this.commentForm);
+    
+    let adminId = this.loggedInUser.unique_id;
+    let adminType = this.loggedInUser.type;
+    this.adminService.makeDesignStateApproved(this.design.design_id, this.design.user_unique_id).subscribe(observer => {
+      console.log("Approve design result -> ", observer);
+      if(observer.success) {
+        this.toastr.success(observer.message, 'Success', {timeOut: 7000, progressBar: true});
+      }else {
+        this.toastr.error(observer.message, 'Error', {timeOut: 7000, progressBar: true});
+      }
+    });
   }
 
   revertDesignToSubmit() {
-    // 
+    this.adminService.makeDesignStateSubmitted(this.design.design_id, this.design.user_unique_id).subscribe(observer => {
+      console.log("Submitted design result -> ", observer);
+      if(observer.success) {
+        this.toastr.success(observer.message, 'Success', {timeOut: 7000, progressBar: true});
+      }else {
+        this.toastr.error(observer.message, 'Error', {timeOut: 7000, progressBar: true});
+      }
+    });
   }
 
-  rejectDesign() {
-    // 
+  // reject is done by confirm modal
+  /* rejectDesign() {
+    let commentReject = prompt("Write a comment for rejecting: ");
+
+    let form: ICommentForm = {
+      sender_id: this.loggedInUser.unique_id,
+      receiver_id: this.design.user_unique_id,
+      design_id: this.design.design_id,
+      comment: commentReject
+    };
+    
+    if(!isNil(commentReject)) {
+      this.adminService.makeCommentOnDesign(form).subscribe(observer => {
+        console.log(observer);
+        form.comment = "";
+        this.commentForm.controls.comment.reset();      
+        this.toastr.success(observer.message, 'Success', {timeOut: 7000, progressBar: true});
+      });
+
+      this.adminService.makeDesignStateRejected(this.design.design_id, this.design.user_unique_id).subscribe(observer => {
+        console.log("Rejected design result -> ", observer);
+        if(observer.success) {
+          this.toastr.success(observer.message, 'Success', {timeOut: 7000, progressBar: true});
+        }else {
+          this.toastr.error(observer.message, 'Error', {timeOut: 7000, progressBar: true});
+        }
+      });
+    }
+  } */
+
+  prompt() {
+    let message = prompt("Write a comment for rejecting: ");
+    alert(message);
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ConfirmRejectComponent, {
+      width: '500px',
+      data: {
+        sender_id: this.loggedInUser.unique_id,
+        receiver_id: this.design.user_unique_id,
+        design_id: this.design.design_id
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      // alert(result);
+    });
   }
 
 }
+
+

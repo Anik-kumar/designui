@@ -59,19 +59,19 @@ export class AuthorizationService {
     return this.http.get<any>(ApiEndpoints.GET_USER_PROFILE);
   }
 
-  public getSubmittedDesigns() {
+  public getSubmittedDesigns(): Observable<any> {
     return this.http.get<any>(ApiEndpoints.GET_SUBMITTED_DESIGNS);
   }
 
-  public getApprovedDesigns() {
+  public getApprovedDesigns(): Observable<any> {
     return this.http.get<any>(ApiEndpoints.GET_APPROVED_DESIGNS);
   }
 
-  public getRejectedDesigns() {
+  public getRejectedDesigns(): Observable<any> {
     return this.http.get<any>(ApiEndpoints.GET_REJECTED_DESIGNS);
   }
 
-  public getReviewingDesigns() {
+  public getReviewingDesigns(): Observable<any> {
     return this.http.get<any>(ApiEndpoints.GET_REVIEWING_DESIGNS);
   }
 
