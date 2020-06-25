@@ -1,0 +1,42 @@
+.design-info{
+  padding: 1rem;
+
+  &-ul {
+    list-style: none;
+    padding-inline-start: 0px;
+    padding-top: 10px;
+  }
+}
+
+mat-dialog-actions {
+  margin: 5px;
+  padding: 5px;
+  margin-left: 0;
+  padding-left: 0;
+  button {
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+.btn-app, .btn-com, .btn-rej, .btn-rev {
+  color: whitesmoke;
+  margin: 5px;
+}
+
+.btn-app {
+  background-color: #3E9788;
+}
+
+.btn-com {
+  background-color: #607D8B;
+}
+
+.btn-rej {
+  background-color: #C30052;
+}
+
+.btn-rev {
+  background-color: #673AB7;
+}

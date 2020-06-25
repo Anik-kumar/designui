@@ -36,6 +36,15 @@ export class AdminService {
   makeDesignStateReviewing(designId, designOwnerId): Observable<any> {
     return this.authorizationService.setUserDesignStateReviewing(designId, designOwnerId);
   }
+  makeDesignStateApproved(designId, designOwnerId): Observable<any> {
+    return this.authorizationService.setUserDesignStateApproved(designId, designOwnerId);
+  }
+  makeDesignStateSubmitted(designId, designOwnerId): Observable<any> {
+    return this.authorizationService.setUserDesignStateSubmitted(designId, designOwnerId);
+  }
+  makeDesignStateRejected(designId, designOwnerId): Observable<any> {
+    return this.authorizationService.setUserDesignStateRejected(designId, designOwnerId);
+  }
 
   setIsUserAdmin(value) {
     this.isUserAdmin = value;

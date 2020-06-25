@@ -1,36 +1,43 @@
-<h2 mat-dialog-title>Review Design</h2>
-<mat-dialog-content *ngIf="design; else noData">
-  <div>
-    <ul>
-      <li> Design ID: {{design.design_id}} </li>
-      <li> Title: {{design.title}} </li>
-      <li> Type: {{design.type}} </li>
-      <li>
-        <img src="{{design.raw_design.public_url}}" alt="image" width="350" height="">
-      </li>
-      <li> Description: {{design.description}} </li>
-      <li> Tags: {{design.tags}} </li>
-      <li> Current State: {{design.whereami.current_state}}</li>
-      <li> Previous State: {{design.whereami.previous_state}}</li>
-    </ul>
-  </div>
-  <div *ngIf="isComment">
-    <form class="user" [formGroup]="commentForm" autocomplete="on">
-      <div class="form-group">
-        <input type="text" class="form-control" formControlName="comment" placeholder="Enter comment">
-        <button mat-raised-button type="submit" (click)="onSubmit()">Submit</button>
-      </div>
-    </form>
-  </div>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button class="btn-app" mat-button (click)="approveDesign()">Approve</button>
-  <button class="btn-com" mat-button (click)="toggleIsComment()">Comment</button>
-  <button class="btn-rej" mat-button (click)="revertDesignToSubmit()">Revert to Submit</button>
-  <button class="btn-rej" mat-button (click)="rejectDesign()">Reject</button>
-  <button class="btn-close" mat-button mat-dialog-close>Close</button>
-</mat-dialog-actions>
 
-<ng-template #noData>
-  <h5>No data loaded</h5>
-</ng-template>
+
+<div class="design-info">
+  <h2 mat-dialog-title>Review Design</h2>
+  <mat-dialog-content *ngIf="design; else noData">
+    <div>
+      <img src="{{design.raw_design.public_url}}" alt="image" width="350" height="">
+      <ul class="design-info-ul">
+        <li> Design ID: {{design.design_id}} </li>
+        <li> Title: {{design.title}} </li>
+        <li> Type: {{design.type}} </li>
+        <li> Description: {{design.description}} </li>
+        <li> Tags: {{design.tags}} </li>
+        <li> Current State: <u> {{design.whereami.current_state}} </u></li>
+        <li> Previous State: {{design.whereami.previous_state}}</li>
+      </ul>
+    </div>
+    <div *ngIf="isComment">
+      <form class="user" [formGroup]="commentForm" autocomplete="on">
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="comment" placeholder="Enter comment">
+          <button mat-raised-button type="submit" (click)="onSubmitComment()">Submit</button>
+        </div>
+      </form>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button class="btn-app" mat-button (click)="approveDesign()">Approve</button>
+    <button class="btn-com" mat-button (click)="toggleIsComment()">Comment</button>
+    <button class="btn-rev" mat-button (click)="revertDesignToSubmit()">Revert to Submit</button>
+    <!-- <button class="btn-rej" mat-button (click)="rejectDesign()">Reject</button>
+    <button class="btn-rej" mat-button (click)="prompt()">Prompt</button> -->
+    <button class="btn-rej" mat-button (click)="openDialog()">Reject</button>
+    <!-- <button class="btn-close" mat-button mat-dialog-close>Close</button> -->
+  </mat-dialog-actions>
+  
+  <ng-template #noData>
+    <h5>No data loaded</h5>
+  </ng-template>
+</div>
+
+
+

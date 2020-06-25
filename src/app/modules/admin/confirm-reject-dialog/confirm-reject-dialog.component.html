@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Hi</h1>
+<mat-dialog-content>
+  <p>{{senderId}}</p>
+  <p>{{receiverId}}</p>
+  <p>{{designId}}</p>
+  <p>What's your favorite animal?</p>
+  <form class="user" [formGroup]="rejectForm" autocomplete="on">
+    <div class="form-group">
+      <input type="text" class="form-control" formControlName="comment" aria-describedby="" placeholder="Enter comment">
+    </div>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="onSubmit()">Ok</button>
+</mat-dialog-actions>
+  

@@ -48,8 +48,8 @@ export class ReviewingComponent implements OnInit {
           this.toastr.warning("There is no designs", "No Data");
         } else if(observer.success) { 
           this.userDesigns = observer.data;
-          console.log("---> ", this.userDesigns);
-          console.log("---> ", this.userDesigns.length);
+          // console.log("---> ", this.userDesigns);
+          // console.log("---> ", this.userDesigns.length);
           this.reviewingDesigns = observer.data;
     
           this.reviewingDataSource = new MatTableDataSource<any[]>(this.reviewingDesigns);

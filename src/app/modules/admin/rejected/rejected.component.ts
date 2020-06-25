@@ -27,7 +27,7 @@ export class RejectedComponent implements OnInit{
   isAdmin = null;
   isReviewer = null;
 
-  @ViewChildren(MatPaginator) paginator : MatPaginator;
+  @ViewChild(MatPaginator) paginator : MatPaginator;
   @ViewChild(MatSort) sort : MatSort;
 
   constructor(
@@ -58,7 +58,6 @@ export class RejectedComponent implements OnInit{
           this.rejectedDataSource.paginator = this.paginator;
           this.rejectedDataSource.sort = this.sort;
         }else {
-          // console.log('Permission denied for this action.');
           this.toastr.warning("Error retrieving designs", "Request Failed");
         }
         // console.log("submit data source -> ", this.submitDataSource);
@@ -67,7 +66,6 @@ export class RejectedComponent implements OnInit{
       });
 
     }else {
-      // console.log('Permission denied for this action.');
       this.toastr.warning("Permission denied for this action", "Invalid Request");
     }
   }
