@@ -24,6 +24,18 @@ export class DesignInfoComponent implements OnInit {
   isComment = false;
   commentForm: FormGroup;
   loggedInUser = null;
+  prevComments = null;
+  prevCommentsLength = 0;
+  user1 = {
+    id: String,
+    name: String,
+    details: Object
+  };
+  user2 = {
+    id: String,
+    name: String,
+    details: Object
+  }
 
 
   constructor(private router: Router,
@@ -63,7 +75,11 @@ export class DesignInfoComponent implements OnInit {
           
         }
       });
+
+      this.getPreviousComments();
     }
+
+
 
   }
 
@@ -173,6 +189,38 @@ export class DesignInfoComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       // alert(result);
+    });
+  }
+
+
+  getPreviousComments() {
+    this.adminService.getPreviousComments(this.designId).subscribe(observer => {
+
+      if(observer.success) {
+        this.prevComments = observer.data;
+        console.log("Comments ", this.prevComments);
+        // console.log("Comments ", observer);
+        this.prevCommentsLength = this.prevComments.length;
+        this.getSenderReceiverDetails();
+      }
+    });
+  }
+
+  getSenderReceiverDetails() {
+    this.adminService.getUserDetails(this.prevComments[this.prevCommentsLength-1].from_user_id).subscribe(observer => {
+      this.user1.id = this.prevComments[this.prevCommentsLength-1].from_user_id;
+      this.user1.details = observer.data;
+      this.user1.name = observer.data.name.first ;
+
+      console.log(this.user1);
+    });
+
+    this.adminService.getUserDetails(this.prevComments[this.prevCommentsLength-1].to_user_id).subscribe(observer => {
+      this.user2.id = this.prevComments[this.prevCommentsLength-1].to_user_id;
+      this.user2.details = observer.data;
+      this.user2.name = observer.data.name.first ;
+
+      console.log(this.user2);
     });
   }
 

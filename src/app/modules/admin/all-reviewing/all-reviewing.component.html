@@ -1,4 +1,4 @@
-<h3 class="txt-center">Currently Reviewing Designs</h3>
+<h3 class="txt-center">All Currently Reviewing Designs</h3>
 <div *ngIf="reviewingLength > 0; else noDataSubmit" class="mat-elevation-z8">
   <mat-table [dataSource]="reviewingDataSource" >
     
@@ -30,23 +30,14 @@
     <ng-container matColumnDef="reviewButton">
       <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
       <mat-cell *matCellDef="let element"> 
-        <!-- <button mat-raised-button (click)="onClickReviewAgain(element.design_id, element.user_unique_id)">Review</button>  
-        <button mat-icon-button (click)="onClickReviewAgain(element.design_id, element.user_unique_id)"> <mat-icon>launch</mat-icon> </button> -->
         <a mat-raised-button href="admin/design-info/{{element.design_id}}" target="_blank"> <mat-icon>launch</mat-icon> Review</a>
-        <button mat-icon-button color="warn"> <mat-icon>delete_outline</mat-icon> </button>
       </mat-cell>
     </ng-container>
 
-    <!-- <ng-container matColumnDef="loading">
-      
-      <mat-footer-cell *matFooterCellDef colspan='6'>
-        loading..
-      </mat-footer-cell>
-    </ng-container> -->
+   
   
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    <!-- <mat-footer-row *matFooterRowDef="['loading']"></mat-footer-row> -->
   </mat-table>
   <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 5, 10]" showFirstLastButtons></mat-paginator>
 </div>

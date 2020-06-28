@@ -45,7 +45,7 @@ export class SigninComponent implements OnInit, OnDestroy {
         if (observer) {
           this.authorizeSubscriber$ = this.signinService.getAuthorizedRoutes().subscribe((observer1: any) => {
             this.signinService.setNavigations(observer1);
-            this.router.navigate(['/dashboard']);
+            this.router.navigate(['/home']);
           }, (error: any) => {
             console.log('Authorization subscription error: ', error);
           });

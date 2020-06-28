@@ -103,4 +103,24 @@ export class AuthorizationService {
     return this.http.post<any>(ApiEndpoints.MAKE_COMMENT_ON_DESIGN, formData, {withCredentials: true});
   }
 
+  public getAllUsers(): Observable<any> {
+    return this.http.get<any>(ApiEndpoints.GET_ALL_USERS);
+  }
+
+  public getUsersByType(typeId): Observable<any> {
+    return this.http.post<any>(ApiEndpoints.GET_ALL_USERS_BY_TYPE, {'type': typeId}, {withCredentials: true});
+  }
+
+  public getAllPublicDesigns(): Observable<any> {
+    return this.http.get<any>(ApiEndpoints.GET_PUBLIC_DESIGNS);
+  }
+
+  public getPreviousComments(designId) {
+    return this.http.post(ApiEndpoints.GET_COMMENTS, {'context_id': designId}, {withCredentials: true});
+  }
+
+  public getUserDetails(userId) {
+    return this.http.post(ApiEndpoints.FIND_USER_API, {'search_id': userId}, {withCredentials: true});
+  }
+
 }

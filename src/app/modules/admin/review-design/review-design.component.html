@@ -41,16 +41,12 @@
     <ng-container matColumnDef="reviewButton">
       <mat-header-cell *matHeaderCellDef [attr.colspan]="2">  </mat-header-cell>
       <mat-cell *matCellDef="let element"> 
-        <!-- <button mat-raised-button (click)="onClickLaunch(element.design_id, element.user_unique_id)">Review</button>   -->
         <a mat-raised-button href="admin/design-info/{{element.design_id}}" target="_blank"> <mat-icon>launch</mat-icon> Review</a>
-        <!-- <button mat-icon-button (click)="onClickLaunch(element.design_id, element.user_unique_id)"> <mat-icon>launch</mat-icon> </button> -->
-        <!-- <button mat-icon-button color="warn"> <mat-icon>delete_outline</mat-icon> </button> -->
       </mat-cell>
     </ng-container>
   
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    <!-- <mat-footer-row *matFooterRowDef="['loading']"></mat-footer-row> -->
   </mat-table>
   <mat-paginator [pageSize]="2" [pageSizeOptions]="[2, 5, 10]" showFirstLastButtons></mat-paginator>
 </div>

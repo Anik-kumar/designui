@@ -1,5 +1,8 @@
 .design-info{
   padding: 1rem;
+  // border: 1px solid red;
+  width: 65%;
+  float: left;
 
   &-ul {
     list-style: none;
@@ -39,4 +42,31 @@ mat-dialog-actions {
 
 .btn-rev {
   background-color: #673AB7;
+}
+
+.comments {
+  // border: 1px solid black;
+  padding-top: 1rem;
+  width: 35%;
+  float: left;
+}
+.cmt-card {
+  width: 90%;
+  margin: auto;
+  height: 105px;
+  // text-overflow: ellipsis;
+  // white-space: nowrap;
+  overflow-x: auto;
+  background-color: #d6e4e4;
+}
+.card {
+  border: none;
+  border-radius: 0;
+}
+div h4{
+  text-align: center;
+}
+
+h1,h2,h3,h4,h5 {
+  text-transform: uppercase;
 }

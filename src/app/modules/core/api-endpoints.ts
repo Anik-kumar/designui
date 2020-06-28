@@ -11,6 +11,8 @@ export class ApiEndpoints {
   public static readonly SEND_RESET_PASS = '/api/user/send-reset-pass';
   public static readonly VERIFY_RESET_PASS = '/api/user/verify-reset-pass';
   public static readonly GET_USER_PROFILE = '/api/user/profile';
+  public static readonly GET_ALL_USERS = '/api/user/get-all-users';
+  public static readonly GET_ALL_USERS_BY_TYPE = '/api/user/get-users-by-type';
 
   // Design Api
   public static readonly UPLOAD_DESIGN_IMAGE = '/api/design/new';
@@ -34,7 +36,11 @@ export class ApiEndpoints {
   public static readonly MAKE_STATE_REVIEW = '/api/design/state/review/';
   public static readonly MAKE_STATE_APPROVE = '/api/design/state/approve/';
   public static readonly MAKE_STATE_REJECT = '/api/design/state/reject/';
-  public static readonly MAKE_COMMENT_ON_DESIGN = '/api/design/admin/make-comment';
+  public static readonly GET_PUBLIC_DESIGNS = '/api/design/public-designs';
+
+  // Communications Api
+  public static readonly MAKE_COMMENT_ON_DESIGN = '/api/comm/admin/make-comment';
+  public static readonly GET_COMMENTS = '/api/comm/get-comments';
 
   // Auth Api
   public static readonly AUTH_TOKEN = '/api/auth/token';

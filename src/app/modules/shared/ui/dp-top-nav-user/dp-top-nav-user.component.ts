@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from '../../../core/services/local-storage.service';
 import { AuthService } from '../../../core/services/auth.service';
-import { Router} from '@angular/router';
-import {UserApiService} from '@core/services/user-api.service';
+import { Router } from '@angular/router';
+import { UserApiService } from '@core/services/user-api.service';
 
 @Component({
   selector: 'app-dp-top-nav-user',
@@ -13,8 +13,11 @@ export class DpTopNavUserComponent implements OnInit {
 
   isOpen = false;
   styles = {};
+  activeUser;
 
-  constructor(private router: Router, private authService: AuthService, private localStore: LocalStorageService, private userApiService: UserApiService) { }
+  constructor(private router: Router, private authService: AuthService, private localStore: LocalStorageService, private userApiService: UserApiService) { 
+    this.activeUser = this.localStore.getUserDetails();
+  }
 
   ngOnInit(): void {
   }

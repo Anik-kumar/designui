@@ -1,43 +1,73 @@
 
-
-<div class="design-info">
-  <h2 mat-dialog-title>Review Design</h2>
-  <mat-dialog-content *ngIf="design; else noData">
-    <div>
-      <img src="{{design.raw_design.public_url}}" alt="image" width="350" height="">
-      <ul class="design-info-ul">
-        <li> Design ID: {{design.design_id}} </li>
-        <li> Title: {{design.title}} </li>
-        <li> Type: {{design.type}} </li>
-        <li> Description: {{design.description}} </li>
-        <li> Tags: {{design.tags}} </li>
-        <li> Current State: <u> {{design.whereami.current_state}} </u></li>
-        <li> Previous State: {{design.whereami.previous_state}}</li>
-      </ul>
-    </div>
-    <div *ngIf="isComment">
-      <form class="user" [formGroup]="commentForm" autocomplete="on">
-        <div class="form-group">
-          <input type="text" class="form-control" formControlName="comment" placeholder="Enter comment">
-          <button mat-raised-button type="submit" (click)="onSubmitComment()">Submit</button>
-        </div>
-      </form>
-    </div>
-  </mat-dialog-content>
-  <mat-dialog-actions>
-    <button class="btn-app" mat-button (click)="approveDesign()">Approve</button>
-    <button class="btn-com" mat-button (click)="toggleIsComment()">Comment</button>
-    <button class="btn-rev" mat-button (click)="revertDesignToSubmit()">Revert to Submit</button>
-    <!-- <button class="btn-rej" mat-button (click)="rejectDesign()">Reject</button>
-    <button class="btn-rej" mat-button (click)="prompt()">Prompt</button> -->
-    <button class="btn-rej" mat-button (click)="openDialog()">Reject</button>
-    <!-- <button class="btn-close" mat-button mat-dialog-close>Close</button> -->
-  </mat-dialog-actions>
+<div>
+  <div class="design-info">
+    <h2 mat-dialog-title>Review Design</h2>
+    <mat-dialog-content *ngIf="design; else noData">
+      <div>
+        <img src="{{design.raw_design.public_url}}" alt="image" width="350" height="">
+        <ul class="design-info-ul">
+          <li> Design ID: {{design.design_id}} </li>
+          <li> Title: {{design.title}} </li>
+          <li> Type: {{design.type}} </li>
+          <li> Description: {{design.description}} </li>
+          <li> Tags: {{design.tags}} </li>
+          <li> Current State: <u> {{design.whereami.current_state}} </u></li>
+          <li> Previous State: {{design.whereami.previous_state}}</li>
+        </ul>
+      </div>
+      <div *ngIf="isComment">
+        <form class="user" [formGroup]="commentForm" autocomplete="on">
+          <div class="form-group">
+            <input type="text" class="form-control" formControlName="comment" placeholder="Enter comment">
+            <button mat-raised-button type="submit" (click)="onSubmitComment()">Submit</button>
+          </div>
+        </form>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button class="btn-app" mat-button (click)="approveDesign()">Approve</button>
+      <button class="btn-com" mat-button (click)="toggleIsComment()">Comment</button>
+      <button class="btn-rev" mat-button (click)="revertDesignToSubmit()">Revert to Submit</button>
+      <!-- <button class="btn-rej" mat-button (click)="rejectDesign()">Reject</button>
+      <button class="btn-rej" mat-button (click)="prompt()">Prompt</button> -->
+      <button class="btn-rej" mat-button (click)="openDialog()">Reject</button>
+      <!-- <button class="btn-close" mat-button mat-dialog-close>Close</button> -->
+    </mat-dialog-actions>
+    
+    <ng-template #noData>
+      <h5>No data loaded</h5>
+    </ng-template>
+  </div>
   
-  <ng-template #noData>
-    <h5>No data loaded</h5>
-  </ng-template>
+  <div class="comments" *ngIf="prevCommentsLength > 0">
+    <div>
+      <h4 mat-dialog-title>Comments</h4>
+    </div>
+    <div *ngFor="let comment of prevComments">
+      <div class="card cmt-card">
+        <div class="card-body">
+          <h6 class="card-title" *ngIf="comment.from_user_id==user1.id"> 
+            <span style="color:purple">
+              {{user1.details.name['first'] }} {{ user1.details.name['last'] }}
+            </span>
+            <mat-icon>forward</mat-icon>
+            <span style="color:teal">
+              {{user2.details.name['first']}} {{user2.details.name['last']}}
+            </span>
+          </h6>
+          <h6 class="card-title" *ngIf="comment.from_user_id==user2.id"> 
+            <span style="color:teal">
+              {{user2.details.name['first'] }} {{ user2.details.name['last'] }}
+            </span>
+            <mat-icon>arrow_right_alt</mat-icon>
+            <span style="color:purple">
+              {{user1.details.name['first']}} {{user1.details.name['last']}}
+            </span>
+          </h6>
+          <p> {{comment.comment}} </p>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-
-
 
