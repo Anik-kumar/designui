@@ -1,0 +1,30 @@
+<h3 class="txt-center">All Users</h3>
+<div *ngIf="usersListLength > 0; else noData" class="mat-elevation-z8">
+  <table class="table table-borderless">
+    <thead class="thead-light">
+      <tr>
+        <th> Name </th>
+        <th> Email </th>
+        <th> User Type </th>
+        <th> Gender </th>
+        <th> Date Of Birth </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersList">
+        <th> {{user.name.first}} {{user.name.last}} </th>
+        <th> {{user.email}} </th>
+        <th> {{getType(user.user_type)}} ({{user.user_type}}) </th>
+        <th> {{user.gender}} </th>
+        <th> {{user.DOB}} </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noData>
+  <div class="mat-elevation-z8">
+    <strong>Loading...</strong>
+    <p class="txt-center">There are no users</p>
+  </div>
+</ng-template>
