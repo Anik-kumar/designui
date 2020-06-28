@@ -6,9 +6,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { AuthorizationService } from '@core/services/authorization.service';
 import { AdminService } from '@modules/admin/admin.service';
-import { ReviewDialogComponent } from '../review-dialog/review-dialog.component';
 import { ToastrService } from "ngx-toastr";
 import { isNil } from 'lodash';
+import { ReviewDialogComponent } from '../review-dialog/review-dialog.component';
 
 @Component({
   selector: 'app-approved',

@@ -10,9 +10,11 @@ export class DashboardComponent implements OnInit {
 
   public sideNavList = [];
   sideNavStat;
+
   constructor(private authorizationService: AuthorizationService) {
     this.sideNavList = this.authorizationService.getNavs();
-    console.log(this.sideNavList);
+    // console.log(this.sideNavList);
+    
   }
 
   ngOnInit(): void {

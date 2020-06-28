@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { SharedModule } from '@modules/shared/shared.module';
-
+import { IconsModule } from '@modules/icons/icons.module';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,17 +34,19 @@ import { AllRejectedComponent } from './all-rejected/all-rejected.component';
 import { AllReviewingComponent } from './all-reviewing/all-reviewing.component';
 import { DesignInfoComponent } from './design-info/design-info.component';
 import { ConfirmRejectComponent } from './confirm-reject-dialog/confirm-reject-dialog.component';
+import { AllUsersComponent } from './all-users/all-users.component';
 
 
 
 @NgModule({
-  declarations: [AdminComponent, ReviewDesignComponent, ReviewDialogComponent, ApprovedComponent, RejectedComponent, ReviewingComponent, AllSubmittedComponent, AllApprovedComponent, AllRejectedComponent, AllReviewingComponent, DesignInfoComponent, ConfirmRejectComponent],
+  declarations: [AdminComponent, ReviewDesignComponent, ReviewDialogComponent, ApprovedComponent, RejectedComponent, ReviewingComponent, AllSubmittedComponent, AllApprovedComponent, AllRejectedComponent, AllReviewingComponent, DesignInfoComponent, ConfirmRejectComponent, AllUsersComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     AdminRoutingModule,
     SharedModule,
+    IconsModule,
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
