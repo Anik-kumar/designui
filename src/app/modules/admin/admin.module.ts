@@ -35,11 +35,13 @@ import { AllReviewingComponent } from './all-reviewing/all-reviewing.component';
 import { DesignInfoComponent } from './design-info/design-info.component';
 import { ConfirmRejectComponent } from './confirm-reject-dialog/confirm-reject-dialog.component';
 import { AllUsersComponent } from './all-users/all-users.component';
+import { VerifiedUserComponent } from './verified-user/verified-user.component';
+import { NotVerifiedUserComponent } from './not-verified-user/not-verified-user.component';
 
 
 
 @NgModule({
-  declarations: [AdminComponent, ReviewDesignComponent, ReviewDialogComponent, ApprovedComponent, RejectedComponent, ReviewingComponent, AllSubmittedComponent, AllApprovedComponent, AllRejectedComponent, AllReviewingComponent, DesignInfoComponent, ConfirmRejectComponent, AllUsersComponent],
+  declarations: [AdminComponent, ReviewDesignComponent, ReviewDialogComponent, ApprovedComponent, RejectedComponent, ReviewingComponent, AllSubmittedComponent, AllApprovedComponent, AllRejectedComponent, AllReviewingComponent, DesignInfoComponent, ConfirmRejectComponent, AllUsersComponent, VerifiedUserComponent, NotVerifiedUserComponent],
   imports: [
     CommonModule,
     FormsModule,

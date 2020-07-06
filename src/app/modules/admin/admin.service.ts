@@ -89,4 +89,11 @@ export class AdminService {
     return this.authorizationService.getUserDetails(userId);
   }
 
+  getVerifiedUsers(): Observable<any> {
+    return this.authorizationService.getVerifiedUsers();
+  }
+
+  getNotVerifiedUsers(): Observable<any> {
+    return this.authorizationService.getNotVerifiedUsers();
+  }
 }

@@ -1,0 +1,32 @@
+<h3 class="txt-center">Verified Users</h3>
+<div *ngIf="usersListLength > 0; else noData" class="mat-elevation-z8">
+  <table class="table table-borderless">
+    <thead class="thead-light">
+      <tr>
+        <th> Name </th>
+        <th> Email </th>
+        <th> User Type </th>
+        <th> Gender </th>
+        <th> Date Of Birth </th>
+        <th> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersList">
+        <td> {{user.name.first}} {{user.name.last}} </td>
+        <td> {{user.email}} </td>
+        <td> {{getType(user.user_type)}} ({{user.user_type}}) </td>
+        <td> {{user.gender}} </td>
+        <td> {{user.DOB}} </td>
+        <td class="verified"> Verified </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-template #noData>
+  <div class="mat-elevation-z8">
+    <strong>Loading...</strong>
+    <p class="txt-center">There are no users</p>
+  </div>
+</ng-template>
