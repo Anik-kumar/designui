@@ -11,8 +11,10 @@ export class ApiEndpoints {
   public static readonly SEND_RESET_PASS = '/api/user/send-reset-pass';
   public static readonly VERIFY_RESET_PASS = '/api/user/verify-reset-pass';
   public static readonly GET_USER_PROFILE = '/api/user/profile';
-  public static readonly GET_ALL_USERS = '/api/user/get-all-users';
-  public static readonly GET_ALL_USERS_BY_TYPE = '/api/user/get-users-by-type';
+  public static readonly GET_ALL_USERS = '/api/user/all-users';
+  public static readonly GET_VERIFIED_USERS = '/api/user/verified-users';
+  public static readonly GET_NOT_VERIFIED_USERS = '/api/user/not-verified-users';
+  public static readonly GET_ALL_USERS_BY_TYPE = '/api/user/users-by-type';
 
   // Design Api
   public static readonly UPLOAD_DESIGN_IMAGE = '/api/design/new';

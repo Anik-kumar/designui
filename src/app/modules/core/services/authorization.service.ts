@@ -123,4 +123,12 @@ export class AuthorizationService {
     return this.http.post(ApiEndpoints.FIND_USER_API, {'search_id': userId}, {withCredentials: true});
   }
 
+  public getVerifiedUsers() {
+    return this.http.get(ApiEndpoints.GET_VERIFIED_USERS);
+  }
+
+  public getNotVerifiedUsers() {
+    return this.http.get(ApiEndpoints.GET_NOT_VERIFIED_USERS);
+  }
+
 }

@@ -12,6 +12,8 @@ import { AllReviewingComponent } from "./all-reviewing/all-reviewing.component";
 import { AllSubmittedComponent } from "./all-submitted/all-submitted.component";
 import { DesignInfoComponent } from "./design-info/design-info.component";
 import { AllUsersComponent } from "./all-users/all-users.component";
+import { VerifiedUserComponent } from "./verified-user/verified-user.component";
+import { NotVerifiedUserComponent } from "./not-verified-user/not-verified-user.component";
 
 const routes: Routes = [
   { path: '', component: AdminComponent, children: [
@@ -24,7 +26,9 @@ const routes: Routes = [
     { path: 'all/rejected', component: AllRejectedComponent }, 
     { path: 'all/reviewing', component: AllReviewingComponent },
     { path: 'design-info/:designId', component: DesignInfoComponent },
-    { path: 'users/all', component: AllUsersComponent }
+    { path: 'users/all', component: AllUsersComponent },
+    { path: 'users/verified', component: VerifiedUserComponent },
+    { path: 'users/not-verified', component: NotVerifiedUserComponent }
   ]}
 ];
 
