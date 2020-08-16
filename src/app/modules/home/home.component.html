@@ -10,25 +10,13 @@
         <div class="container">
           <h4>Recently Uploaded Designs</h4>
           <div class="inner" *ngFor="let design of publicDesigns">
+
+            <h5>{{design.raw_design.title}}</h5>
             <mat-card class="example-card" >
-              <mat-card-header>
-                <div mat-card-avatar class="example-header-image"></div>
-                <mat-card-title>{{design.raw_design.title}}</mat-card-title>
-                <mat-card-subtitle>Type {{design.type}}</mat-card-subtitle>
-                <mat-card-subtitle>Date {{getTimeToText(design.date_created)}} - {{getDate(design.date_created)}}</mat-card-subtitle>
-                
-              </mat-card-header>
-              <img mat-card-image src="{{design.raw_design.public_url}}" width="250" height="140">
-              <mat-card-content>
-                <p>
-                  Description: {{design.description}}
-                </p>
-                <p>
-                  Tags:
-                  <a href="#" *ngFor="let tag of design.raw_design.tag"> {{tag}} </a>
-                </p>
-              </mat-card-content>
+              <img mat-card-image src="{{design.raw_design.public_url}}" width="200" height="140">
             </mat-card>
+            
+            <a href="/design/details/{{design.title_path}}" target="_blank">Details</a>
           </div>
         </div>
       </div>

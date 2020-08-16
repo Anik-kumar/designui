@@ -6,7 +6,8 @@ interface ISubMenu {
   name: string,
   collapsed: boolean,
   active: boolean,
-  badge: string
+  badge: string,
+  faIcon: string
 }
 interface INavItem {
   name:string,
@@ -15,6 +16,7 @@ interface INavItem {
   style: object,
   icon:string,
   matIcon:string,
+  faIcon: string,
   subMenu: ISubMenu[]
 }
 
@@ -33,9 +35,11 @@ export class DpSideNavItemComponent implements OnInit {
     collapsed: true,
     icon: 'monitor',
     matIcon: '',
+    faIcon: '',
     subMenu: [],
     style: {}
   }
+  submenuItemFaIcon = null;
 
   activeNavName = '';
   activeSubMenuName = '';

@@ -14,6 +14,7 @@ const routes: Routes = [
   { path: 'new', component: NewComponent },
   // { path: 'show/:title', component: ShowComponent },
   { path: 'details/:title', component: DetailsComponent },
+  { path: 'details/:title/:id', component: DetailsComponent },
   { path: 'list', component: ListsComponent },
   { path: 'edit/:title', component: EditComponent},
 ];

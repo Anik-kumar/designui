@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthorizationService } from '@core/services/authorization.service';
+import { HomeService } from '@modules/home/home.service';
+import { isNil } from 'lodash';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +15,9 @@ export class HomeComponent implements OnInit {
   publicDesigns = null;
   publicDesignsLength = 0;
 
-  constructor(private authorizationService: AuthorizationService) { 
+  constructor(private authorizationService: AuthorizationService,
+    private homeService: HomeService,
+    private router: Router) { 
     this.sideNavList = this.authorizationService.getNavs();
     // console.log(this.sideNavList);
   }
@@ -45,5 +50,15 @@ export class HomeComponent implements OnInit {
     return date;
   }
 
+  viewDesignDetails(id, title) {
+    // console.log("Design Id " , id);
+    // title = title.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-');
+    // console.log("inner list clicked");
+    if(!isNil(id)) {
+      this.homeService.setDesignId(id);
+      this.router.navigate(['/design/details', title]);
+      // console.log("inner list clicked");
+    }
+  }
 
 }

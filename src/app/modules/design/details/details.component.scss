@@ -2,12 +2,66 @@
   width: 50%;
   height: 40%;
   margin: auto;
-  background-color: #a9a9a9;
+  background-color:transparent;
 }
 
 .mat-button:hover {
   background-color: gainsboro;
 }
+
+.mat-card-image{
+  min-width: 504px;
+}
+
+.image {
+  width: 500px;
+  height: 300px;
+  margin: auto;
+  padding-bottom: 1rem;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+
+.main-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0px;
+  border-radius: .25rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  margin-top: 1rem;        
+  box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+.actions {
+  display: inline-block;
+  float: right;
+  position: relative;
+  .btn-action {
+    padding: 0 1em;
+    min-width: 65px;
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+  &::after {
+    clear: both;
+  }
+}
+
+
 
 @media (min-width: 576px){
   .col-sm-12 {
