@@ -2,6 +2,7 @@
   <div class="nav-link-icon">
     <i-feather *ngIf="!activeNavItem.matIcon" name="{{activeNavItem.icon}}"></i-feather>
     <mat-icon *ngIf="!activeNavItem.icon">{{activeNavItem.matIcon}}</mat-icon>
+    <i *ngIf="!activeNavItem.faIcon" class="{{activeNavItem.faIcon}}"></i>
   </div>
     {{activeNavItem.name}}
 
@@ -16,7 +17,7 @@
     <a class="nav-link" [ngClass]="{'collapsed': subMenuItem.collapsed, 'active': subMenuItem.active}" (click)="onSubSubMenuClick(activeNavItem.name, subMenuItem.name)">
       <div class="nav-link-icon">
         <i-feather *ngIf="!subMenuItem.matIcon" name="{{subMenuItem.icon}}"></i-feather>
-        <!-- <fa-icon [icon]="['fas', 'coffee']"></fa-icon> -->
+        <i *ngIf="!subMenuItem.faIcon" class="{{subMenuItem.faIcon}}" >{{subMenuItem.faIcon}}</i>
         <mat-icon *ngIf="!subMenuItem.icon">{{subMenuItem.matIcon}}</mat-icon>
       </div>
       {{subMenuItem.name}}

@@ -1,9 +1,16 @@
-img {
-  border-radius: 5%;
-}
 
 h4 {
-  padding: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+h5 {
+  margin-bottom: 10px;
+}
+
+.example-card {
+  padding-bottom: 0;
+  width: 200px;
 }
 
 .design-img {
@@ -18,7 +25,7 @@ h4 {
 }
 
 .inner {
-  width: 30%;
+  // width: 30%;
   margin: 10px;
   float: left;
 }
@@ -29,8 +36,8 @@ h4 {
 
 @media (min-width: 576px){
   .col-sm-12 {
-      flex: 0 0 100%;
-      max-width: 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
 

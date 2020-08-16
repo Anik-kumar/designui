@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule), canActivate: [AuthGuardService] },
   { path: 'activity', loadChildren: () => import('./modules/activity/activity.module').then(m => m.ActivityModule), canActivate: [AuthGuardService] },
   { path: 'iam', loadChildren: () => import('./modules/iam/iam.module').then(m => m.IamModule), canActivate: [AuthGuardService, IamGuardService] },
-  { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule), canActivate: [AuthGuardService] }
+  { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule, m => m.DesignModule), canActivate: [AuthGuardService] }
 
 ];
 

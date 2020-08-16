@@ -3,6 +3,7 @@ import { isNil } from 'lodash';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { DesignService } from '@modules/design/design.service';
 import { AuthorizationService } from '@core/services/authorization.service';
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-details',
@@ -20,6 +21,7 @@ export class DetailsComponent implements OnInit {
   date = null;
   time = null;
   userPhotos = [];
+  userPhotosExists = true;
   sideNavStat;
   userDesignTitle = null;
   public sideNavList = [];
@@ -27,7 +29,8 @@ export class DetailsComponent implements OnInit {
   constructor(private router: Router,
     private designService: DesignService,
     private authorizationService: AuthorizationService,
-    private activatedRoute: ActivatedRoute) { 
+    private activatedRoute: ActivatedRoute,
+    private toastr: ToastrService) { 
       this.sideNavList = this.authorizationService.getNavs();
       // console.log(this.sideNavList);
 
@@ -69,24 +72,43 @@ export class DetailsComponent implements OnInit {
   getDesignInfoByTitle() {
     this.designService.getUserDesignByTitle(this.userDesignTitle).subscribe(observer => {
       console.log("Observer => ", observer);
-      this.userDesign = observer.data;
-      this.createDate = new Date(observer.data.date_created);
-      // console.log(" => ", this.createDate);
-      this.date = this.createDate.toLocaleDateString();
-      this.time = this.createDate.toLocaleTimeString();
-      this.userPhotos = observer.data.photos;
+      if(observer.success) {
+        this.userDesign = observer.data;
+        this.createDate = new Date(observer.data.date_created);
+        // console.log(" => ", this.createDate);
+        this.date = this.createDate.toLocaleDateString();
+        this.time = this.createDate.toLocaleTimeString();
+        this.userPhotos = observer.data.photos;
+        if(!observer.data.photos[observer.data.photos.length - 1]["public_url"]){
+          this.userPhotosExists = false;
+          console.log(" => ", this.userPhotosExists);
+        }
+      } else {
+        this.toastr.error(observer.message, 'Error');
+      }
     });
   }
 
   getDesignInfoById() {
     this.designService.getOneUserDesign(this.userDesignId).subscribe(observer => {
       console.log("Observer => ", observer);
-      this.userDesign = observer.data;
-      this.createDate = new Date(observer.data.date_created);
-      console.log(" => ", this.createDate);
-      this.date = this.createDate.toLocaleDateString();
-      this.time = this.createDate.toLocaleTimeString();
-      this.userPhotos = observer.data.photos;
+      if(observer.success) {
+        this.userDesign = observer.data;
+        this.createDate = new Date(observer.data.date_created);
+        console.log(" => ", this.createDate);
+        this.date = this.createDate.toLocaleDateString();
+        this.time = this.createDate.toLocaleTimeString();
+        this.userPhotos = observer.data.photos;
+        if(!observer.data.photos[observer.data.photos.length - 1]["public_url"]){
+          this.userPhotosExists = false;
+          console.log(" => ", this.userPhotosExists);
+        }else {
+          this.userPhotosExists = true;
+          console.log(" => ", this.userPhotosExists);
+        }
+      }else {
+        this.toastr.error(observer.message, 'Error');
+      }
     });
   }
   
